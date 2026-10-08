@@ -1,6 +1,6 @@
-import {emptyUserIdentification, UserIdentification} from "@/models/login/data";
+import {emptyUserIdentification, UserIdentificationData} from "@/models/login/data";
 
-export type LoginPayload = UserIdentification;
+export type LoginPayload = UserIdentificationData;
 
 export const emptyLoginPayload: LoginPayload = {
   ...emptyUserIdentification,

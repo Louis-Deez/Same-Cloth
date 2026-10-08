@@ -1,4 +1,4 @@
-export interface UserIdentification {
+export interface UserIdentificationData {
   firstName: string;
   lastName: string;
   handle: string;
@@ -12,7 +12,7 @@ export interface UserIdentification {
   gender: string;
 }
 
-export const emptyUserIdentification: UserIdentification = {
+export const emptyUserIdentification: UserIdentificationData = {
   firstName: "",
   lastName: "",
   handle: "",

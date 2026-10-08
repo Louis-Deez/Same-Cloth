@@ -2,12 +2,29 @@
 
 import Image from "next/image";
 import {AuthCard} from "@/app/(auth)/_components/AuthCard";
-import {IconBlock} from "@/app/(auth)/_components/IconBlock";
-import {PersonIcon} from "@radix-ui/react-icons";
 import {useState} from "react";
+import {emptyLoginPayload, LoginPayload} from "@/models/login/payload";
+import UserIdentification from "@/app/(auth)/signup/_form/UserIdentification";
+import {Button} from "@/components/Button";
 
 const SignupView = () => {
   const [step, setStep] = useState<number>(0);
+  const [payload, setPayload] = useState<LoginPayload>(emptyLoginPayload);
+  const [valid, setValid] = useState<boolean>(false);
+
+  const forms = [
+    { label: "Who are you?", component: UserIdentification }
+  ];
+  const Current = forms[step].component;
+
+  const onForward = () => {
+    setStep(step + 1);
+  }
+
+  const onBack = () => {
+    setStep(step - 1);
+  }
+
   return (
     <div className="flex h-screen w-screen">
       <Image
@@ -20,10 +37,23 @@ const SignupView = () => {
       <div className="bg-light-background flex w-1/2 flex-col items-center justify-center p-8">
         <div className="flex h-full w-full flex-col gap-y-8 border border-black/10 p-8 overflow-y-auto">
           <AuthCard primary={true}>
-            <IconBlock icon={<PersonIcon height={40} width={40} />} />
-            <div className="flex flex-col gap-y-2">
-              <h3>Who are you?</h3>
-              <p>Create a new account with Same Cloth</p>
+            <Current
+              data={payload}
+              onChange={(updates) => setPayload((prev) => ({...prev, ...updates}))}
+              onValidChange={setValid}
+            />
+            <div className="flex items-center justify-between gap-x-2">
+              <Button
+                className={step !== 0 ? `w-full` : `hidden`}
+                onClick={onBack}
+                primary={true}
+                label="Go Back"
+              />
+              <Button
+                onClick={onForward}
+                label="Continue"
+                primary={true}
+              />
             </div>
           </AuthCard>
         </div>
