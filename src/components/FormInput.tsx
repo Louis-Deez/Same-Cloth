@@ -12,7 +12,7 @@ import { InvalidMessage } from "@/components/InvalidMessage";
  */
 
 interface FormInputProps {
-  label: string;
+  label?: string;
   placeholder: string;
   id: string;
   value: string; // TODO: implement this

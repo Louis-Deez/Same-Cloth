@@ -53,6 +53,7 @@ const SignupView = () => {
                 onClick={onForward}
                 label="Continue"
                 primary={true}
+                disabled={!valid}
               />
             </div>
           </AuthCard>
