@@ -1,6 +1,7 @@
 import React from "react";
 
 interface ButtonProps {
+  primary?: boolean;
   label?: string;
   className?: string;
   disabled?: boolean;
@@ -20,10 +21,14 @@ interface ButtonProps {
  * @Note - The button can either have a label or an icon, but not both. If both are provided, the button breaks (visually).
  */
 
-export const Button = ({ label, className, disabled, onClick, type, icon }: ButtonProps) => {
+export const Button = ({ label, className, disabled, onClick, type, icon, primary }: ButtonProps) => {
   return (
     <button
-      className={`bg-button-primary w-full rounded-xl py-3 font-semibold text-white transition-all hover:brightness-90 ${className ?? ""}`}
+      className={`bg-button-primary w-full rounded-xl py-2 font-semibold text-white transition-all hover:brightness-90 
+                  ${className ?? ""}
+                  ${primary ? "bg-button-primary" : "bg-button-secondary !text-black/75 border border-black/10"}
+                  ${disabled ? "opacity-50" : ""}
+                  ${icon ? "flex items-center justify-center" : ""}`}
       type={type ?? "button"}
       onClick={onClick}
       disabled={disabled}

@@ -26,7 +26,7 @@ const SignInView = () => {
         className="w-7/9 object-cover"
       />
       <div className="bg-light-background flex w-1/2 flex-col items-center justify-center p-8">
-        <div className="flex h-full w-full flex-col gap-y-8 border border-black/10 p-8">
+        <div className="flex h-full w-full flex-col gap-y-8 border border-black/10 p-8 overflow-y-auto">
           <AuthCard primary={true}>
             <IconBlock icon={<PersonIcon height={40} width={40} />} />
             <div className="flex flex-col gap-y-2">
@@ -55,14 +55,23 @@ const SignInView = () => {
                 Forgot your password?
               </a>
             </div>
-            <Button label="Sign in" />
+            <Button primary label="Sign in" />
+            <div className="flex items-center gap-x-2 text-sm">
+              <div className="flex-1 border-t border-black/10" />
+              <span className="!text-black/50">Or sign in with</span>
+              <div className="flex-1 border-t border-black/10" />
+            </div>
+            <div className="flex items-center gap-x-8">
+              <Button icon={<Image src="/icons/google.svg" alt="Google" width={24} height={24} loading="eager"/>}/>
+              <Button icon={<Image src="/icons/apple.svg" alt="Google" width={18} height={22} loading="eager"/>}/>
+            </div>
           </AuthCard>
           <AuthCard primary={false}>
             <div className="flex flex-col gap-y-2">
               <h3>No account?</h3>
               <p>You can sign up within minutes to get started</p>
             </div>
-            <Button label="Create Account with Email" />
+            <Button primary label="Create Account with Email" />
           </AuthCard>
         </div>
       </div>

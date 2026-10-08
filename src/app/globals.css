@@ -5,8 +5,9 @@
   --font-heading: var(--font-manrope);
   --font-display: var(--font-brand);
   --background-image-button-primary: linear-gradient(180deg, #fca12a 0%, #fc8020 100%);
-  --background-image-button-secondary: linear-gradient(90deg, #ffffff 0%, #f1f1f1 100%);
+  --background-image-button-secondary: linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%);
   --background-image-auth-card: linear-gradient(180deg, #fff2d9 0%, #ffffff 45%);
+  --color-danger: #ff0000;
   --color-accent: #fca12a;
   --color-accent-solid: #fc8020;
   --color-light-background: #fafafa;
@@ -41,6 +42,14 @@ h5 {
 
 p {
   @apply font-sans text-base font-normal text-black/65;
+}
+
+span {
+  @apply font-sans text-xs font-normal text-black/65;
+}
+
+label {
+  @apply font-sans text-sm font-medium text-black/65;
 }
 
 input,

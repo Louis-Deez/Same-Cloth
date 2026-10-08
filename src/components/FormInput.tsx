@@ -65,7 +65,7 @@ export const FormInput = ({
   const invalid = required && isTouched && !value && !validated;
 
   return (
-    <div className={`flex flex-col gap-y-2 ${className ?? ""}`}>
+    <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
         {!required && <span className="text-md! text-neutral-400">(optional)</span>}
@@ -80,7 +80,7 @@ export const FormInput = ({
         required={required ?? false}
         onBlur={() => setTouched(true)}
         aria-invalid={invalid}
-        className={invalid ? "!border-red-500 !bg-red-50" : ""}
+        className={`text-sm ${invalid ? "!border-red-500 !bg-red-50" : ""}`}
         inputMode={inputMode ? inputMode : "text"}
       />
       {invalid && InvalidMessage({ id, errorMessage })}
