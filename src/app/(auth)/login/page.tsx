@@ -16,7 +16,7 @@ const Signup = () => {
         className="object-cover w-7/9"
       />
       <div className="flex p-8 w-1/2 flex-col justify-center items-center bg-light-background">
-        <div className="border border-black/10 w-full h-full p-8">
+        <div className="flex flex-col border border-black/10 w-full h-full p-8 gap-y-8">
           <AuthCard primary={true}>
             <IconBlock icon={<PersonIcon height={40} width={40}/>}/>
             <div className="flex flex-col gap-y-2">
@@ -44,6 +44,13 @@ const Signup = () => {
               <a href="/" className="-mt-2 ml-auto text-sm">Forgot your password?</a>
             </div>
             <Button label="Sign in"/>
+          </AuthCard>
+          <AuthCard primary={false}>
+            <div className="flex flex-col gap-y-2">
+              <h3>No account?</h3>
+              <p>You can sign up within minutes to get started</p>
+            </div>
+            <Button label="Create Account with Email"/>
           </AuthCard>
         </div>
       </div>
