@@ -6,7 +6,7 @@ interface AuthCardProps {
 
 export const AuthCard = ({ children } : AuthCardProps) => {
   return (
-    <div className="border border-black/10 w-full p-8 rounded-4xl bg-auth-card">
+    <div className="flex flex-col border border-black/10 w-full p-8 rounded-4xl bg-auth-card gap-y-8">
       {children}
     </div>
   )
