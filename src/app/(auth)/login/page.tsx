@@ -1,9 +1,12 @@
+"use client"
+
 import Image from "next/image";
-import { AuthCard } from "@/app/(auth)/login/_components/AuthCard";
+import { AuthCard } from "@/app/(auth)/_components/AuthCard";
 import { PersonIcon } from "@radix-ui/react-icons";
-import { IconBlock } from "@/app/(auth)/login/_components/IconBlock";
+import { IconBlock } from "@/app/(auth)/_components/IconBlock";
 import { FormInput } from "@/components/FormInput";
 import { Button } from "@/components/Button";
+import {useRouter} from "next/navigation";
 
 /**
  * An important distinction should be made here: login is when a user already has an account, and signup is when a user
@@ -16,6 +19,12 @@ import { Button } from "@/components/Button";
  */
 
 const SignInView = () => {
+  const router = useRouter();
+
+  const handleSignUpRedirect = () => {
+    router.push("/signup");
+  }
+
   return (
     <div className="flex h-screen w-screen">
       <Image
@@ -71,7 +80,12 @@ const SignInView = () => {
               <h3>No account?</h3>
               <p>You can sign up within minutes to get started</p>
             </div>
-            <Button primary label="Create Account with Email" />
+            <Button
+              primary
+              label="Create Account with Email"
+              onClick={handleSignUpRedirect}
+              type="button"
+            />
           </AuthCard>
         </div>
       </div>
