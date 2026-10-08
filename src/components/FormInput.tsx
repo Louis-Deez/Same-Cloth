@@ -5,19 +5,20 @@ import {InvalidMessage} from "@/components/InvalidMessage";
 
 interface FormInputProps {
   label: string;
+  placeholder: string;
   id: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string; // TODO: implement this
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // TODO: implement this
   required?: boolean;
   type?: string;
   autoComplete?: string;
   className?: string;
   errorMessage: string;
-  validated: boolean;
+  validated?: boolean; // TODO: implement this
   inputMode?: "search" | "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
 }
 
-export const FormInput = ({ label, id, value, onChange, required, type, autoComplete, className, errorMessage, validated, inputMode }: FormInputProps) => {
+export const FormInput = ({ label, id, value, onChange, required, type, autoComplete, className, errorMessage, validated, inputMode, placeholder }: FormInputProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && !value && !validated;
 
@@ -31,6 +32,7 @@ export const FormInput = ({ label, id, value, onChange, required, type, autoComp
       </div>
       <input
         type={type ?? "text"}
+        placeholder={placeholder}
         id={id}
         autoComplete={autoComplete}
         value={value}

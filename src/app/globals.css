@@ -41,3 +41,8 @@ h5 {
 p {
   @apply text-base text-black/65 font-sans font-normal;
 }
+
+input,
+select {
+  @apply h-10 rounded-lg bg-white px-3 py-1 border border-black/10;
+}
