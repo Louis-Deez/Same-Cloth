@@ -3,6 +3,7 @@ import {AuthCard} from "@/app/(auth)/login/_components/AuthCard";
 import {PersonIcon} from "@radix-ui/react-icons";
 import {IconBlock} from "@/app/(auth)/login/_components/IconBlock";
 import {FormInput} from "@/components/FormInput";
+import {Button} from "@/components/Button";
 
 const Signup = () => {
   return (
@@ -12,9 +13,9 @@ const Signup = () => {
         width={1000}
         height={1000}
         alt="login"
-        className="object-cover w-5/8"
+        className="object-cover w-7/9"
       />
-      <div className="flex p-8 w-1/2 flex-col justify-center items-center bg-white">
+      <div className="flex p-8 w-1/2 flex-col justify-center items-center bg-light-background">
         <div className="border border-black/10 w-full h-full p-8">
           <AuthCard primary={true}>
             <IconBlock icon={<PersonIcon height={40} width={40}/>}/>
@@ -39,8 +40,10 @@ const Signup = () => {
                 required
                 errorMessage="You must enter your password"
               />
+              {/* TODO: Implement forgot password, right now it does nothing */}
               <a href="/" className="-mt-2 ml-auto text-sm">Forgot your password?</a>
             </div>
+            <Button label="Sign in"/>
           </AuthCard>
         </div>
       </div>
