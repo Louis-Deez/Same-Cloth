@@ -5,7 +5,17 @@ import {IconBlock} from "@/app/(auth)/login/_components/IconBlock";
 import {FormInput} from "@/components/FormInput";
 import {Button} from "@/components/Button";
 
-const Signup = () => {
+/**
+ * An important distinction should be made here: login is when a user already has an account, and signup is when a user
+ * does not have an account, although the structure is a little different. The signup option is part of the login page,
+ * but the signup page itself is a separate page.
+ *
+ * Signing up is much more involved. It will be a multistep process and will include questionnaires.
+ *
+ * @IMPORTANT - The website is currently not fully functional. Clicking on a button does nothing for now.
+ */
+
+const SignInView = () => {
   return (
     <div className="flex h-screen w-screen">
       <Image
@@ -58,4 +68,4 @@ const Signup = () => {
   )
 }
 
-export default Signup;
+export default SignInView;

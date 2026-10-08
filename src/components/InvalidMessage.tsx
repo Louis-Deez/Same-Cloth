@@ -6,6 +6,12 @@ interface InvalidMessageProps {
   errorMessage?: string;
 }
 
+/**
+ * @param id - The unique identifier for the input
+ * @param errorMessage - The error message to display, you can write whatever, but I'd recommend writing it in colloquial
+ *                       English.
+ */
+
 export const InvalidMessage = ({ id, errorMessage }: InvalidMessageProps) => {
   return (
     <div className="flex items-center gap-x-1 text-accent">
