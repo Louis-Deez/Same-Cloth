@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React, {useState} from "react";
-import {InvalidMessage} from "@/components/InvalidMessage";
+import React, { useState } from "react";
+import { InvalidMessage } from "@/components/InvalidMessage";
 
 /**
  * I realized that I probably overengineered this component.
@@ -47,7 +47,20 @@ interface FormInputProps {
  * be labeled explicitly.
  */
 
-export const FormInput = ({ label, id, value, onChange, required, type, autoComplete, className, errorMessage, validated, inputMode, placeholder }: FormInputProps) => {
+export const FormInput = ({
+  label,
+  id,
+  value,
+  onChange,
+  required,
+  type,
+  autoComplete,
+  className,
+  errorMessage,
+  validated,
+  inputMode,
+  placeholder,
+}: FormInputProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && !value && !validated;
 
@@ -55,9 +68,7 @@ export const FormInput = ({ label, id, value, onChange, required, type, autoComp
     <div className={`flex flex-col gap-y-2 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {!required && (
-          <span className="text-md! text-neutral-400">(optional)</span>
-        )}
+        {!required && <span className="text-md! text-neutral-400">(optional)</span>}
       </div>
       <input
         type={type ?? "text"}
@@ -74,5 +85,5 @@ export const FormInput = ({ label, id, value, onChange, required, type, autoComp
       />
       {invalid && InvalidMessage({ id, errorMessage })}
     </div>
-  )
-}
+  );
+};

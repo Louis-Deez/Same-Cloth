@@ -4,12 +4,12 @@
   --font-sans: var(--font-inter);
   --font-heading: var(--font-manrope);
   --font-display: var(--font-brand);
-  --background-image-button-primary: linear-gradient(180deg, #FCA12A 0%, #FC8020 100%);
-  --background-image-button-secondary: linear-gradient(90deg, #FFFFFF 0%, #F1F1F1 100%);
-  --background-image-auth-card: linear-gradient(180deg, #FFF2D9 0%, #FFFFFF 45%);
-  --color-accent: #FCA12A;
-  --color-accent-solid: #FC8020;
-  --color-light-background: #FAFAFA;
+  --background-image-button-primary: linear-gradient(180deg, #fca12a 0%, #fc8020 100%);
+  --background-image-button-secondary: linear-gradient(90deg, #ffffff 0%, #f1f1f1 100%);
+  --background-image-auth-card: linear-gradient(180deg, #fff2d9 0%, #ffffff 45%);
+  --color-accent: #fca12a;
+  --color-accent-solid: #fc8020;
+  --color-light-background: #fafafa;
 }
 
 @media (prefers-color-scheme: light) {
@@ -20,30 +20,30 @@
 }
 
 h1 {
-  @apply text-5xl sm:text-6xl lg:text-6xl xl:text-7xl text-black font-display font-medium;
+  @apply font-display text-5xl font-medium text-black sm:text-6xl lg:text-6xl xl:text-7xl;
 }
 
 h2 {
-  @apply text-5xl sm:text-4xl lg:text-5xl text-black font-heading font-bold;
+  @apply font-heading text-5xl font-bold text-black sm:text-4xl lg:text-5xl;
 }
 
 h3 {
-  @apply text-4xl sm:text-3xl lg:text-4xl text-black font-heading font-bold;
+  @apply font-heading text-4xl font-bold text-black sm:text-3xl lg:text-4xl;
 }
 
 h4 {
-  @apply text-lg sm:text-xl lg:text-2xl text-black font-heading font-medium;
+  @apply font-heading text-lg font-medium text-black sm:text-xl lg:text-2xl;
 }
 
 h5 {
-  @apply text-base sm:text-lg text-black/75 font-heading font-medium;
+  @apply font-heading text-base font-medium text-black/75 sm:text-lg;
 }
 
 p {
-  @apply text-base text-black/65 font-sans font-normal;
+  @apply font-sans text-base font-normal text-black/65;
 }
 
 input,
 select {
-  @apply h-10 rounded-lg bg-white px-3 py-1 border border-black/10;
+  @apply h-10 rounded-lg border border-black/10 bg-white px-3 py-1;
 }

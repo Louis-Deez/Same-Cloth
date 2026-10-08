@@ -14,9 +14,9 @@ interface InvalidMessageProps {
 
 export const InvalidMessage = ({ id, errorMessage }: InvalidMessageProps) => {
   return (
-    <div className="flex items-center gap-x-1 text-accent">
+    <div className="text-accent flex items-center gap-x-1">
       <CrossCircledIcon className="scale-85" />
-      <span className="!text-xs !text-accent" id={`${id}-error`}>
+      <span className="!text-accent !text-xs" id={`${id}-error`}>
         {errorMessage ? errorMessage : "This field is required"}
       </span>
     </div>

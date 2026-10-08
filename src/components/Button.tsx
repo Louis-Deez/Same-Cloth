@@ -20,11 +20,10 @@ interface ButtonProps {
  * @Note - The button can either have a label or an icon, but not both. If both are provided, the button breaks (visually).
  */
 
-export const Button = ({ label, className, disabled, onClick, type, icon } : ButtonProps) => {
+export const Button = ({ label, className, disabled, onClick, type, icon }: ButtonProps) => {
   return (
     <button
-      className={`bg-button-primary w-full py-3 rounded-xl text-white font-semibold hover:brightness-90 transition-all
-                  ${className ?? ""}`}
+      className={`bg-button-primary w-full rounded-xl py-3 font-semibold text-white transition-all hover:brightness-90 ${className ?? ""}`}
       type={type ?? "button"}
       onClick={onClick}
       disabled={disabled}
@@ -32,5 +31,5 @@ export const Button = ({ label, className, disabled, onClick, type, icon } : But
       {label}
       {icon}
     </button>
-  )
-}
+  );
+};

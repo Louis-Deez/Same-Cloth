@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const brand = localFont({
   src: [{ path: "./fonts/subys.ttf", weight: "400", style: "normal" }],
   variable: "--font-brand",
-  display: "swap"
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,10 +19,8 @@ export const metadata: Metadata = {
 // Structure
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${brand.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${brand.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

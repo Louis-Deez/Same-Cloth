@@ -1,9 +1,9 @@
 import Image from "next/image";
-import {AuthCard} from "@/app/(auth)/login/_components/AuthCard";
-import {PersonIcon} from "@radix-ui/react-icons";
-import {IconBlock} from "@/app/(auth)/login/_components/IconBlock";
-import {FormInput} from "@/components/FormInput";
-import {Button} from "@/components/Button";
+import { AuthCard } from "@/app/(auth)/login/_components/AuthCard";
+import { PersonIcon } from "@radix-ui/react-icons";
+import { IconBlock } from "@/app/(auth)/login/_components/IconBlock";
+import { FormInput } from "@/components/FormInput";
+import { Button } from "@/components/Button";
 
 /**
  * An important distinction should be made here: login is when a user already has an account, and signup is when a user
@@ -23,12 +23,12 @@ const SignInView = () => {
         width={1000}
         height={1000}
         alt="login"
-        className="object-cover w-7/9"
+        className="w-7/9 object-cover"
       />
-      <div className="flex p-8 w-1/2 flex-col justify-center items-center bg-light-background">
-        <div className="flex flex-col border border-black/10 w-full h-full p-8 gap-y-8">
+      <div className="bg-light-background flex w-1/2 flex-col items-center justify-center p-8">
+        <div className="flex h-full w-full flex-col gap-y-8 border border-black/10 p-8">
           <AuthCard primary={true}>
-            <IconBlock icon={<PersonIcon height={40} width={40}/>}/>
+            <IconBlock icon={<PersonIcon height={40} width={40} />} />
             <div className="flex flex-col gap-y-2">
               <h3>Sign in with email</h3>
               <p>Please sign in to your account to continue</p>
@@ -51,21 +51,23 @@ const SignInView = () => {
                 errorMessage="You must enter your password"
               />
               {/* TODO: Implement forgot password, right now it does nothing */}
-              <a href="/" className="-mt-2 ml-auto text-sm">Forgot your password?</a>
+              <a href="/" className="-mt-2 ml-auto text-sm">
+                Forgot your password?
+              </a>
             </div>
-            <Button label="Sign in"/>
+            <Button label="Sign in" />
           </AuthCard>
           <AuthCard primary={false}>
             <div className="flex flex-col gap-y-2">
               <h3>No account?</h3>
               <p>You can sign up within minutes to get started</p>
             </div>
-            <Button label="Create Account with Email"/>
+            <Button label="Create Account with Email" />
           </AuthCard>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignInView;

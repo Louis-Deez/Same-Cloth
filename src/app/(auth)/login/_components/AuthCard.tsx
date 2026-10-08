@@ -5,12 +5,12 @@ interface AuthCardProps {
   children: React.ReactNode;
 }
 
-export const AuthCard = ({ children, primary } : AuthCardProps) => {
+export const AuthCard = ({ children, primary }: AuthCardProps) => {
   return (
     <div
-      className={`flex flex-col border border-black/10 w-full p-8 rounded-4xl gap-y-8 
-                ${primary ? "bg-auth-card" : "bg-white"}`}>
+      className={`flex w-full flex-col gap-y-8 rounded-4xl border border-black/10 p-8 ${primary ? "bg-auth-card" : "bg-white"}`}
+    >
       {children}
     </div>
-  )
-}
+  );
+};
