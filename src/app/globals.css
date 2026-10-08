@@ -6,6 +6,7 @@
   --font-display: var(--font-brand);
   --background-image-button-primary: linear-gradient(90deg, #FCA12A 0%, #FC8020 100%);
   --background-image-button-secondary: linear-gradient(90deg, #FFFFFF 0%, #F1F1F1 100%);
+  --background-image-auth-card: linear-gradient(180deg, #FFF2D9 0%, #FFFFFF 45%);
   --color-accent: #FCA12A;
   --color-accent-solid: #FC8020;
 }
@@ -15,4 +16,28 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+h1 {
+  @apply text-5xl sm:text-6xl lg:text-6xl xl:text-7xl text-black font-display font-medium;
+}
+
+h2 {
+  @apply text-5xl sm:text-4xl lg:text-5xl text-black font-heading font-bold;
+}
+
+h3 {
+  @apply text-4xl sm:text-3xl lg:text-4xl text-black font-heading font-bold;
+}
+
+h4 {
+  @apply text-lg sm:text-xl lg:text-2xl text-black font-heading font-medium;
+}
+
+h5 {
+  @apply text-base sm:text-lg text-black/75 font-heading font-medium;
+}
+
+p {
+  @apply text-base text-black/65 font-sans font-normal;
 }
