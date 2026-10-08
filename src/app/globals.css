@@ -1,18 +1,16 @@
-@import url("https://fonts.google.com/specimen/Manrope");
-@import url("https://fonts.google.com/specimen/Inter");
-
 @import "tailwindcss";
 
-@theme {
-  --font-manrope: "Manrope", sans-serif;
-  --font-inter: "Inter", sans-serif;
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-manrope);
+  --font-display: var(--font-brand);
   --background-image-button-primary: linear-gradient(90deg, #FCA12A 0%, #FC8020 100%);
   --background-image-button-secondary: linear-gradient(90deg, #FFFFFF 0%, #F1F1F1 100%);
   --color-accent: #FCA12A;
   --color-accent-solid: #FC8020;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
