@@ -1,9 +1,13 @@
+"use client"
+
 import Image from "next/image";
 import {AuthCard} from "@/app/(auth)/_components/AuthCard";
 import {IconBlock} from "@/app/(auth)/_components/IconBlock";
 import {PersonIcon} from "@radix-ui/react-icons";
+import {useState} from "react";
 
 const SignupView = () => {
+  const [step, setStep] = useState<number>(0);
   return (
     <div className="flex h-screen w-screen">
       <Image
@@ -18,7 +22,7 @@ const SignupView = () => {
           <AuthCard primary={true}>
             <IconBlock icon={<PersonIcon height={40} width={40} />} />
             <div className="flex flex-col gap-y-2">
-              <h3>Sign up</h3>
+              <h3>Who are you?</h3>
               <p>Create a new account with Same Cloth</p>
             </div>
           </AuthCard>
