@@ -36,3 +36,21 @@ export const emptyUserPersonalization: UserPersonalizationData = {
   displayName: "",
   bio: "",
 };
+
+export interface UserQuestionnaireData {
+  interests: string[];
+  clothingAesthetics: string[];
+  clothingNeeds: string[];
+  colorPreference: string[];
+  fashionEra: string[];
+  subculture: string[];
+}
+
+export const emptyUserQuestionnaire: UserQuestionnaireData = {
+  interests: [],
+  clothingAesthetics: [],
+  clothingNeeds: [],
+  colorPreference: [],
+  fashionEra: [],
+  subculture: [],
+};

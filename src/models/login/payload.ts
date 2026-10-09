@@ -1,13 +1,14 @@
 import {
   emptyUserIdentification,
-  emptyUserPersonalization,
+  emptyUserPersonalization, emptyUserQuestionnaire,
   UserIdentificationData,
-  UserPersonalizationData,
+  UserPersonalizationData, UserQuestionnaireData,
 } from "@/models/login/data";
 
-export type LoginPayload = UserIdentificationData & UserPersonalizationData;
+export type LoginPayload = UserIdentificationData & UserPersonalizationData & UserQuestionnaireData;
 
 export const emptyLoginPayload: LoginPayload = {
   ...emptyUserIdentification,
   ...emptyUserPersonalization,
+  ...emptyUserQuestionnaire,
 };

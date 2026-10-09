@@ -4,6 +4,7 @@ import {SelectionData} from "@/models/form/selectionData";
 import {useState} from "react";
 import Select, {MultiValue} from "react-select";
 import {InvalidMessage} from "@/components/InvalidMessage";
+import {formSelectionStyle} from "@/components/form/formSelectionConfig";
 
 interface FormSelectionProps {
   id: string;
@@ -35,6 +36,7 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
       </div>
       <Select<SelectionData, true>
         isMulti
+        unstyled
         instanceId={id}
         options={options}
         value={options.filter((o) => value.includes(o.value))}
@@ -46,6 +48,7 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
         aria-invalid={invalid}
         placeholder={placeholder}
         aria-errormessage={errorMessage ? `${id}-error` : undefined}
+        classNames={formSelectionStyle}
       />
       {invalid && InvalidMessage({id, errorMessage})}
     </div>

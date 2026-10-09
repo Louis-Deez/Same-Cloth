@@ -7,6 +7,7 @@ import { emptyLoginPayload, LoginPayload } from "@/models/login/payload";
 import UserIdentification from "@/app/(auth)/signup/_form/UserIdentification";
 import { Button } from "@/components/Button";
 import UserPersonalization from "@/app/(auth)/signup/_form/UserPersonalization";
+import UserQuestionnaire from "@/app/(auth)/signup/_form/UserQuestionnaire";
 
 /**
  * Signup is a multistep process, hence why it is a separate page. Each step is stored inside an array with a label and
@@ -33,6 +34,7 @@ const SignupView = () => {
   const forms = [
     { label: "Basic Information", component: UserIdentification },
     { label: "User Personalization", component: UserPersonalization },
+    { label: "User Questionnaire", component: UserQuestionnaire },
   ];
   // Gets the current component from the array
   const Current = forms[step].component;
