@@ -7,9 +7,9 @@ import {PersonIcon} from "@radix-ui/react-icons";
 import {FormInput} from "@/components/FormInput";
 
 interface UserIdentificationProps {
-  data: UserIdentificationData
-  onChange: (data: UserIdentificationData) => void
-  onValidChange: (valid: boolean) => void
+  data: UserIdentificationData;
+  onChange: (data: UserIdentificationData) => void;
+  onValidChange: (valid: boolean) => void;
 }
 
 const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificationProps) => {

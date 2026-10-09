@@ -6,6 +6,7 @@ import {useState} from "react";
 import {emptyLoginPayload, LoginPayload} from "@/models/login/payload";
 import UserIdentification from "@/app/(auth)/signup/_form/UserIdentification";
 import {Button} from "@/components/Button";
+import UserPersonalization from "@/app/(auth)/signup/_form/UserPersonalization";
 
 const SignupView = () => {
   const [step, setStep] = useState<number>(0);
@@ -13,7 +14,8 @@ const SignupView = () => {
   const [valid, setValid] = useState<boolean>(false);
 
   const forms = [
-    { label: "Who are you?", component: UserIdentification }
+    { label: "Basic Information", component: UserIdentification },
+    { label: "User Personalization", component: UserPersonalization }
   ];
   const Current = forms[step].component;
 
@@ -42,7 +44,7 @@ const SignupView = () => {
               onChange={(updates) => setPayload((prev) => ({...prev, ...updates}))}
               onValidChange={setValid}
             />
-            <div className="flex items-center justify-between gap-x-2">
+            <div className="flex items-center justify-between gap-x-8">
               <Button
                 className={step !== 0 ? `w-full` : `hidden`}
                 onClick={onBack}
@@ -53,7 +55,7 @@ const SignupView = () => {
                 onClick={onForward}
                 label="Continue"
                 primary={true}
-                disabled={!valid}
+                // disabled={!valid}
               />
             </div>
           </AuthCard>

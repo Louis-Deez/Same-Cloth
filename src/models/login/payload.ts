@@ -1,7 +1,12 @@
-import {emptyUserIdentification, UserIdentificationData} from "@/models/login/data";
+import {
+  emptyUserIdentification,
+  emptyUserPersonalization,
+  UserIdentificationData,
+  UserPersonalizationData
+} from "@/models/login/data";
 
-export type LoginPayload = UserIdentificationData;
+export type LoginPayload = UserIdentificationData & UserPersonalizationData;
 
 export const emptyLoginPayload: LoginPayload = {
-  ...emptyUserIdentification,
+  ...emptyUserIdentification, ...emptyUserPersonalization
 }
