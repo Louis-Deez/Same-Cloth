@@ -48,7 +48,7 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
         aria-invalid={invalid}
         placeholder={placeholder}
         aria-errormessage={errorMessage ? `${id}-error` : undefined}
-        classNames={formSelectionStyle}
+        classNames={formSelectionStyle()}
       />
       {invalid && InvalidMessage({id, errorMessage})}
     </div>
@@ -73,6 +73,7 @@ export const SingleSelect = ({id, label, options, onChange, placeholder, classNa
         )}
       </div>
       <Select<SelectionData>
+        unstyled
         instanceId={id}
         inputId={id}
         options={options}
@@ -83,6 +84,7 @@ export const SingleSelect = ({id, label, options, onChange, placeholder, classNa
         aria-invalid={invalid}
         placeholder={placeholder}
         aria-errormessage={errorMessage ? `${id}-error` : undefined}
+        classNames={formSelectionStyle()}
       />
       {invalid && InvalidMessage({id, errorMessage})}
     </div>

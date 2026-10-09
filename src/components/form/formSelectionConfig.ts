@@ -10,16 +10,18 @@ import {SelectionData} from "@/models/form/selectionData";
  *  @NOTE - You do not have to touch this unless you want to change the styling of the form selection elements.
  */
 
-export const formSelectionStyle:  ClassNamesConfig<SelectionData, true, GroupBase<SelectionData>> | undefined = {
+export const formSelectionStyle = <IsMulti extends boolean>():
+  ClassNamesConfig<SelectionData, IsMulti, GroupBase<SelectionData>> => ({
   control: ({ isFocused }) =>
-    `min-h-10 rounded-lg border bg-white px-2 py-1 font-sans text-base ${
+    `min-h-10 rounded-lg border bg-white px-3 py-1 font-sans text-sm text-black/65 ${
       isFocused ? "border-accent ring-1 ring-accent" : "border-black/10"
     }`,
-  valueContainer: () => "gap-1",
-  placeholder: () => "text-black/40",
-  input: () => "rs-input text-black/80",
+  valueContainer: () => "gap-1 p-0",
+  placeholder: () => "font-sans text-sm text-black/40",
+  singleValue: () => "font-sans text-sm font-medium text-black/65",
+  input: () => "rs-input font-sans text-sm text-black/65",
   multiValue: () => "bg-black/5 rounded-md pl-2 pr-1 py-0.5 items-center gap-1",
-  multiValueLabel: () => "text-black/70 text-sm font-medium",
+  multiValueLabel: () => "font-sans text-sm font-medium text-black/65",
   multiValueRemove: () => "text-black/40 hover:text-black/70 hover:bg-black/5 rounded",
   indicatorSeparator: () => "bg-black/10 my-2",
   dropdownIndicator: ({ isFocused }) => `px-2 ${isFocused ? "text-accent-solid" : "text-black/40"}`,
@@ -27,7 +29,7 @@ export const formSelectionStyle:  ClassNamesConfig<SelectionData, true, GroupBas
   menu: () => "mt-1 rounded-xl border border-black/10 bg-white shadow-lg overflow-hidden",
   menuList: () => "py-1 max-h-60",
   option: ({ isFocused, isSelected, isDisabled }) =>
-    `px-3 py-2 font-sans text-base cursor-pointer ${
+    `px-3 py-2 font-sans text-sm cursor-pointer ${
       isDisabled
         ? "text-black/25 cursor-not-allowed"
         : isSelected
@@ -36,5 +38,5 @@ export const formSelectionStyle:  ClassNamesConfig<SelectionData, true, GroupBas
             ? "bg-accent/10 text-black/80"
             : "text-black/65"
     }`,
-  noOptionsMessage: () => "px-3 py-2 text-black/40 font-sans text-sm",
-}
+  noOptionsMessage: () => "px-3 py-2 font-sans text-sm text-black/40",
+});
