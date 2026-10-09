@@ -1,7 +1,8 @@
 import {UserPersonalizationData} from "@/models/login/data";
 import {IconBlock} from "@/app/(auth)/_components/IconBlock";
 import {HamburgerMenuIcon, PlusIcon} from "@radix-ui/react-icons";
-import {FormInput} from "@/components/FormInput";
+import {FormInput} from "@/components/form/FormInput";
+import {FormTextArea} from "@/components/form/FormTextArea";
 
 interface UserPersonalizationProps {
   data: UserPersonalizationData;
@@ -17,24 +18,33 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
         <h3>Personalize your account</h3>
         <p>Create a new account with Same Cloth</p>
       </div>
-      <div className="flex items-center gap-x-5">
-        <div className="p-9 border border-black/20 border-dashed rounded-3xl">
-          <PlusIcon className="scale-150 text-black/50"/>
+      <div className="flex flex-col gap-y-5">
+        <div className="flex items-center gap-x-5">
+          <button className="p-9 border border-black/20 border-dashed rounded-3xl cursor-pointer">
+            <PlusIcon className="scale-150 text-black/50"/>
+          </button>
+          <div className="flex flex-col gap-y-2">
+            <h5>Profile Picture</h5>
+            <span>Choose a profile picture that represents you best, you can always change it later.</span>
+          </div>
         </div>
-        <div className="flex flex-col gap-y-2">
-          <h5>Profile Picture</h5>
-          <span>Choose a profile picture that represents you best, you can always change it later.</span>
-        </div>
+        <FormInput
+          label="Display Name"
+          placeholder="Enter your display name"
+          id="displayName"
+          value={data.displayName}
+          onChange={(e) => onChange({displayName: e.target.value})}
+          required
+          errorMessage="You must enter your display name"
+        />
+        <FormTextArea
+          label="Bio"
+          placeholder="Tell us about yourself..."
+          id="bio"
+          value={data.bio}
+          onChange={(e) => onChange({bio: e.target.value})}
+        />
       </div>
-      <FormInput
-        label="Display Name"
-        placeholder="Enter your display name"
-        id="displayName"
-        value={data.displayName}
-        onChange={(e) => onChange({displayName: e.target.value})}
-        required
-        errorMessage="You must enter your display name"
-      />
     </section>
   )
 }

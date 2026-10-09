@@ -58,7 +58,7 @@ select {
 }
 
 textarea {
-  @apply min-h-24 w-full rounded-xl bg-neutral-100 px-2 py-1 border border-neutral-400;
+  @apply min-h-24 w-full rounded-xl bg-white p-3 border border-black/10;
   resize: none;
 }
 

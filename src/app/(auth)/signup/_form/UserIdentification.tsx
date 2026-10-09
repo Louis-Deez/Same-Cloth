@@ -4,7 +4,7 @@ import {UserIdentificationData} from "@/models/login/data";
 import {useEffect} from "react";
 import {IconBlock} from "@/app/(auth)/_components/IconBlock";
 import {PersonIcon} from "@radix-ui/react-icons";
-import {FormInput} from "@/components/FormInput";
+import {FormInput} from "@/components/form/FormInput";
 
 interface UserIdentificationProps {
   data: UserIdentificationData;

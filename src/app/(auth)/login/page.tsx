@@ -4,7 +4,7 @@ import Image from "next/image";
 import { AuthCard } from "@/app/(auth)/_components/AuthCard";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { IconBlock } from "@/app/(auth)/_components/IconBlock";
-import { FormInput } from "@/components/FormInput";
+import { FormInput } from "@/components/form/FormInput";
 import { Button } from "@/components/Button";
 import {useRouter} from "next/navigation";
 
