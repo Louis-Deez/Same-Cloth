@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import {UserPersonalizationData} from "@/models/login/data";
-import {IconBlock} from "@/app/(auth)/_components/IconBlock";
-import {HamburgerMenuIcon, PlusIcon} from "@radix-ui/react-icons";
-import {FormInput} from "@/components/form/FormInput";
-import {FormTextArea} from "@/components/form/FormTextArea";
-import {useEffect} from "react";
+import { UserPersonalizationData } from "@/models/login/data";
+import { IconBlock } from "@/app/(auth)/_components/IconBlock";
+import { HamburgerMenuIcon, PlusIcon } from "@radix-ui/react-icons";
+import { FormInput } from "@/components/form/FormInput";
+import { FormTextArea } from "@/components/form/FormTextArea";
+import { useEffect } from "react";
 
 interface UserPersonalizationProps {
   data: UserPersonalizationData;
@@ -18,7 +18,7 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
 
   useEffect(() => {
     onValidChange(displayNameValid);
-  }, [displayNameValid, onValidChange])
+  }, [displayNameValid, onValidChange]);
 
   return (
     <section className="flex flex-col gap-y-8">
@@ -29,8 +29,8 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
       </div>
       <div className="flex flex-col gap-y-5">
         <div className="flex items-center gap-x-5">
-          <button className="p-9 border border-black/20 border-dashed rounded-3xl cursor-pointer">
-            <PlusIcon className="scale-150 text-black/50"/>
+          <button className="cursor-pointer rounded-3xl border border-dashed border-black/20 p-9">
+            <PlusIcon className="scale-150 text-black/50" />
           </button>
           <div className="flex flex-col gap-y-2">
             <h5>Profile Picture</h5>
@@ -42,7 +42,7 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
           placeholder="Enter your display name"
           id="displayName"
           value={data.displayName}
-          onChange={(e) => onChange({displayName: e.target.value})}
+          onChange={(e) => onChange({ displayName: e.target.value })}
           required
           errorMessage="You must enter your display name"
         />
@@ -51,12 +51,12 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
           placeholder="Tell us about yourself..."
           id="bio"
           value={data.bio}
-          onChange={(e) => onChange({bio: e.target.value})}
+          onChange={(e) => onChange({ bio: e.target.value })}
         />
         {/* TODO: implement external links */}
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default UserPersonalization;

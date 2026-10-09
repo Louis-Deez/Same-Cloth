@@ -24,7 +24,7 @@ export const emptyUserIdentification: UserIdentificationData = {
   dobYear: "",
   country: "",
   gender: "",
-}
+};
 
 export interface UserPersonalizationData {
   // TODO: add another field that takes the user's profile picture
@@ -35,4 +35,4 @@ export interface UserPersonalizationData {
 export const emptyUserPersonalization: UserPersonalizationData = {
   displayName: "",
   bio: "",
-}
+};

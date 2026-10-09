@@ -58,7 +58,6 @@ select {
 }
 
 textarea {
-  @apply min-h-24 w-full rounded-xl bg-white p-3 border border-black/10;
+  @apply min-h-24 w-full rounded-xl border border-black/10 bg-white p-3;
   resize: none;
 }
-

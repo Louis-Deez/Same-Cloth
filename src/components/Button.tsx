@@ -24,11 +24,7 @@ interface ButtonProps {
 export const Button = ({ label, className, disabled, onClick, type, icon, primary }: ButtonProps) => {
   return (
     <button
-      className={`bg-button-primary w-full rounded-xl py-2 font-semibold text-white transition-all hover:brightness-90 
-                  ${className ?? ""}
-                  ${primary ? "bg-button-primary" : "bg-button-secondary !text-black/75 border border-black/10"}
-                  ${disabled ? "opacity-50" : ""}
-                  ${icon ? "flex items-center justify-center" : ""}`}
+      className={`bg-button-primary w-full rounded-xl py-2 font-semibold text-white transition-all hover:brightness-90 ${className ?? ""} ${primary ? "bg-button-primary" : "bg-button-secondary border border-black/10 !text-black/75"} ${disabled ? "opacity-50" : ""} ${icon ? "flex items-center justify-center" : ""}`}
       type={type ?? "button"}
       onClick={onClick}
       disabled={disabled}

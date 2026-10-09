@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import Image from "next/image";
-import {AuthCard} from "@/app/(auth)/_components/AuthCard";
-import {useState} from "react";
-import {emptyLoginPayload, LoginPayload} from "@/models/login/payload";
+import { AuthCard } from "@/app/(auth)/_components/AuthCard";
+import { useState } from "react";
+import { emptyLoginPayload, LoginPayload } from "@/models/login/payload";
 import UserIdentification from "@/app/(auth)/signup/_form/UserIdentification";
-import {Button} from "@/components/Button";
+import { Button } from "@/components/Button";
 import UserPersonalization from "@/app/(auth)/signup/_form/UserPersonalization";
 
 /**
@@ -32,7 +32,7 @@ const SignupView = () => {
 
   const forms = [
     { label: "Basic Information", component: UserIdentification },
-    { label: "User Personalization", component: UserPersonalization }
+    { label: "User Personalization", component: UserPersonalization },
   ];
   // Gets the current component from the array
   const Current = forms[step].component;
@@ -40,12 +40,12 @@ const SignupView = () => {
   // Switches to the next value in the array (the next step)
   const onForward = () => {
     setStep(step + 1);
-  }
+  };
 
   // Switches to the previous value in the array (the previous step)
   const onBack = () => {
     setStep(step - 1);
-  }
+  };
 
   return (
     <div className="flex h-screen w-screen">
@@ -57,20 +57,15 @@ const SignupView = () => {
         className="w-7/9 object-cover"
       />
       <div className="bg-light-background flex w-1/2 flex-col items-center justify-center p-8">
-        <div className="flex h-full w-full flex-col gap-y-8 border border-black/10 p-8 overflow-y-auto">
+        <div className="flex h-full w-full flex-col gap-y-8 overflow-y-auto border border-black/10 p-8">
           <AuthCard primary={true}>
             <Current
               data={payload}
-              onChange={(updates) => setPayload((prev) => ({...prev, ...updates}))}
+              onChange={(updates) => setPayload((prev) => ({ ...prev, ...updates }))}
               onValidChange={setValid}
             />
             <div className="flex items-center justify-between gap-x-8">
-              <Button
-                className={step !== 0 ? `w-full` : `hidden`}
-                onClick={onBack}
-                primary={true}
-                label="Go Back"
-              />
+              <Button className={step !== 0 ? `w-full` : `hidden`} onClick={onBack} primary={true} label="Go Back" />
               <Button
                 onClick={onForward}
                 label="Continue"
@@ -82,7 +77,7 @@ const SignupView = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignupView;

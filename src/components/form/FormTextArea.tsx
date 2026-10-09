@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 interface FormTextAreaProps {
   className?: string;
@@ -27,7 +27,16 @@ interface FormTextAreaProps {
  * perfect for descriptions, comments, bios, etc.
  */
 
-export const FormTextArea = ({ className, label, id, value, onChange, required, errorMessage, placeholder }: FormTextAreaProps) => {
+export const FormTextArea = ({
+  className,
+  label,
+  id,
+  value,
+  onChange,
+  required,
+  errorMessage,
+  placeholder,
+}: FormTextAreaProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && !value;
 
@@ -48,5 +57,5 @@ export const FormTextArea = ({ className, label, id, value, onChange, required, 
         required={required ?? false}
       />
     </div>
-  )
-}
+  );
+};

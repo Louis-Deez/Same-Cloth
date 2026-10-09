@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { AuthCard } from "@/app/(auth)/_components/AuthCard";
@@ -6,7 +6,7 @@ import { PersonIcon } from "@radix-ui/react-icons";
 import { IconBlock } from "@/app/(auth)/_components/IconBlock";
 import { FormInput } from "@/components/form/FormInput";
 import { Button } from "@/components/Button";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 /**
  * An important distinction should be made here: login is when a user already has an account, and signup is when a user
@@ -23,7 +23,7 @@ const SignInView = () => {
 
   const handleSignUpRedirect = () => {
     router.push("/signup");
-  }
+  };
 
   return (
     <div className="flex h-screen w-screen">
@@ -35,7 +35,7 @@ const SignInView = () => {
         className="w-7/9 object-cover"
       />
       <div className="bg-light-background flex w-1/2 flex-col items-center justify-center p-8">
-        <div className="flex h-full w-full flex-col gap-y-8 border border-black/10 p-8 overflow-y-auto">
+        <div className="flex h-full w-full flex-col gap-y-8 overflow-y-auto border border-black/10 p-8">
           <AuthCard primary={true}>
             <IconBlock icon={<PersonIcon height={40} width={40} />} />
             <div className="flex flex-col gap-y-2">
@@ -71,8 +71,8 @@ const SignInView = () => {
               <div className="flex-1 border-t border-black/10" />
             </div>
             <div className="flex items-center gap-x-8">
-              <Button icon={<Image src="/icons/google.svg" alt="Google" width={24} height={24} loading="eager"/>}/>
-              <Button icon={<Image src="/icons/apple.svg" alt="Google" width={18} height={22} loading="eager"/>}/>
+              <Button icon={<Image src="/icons/google.svg" alt="Google" width={24} height={24} loading="eager" />} />
+              <Button icon={<Image src="/icons/apple.svg" alt="Google" width={18} height={22} loading="eager" />} />
             </div>
           </AuthCard>
           <AuthCard primary={false}>
@@ -80,12 +80,7 @@ const SignInView = () => {
               <h3>No account?</h3>
               <p>You can sign up within minutes to get started</p>
             </div>
-            <Button
-              primary
-              label="Create Account with Email"
-              onClick={handleSignUpRedirect}
-              type="button"
-            />
+            <Button primary label="Create Account with Email" onClick={handleSignUpRedirect} type="button" />
           </AuthCard>
         </div>
       </div>
