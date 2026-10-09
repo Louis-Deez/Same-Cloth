@@ -58,7 +58,9 @@
     @apply h-10 rounded-lg border border-black/10 bg-white px-3 py-1;
   }
 
-  .rs-input input { @apply h-auto rounded-none border-0 bg-transparent p-0 shadow-none; }
+  .rs-input input {
+    @apply h-auto min-h-0 rounded-none border-0 bg-transparent p-0 shadow-none;
+  }
 }
 
 textarea {

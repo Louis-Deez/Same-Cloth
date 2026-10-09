@@ -14,7 +14,7 @@ export const formSelectionStyle = <IsMulti extends boolean>():
   ClassNamesConfig<SelectionData, IsMulti, GroupBase<SelectionData>> => ({
   control: ({ isFocused, selectProps }) => {
     const invalid = selectProps["aria-invalid"];
-    return `min-h-10 rounded-lg border px-3 py-1 font-sans text-sm text-black/65 ${
+    return `h-10 rounded-lg border px-3 font-sans text-sm text-black/65 ${
       invalid
         ? "border-red-500 bg-red-50"
         : `bg-white ${isFocused ? "border-accent ring-1 ring-accent" : "border-black/10"}`

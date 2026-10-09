@@ -1,5 +1,13 @@
 import {SelectionData} from "@/models/form/selectionData";
 
+export const GENDER: SelectionData[] = [
+  { label: "Male", value: "male" },
+  { label: "Female", value: "female" },
+  { label: "Non-Binary", value: "non_binary" },
+  { label: "Prefer not to say", value: "prefer_not_to_say" },
+  { label: "Other", value: "other" },
+]
+
 export const INTERESTS: SelectionData[] = [
   { label: "Music", value: "music" },
   { label: "Books", value: "books" },

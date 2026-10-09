@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { IconBlock } from "@/app/(auth)/_components/IconBlock";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { FormInput } from "@/components/form/FormInput";
+import {SingleSelect} from "@/components/form/FormSelection";
+import {GENDER} from "@/app/(auth)/signup/_config/fields";
 
 interface UserIdentificationProps {
   data: UserIdentificationData;
@@ -138,15 +140,16 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
           required
           errorMessage="You must enter your country"
         />
-        <FormInput
-          label="Gender"
-          placeholder="Enter your gender"
+        <SingleSelect
           id="gender"
+          label="Gender"
+          options={GENDER}
+          onChange={(value) => onChange({ ...data, gender: value })}
           value={data.gender}
-          onChange={(e) => onChange({ ...data, gender: e.target.value })}
+          placeholder="Select your gender"
           required
-          errorMessage="You must enter your gender"
-          type="password"
+          errorMessage="You must select your gender"
+          validated={genderValid}
         />
       </div>
     </section>
