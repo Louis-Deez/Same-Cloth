@@ -1,8 +1,11 @@
+"use client"
+
 import {UserPersonalizationData} from "@/models/login/data";
 import {IconBlock} from "@/app/(auth)/_components/IconBlock";
 import {HamburgerMenuIcon, PlusIcon} from "@radix-ui/react-icons";
 import {FormInput} from "@/components/form/FormInput";
 import {FormTextArea} from "@/components/form/FormTextArea";
+import {useEffect} from "react";
 
 interface UserPersonalizationProps {
   data: UserPersonalizationData;
@@ -11,6 +14,12 @@ interface UserPersonalizationProps {
 }
 
 const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizationProps) => {
+  const displayNameValid = data.displayName.length > 0;
+
+  useEffect(() => {
+    onValidChange(displayNameValid);
+  }, [displayNameValid, onValidChange])
+
   return (
     <section className="flex flex-col gap-y-8">
       <IconBlock icon={<HamburgerMenuIcon height={40} width={40} />} />
@@ -44,6 +53,7 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
           value={data.bio}
           onChange={(e) => onChange({bio: e.target.value})}
         />
+        {/* TODO: implement external links */}
       </div>
     </section>
   )
