@@ -12,10 +12,14 @@ import {SelectionData} from "@/models/form/selectionData";
 
 export const formSelectionStyle = <IsMulti extends boolean>():
   ClassNamesConfig<SelectionData, IsMulti, GroupBase<SelectionData>> => ({
-  control: ({ isFocused }) =>
-    `min-h-10 rounded-lg border bg-white px-3 py-1 font-sans text-sm text-black/65 ${
-      isFocused ? "border-accent ring-1 ring-accent" : "border-black/10"
-    }`,
+  control: ({ isFocused, selectProps }) => {
+    const invalid = selectProps["aria-invalid"];
+    return `min-h-10 rounded-lg border px-3 py-1 font-sans text-sm text-black/65 ${
+      invalid
+        ? "border-red-500 bg-red-50"
+        : `bg-white ${isFocused ? "border-accent ring-1 ring-accent" : "border-black/10"}`
+    }`;
+  },
   valueContainer: () => "gap-1 p-0",
   placeholder: () => "font-sans text-sm text-black/40",
   singleValue: () => "font-sans text-sm font-medium text-black/65",

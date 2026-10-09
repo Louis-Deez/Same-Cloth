@@ -61,51 +61,51 @@ const UserQuestionnaire = ({data, onChange, onValidChange}: UserQuestionnairePro
           errorMessage="You must select at least one clothing aesthetics"
           validated={clothingAestheticsValid}
         />
+        <MultiSelect
+          id="clothingNeeds"
+          label="What should we consider when recommending clothing?"
+          options={CLOTHING_NEEDS}
+          onChange={(value) => onChange({clothingNeeds: value})}
+          value={data.clothingNeeds}
+          placeholder="Select your clothing needs"
+          required
+          errorMessage="You must select at least one clothing needs"
+          validated={clothingNeedsValid}
+        />
+        <MultiSelect
+          id="colorPreference"
+          label="Which colors are you most drawn to? "
+          options={COLOR_PREFERENCES}
+          onChange={(value) => onChange({colorPreference: value})}
+          value={data.colorPreference}
+          placeholder="Select your color preference"
+          required
+          errorMessage="You must select at least one color preference"
+          validated={colorPreferenceValid}
+        />
+        <MultiSelect
+          id="fashionEra"
+          label="Which fashion era inspires you?"
+          options={FASHION_ERAS}
+          onChange={(value) => onChange({fashionEra: value})}
+          value={data.fashionEra}
+          placeholder="Select your fashion era"
+          required
+          errorMessage="You must select at least one fashion era"
+          validated={fashionEraValid}
+        />
+        <MultiSelect
+          id="subculture"
+          label="Which styles or subcultures interest you?"
+          options={STYLE_SUBCULTURES}
+          onChange={(value) => onChange({subculture: value})}
+          value={data.subculture}
+          placeholder="Select your subculture"
+          required
+          errorMessage="You must select at least one subculture"
+          validated={subCultureValid}
+        />
       </div>
-      <MultiSelect
-        id="clothingNeeds"
-        label="What should we consider when recommending clothing?"
-        options={CLOTHING_NEEDS}
-        onChange={(value) => onChange({clothingNeeds: value})}
-        value={data.clothingNeeds}
-        placeholder="Select your clothing needs"
-        required
-        errorMessage="You must select at least one clothing needs"
-        validated={clothingNeedsValid}
-      />
-      <MultiSelect
-        id="colorPreference"
-        label="Which colors are you most drawn to? "
-        options={COLOR_PREFERENCES}
-        onChange={(value) => onChange({colorPreference: value})}
-        value={data.colorPreference}
-        placeholder="Select your color preference"
-        required
-        errorMessage="You must select at least one color preference"
-        validated={colorPreferenceValid}
-      />
-      <MultiSelect
-        id="fashionEra"
-        label="Which fashion era inspires you?"
-        options={FASHION_ERAS}
-        onChange={(value) => onChange({fashionEra: value})}
-        value={data.fashionEra}
-        placeholder="Select your fashion era"
-        required
-        errorMessage="You must select at least one fashion era"
-        validated={fashionEraValid}
-      />
-      <MultiSelect
-        id="subculture"
-        label="Which styles or subcultures interest you?"
-        options={STYLE_SUBCULTURES}
-        onChange={(value) => onChange({subculture: value})}
-        value={data.subculture}
-        placeholder="Select your subculture"
-        required
-        errorMessage="You must select at least one subculture"
-        validated={subCultureValid}
-      />
     </section>
   )
 }

@@ -24,7 +24,7 @@ interface MultiSelectProps extends FormSelectionProps {
 
 export const MultiSelect = ({id, label, options, onChange, placeholder, className, required, errorMessage, validated, value }: MultiSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
-  const invalid = required && isTouched && !value && !validated;
+  const invalid = required && isTouched && value.length === 0 && !validated;
 
   return (
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
@@ -62,7 +62,7 @@ interface SingleSelectProps extends FormSelectionProps {
 
 export const SingleSelect = ({id, label, options, onChange, placeholder, className, required, errorMessage, validated, value }: SingleSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
-  const invalid = required && isTouched && !value && !validated;
+  const invalid = required && isTouched && value.length === 0 && !validated;
 
   return (
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
