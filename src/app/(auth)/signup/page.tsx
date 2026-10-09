@@ -36,8 +36,10 @@ const SignupView = () => {
     { label: "User Personalization", component: UserPersonalization },
     { label: "User Questionnaire", component: UserQuestionnaire },
   ];
+
   // Gets the current component from the array
   const Current = forms[step].component;
+  const isLast = step === forms.length - 1;
 
   // Switches to the next value in the array (the next step)
   const onForward = () => {
@@ -48,6 +50,10 @@ const SignupView = () => {
   const onBack = () => {
     setStep(step - 1);
   };
+
+  const handleSubmit = () => {
+    console.log(payload);
+  }
 
   return (
     <div className="flex h-screen w-screen">
@@ -66,14 +72,23 @@ const SignupView = () => {
               onChange={(updates) => setPayload((prev) => ({ ...prev, ...updates }))}
               onValidChange={setValid}
             />
-            <div className="flex items-center justify-between gap-x-8">
-              <Button className={step !== 0 ? `w-full` : `hidden`} onClick={onBack} primary={true} label="Go Back" />
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
               <Button
-                onClick={onForward}
-                label="Continue"
-                primary={true}
-                // disabled={!valid}
+                className={step !== 0 ? "flex-1" : "hidden"}
+                onClick={onBack} primary label="Go Back"
               />
+              <Button
+                className="flex-1"
+                onClick={isLast ? handleSubmit : onForward}
+                label={isLast ? "Finish" : "Continue"}
+                primary
+                disabled={step === forms.length - 1 || !valid}
+              />
+              {isLast && (
+                <span className="basis-full">
+                  By clicking Finish you agree to our Terms of Service and our Privacy Policy
+                </span>
+              )}
             </div>
           </AuthCard>
         </div>
