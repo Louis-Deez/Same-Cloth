@@ -9,7 +9,6 @@ interface FormSelectionProps {
   id: string;
   label: string;
   options: SelectionData[];
-  onChange : (value: string[]) => void;
   placeholder: string;
   className?: string;
   required?: boolean;
@@ -18,12 +17,13 @@ interface FormSelectionProps {
 }
 
 interface MultiSelectProps extends FormSelectionProps {
+  onChange : (value: string[]) => void;
   value: string[];
 }
 
 export const MultiSelect = ({id, label, options, onChange, placeholder, className, required, errorMessage, validated, value }: MultiSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
-  const invalid = required && isTouched && !value;
+  const invalid = required && isTouched && !value && !validated;
 
   return (
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
@@ -45,6 +45,7 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
         required={required ?? false}
         aria-invalid={invalid}
         placeholder={placeholder}
+        aria-errormessage={errorMessage ? `${id}-error` : undefined}
       />
       {invalid && InvalidMessage({id, errorMessage})}
     </div>
@@ -52,16 +53,35 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
 }
 
 interface SingleSelectProps extends FormSelectionProps {
+  onChange : (value: string) => void;
   value: string;
 }
 
 export const SingleSelect = ({id, label, options, onChange, placeholder, className, required, errorMessage, validated, value }: SingleSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
-  const invalid = required && isTouched && !value;
+  const invalid = required && isTouched && !value && !validated;
 
   return (
-    <div>
-
+    <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
+      <div className="flex items-center gap-x-2">
+        <label htmlFor={id}>{label}</label>
+        {!required && (
+          <span className="text-md! text-neutral-400">(optional)</span>
+        )}
+      </div>
+      <Select<SelectionData>
+        instanceId={id}
+        inputId={id}
+        options={options}
+        value={options.find((o) => o.value === value)}
+        onChange={(selected) => onChange(selected?.value ?? "")}
+        onBlur={() => setTouched(true)}
+        required={required ?? false}
+        aria-invalid={invalid}
+        placeholder={placeholder}
+        aria-errormessage={errorMessage ? `${id}-error` : undefined}
+      />
+      {invalid && InvalidMessage({id, errorMessage})}
     </div>
   )
 }
