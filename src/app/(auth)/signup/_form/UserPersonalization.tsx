@@ -15,10 +15,11 @@ interface UserPersonalizationProps {
 
 const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizationProps) => {
   const displayNameValid = data.displayName.length > 0;
+  const handleValid = data.handle.length > 0;
 
   useEffect(() => {
-    onValidChange(displayNameValid);
-  }, [displayNameValid, onValidChange]);
+    onValidChange(displayNameValid && handleValid);
+  }, [displayNameValid, handleValid, onValidChange]);
 
   return (
     <section className="flex flex-col gap-y-8">
@@ -37,6 +38,15 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
             <span>Choose a profile picture that represents you best, you can always change it later.</span>
           </div>
         </div>
+        <FormInput
+          label="Handle"
+          placeholder="Enter your handle"
+          id="handle"
+          value={data.handle}
+          onChange={(e) => onChange({ handle: e.target.value })}
+          required
+          errorMessage="You must enter a handle"
+        />
         <FormInput
           label="Display Name"
           placeholder="Enter your display name"

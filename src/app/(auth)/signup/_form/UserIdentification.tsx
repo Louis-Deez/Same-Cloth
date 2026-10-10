@@ -65,6 +65,8 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
             required
             errorMessage="You must enter your first name"
             className="col-span-2 lg:col-span-1"
+            validated={firstNameValid}
+            type="text"
           />
           <FormInput
             label="Last Name"
@@ -75,17 +77,10 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
             required
             errorMessage="You must enter your last name"
             className="col-span-2 lg:col-span-1"
+            validated={lastNameValid}
+            type="text"
           />
         </div>
-        <FormInput
-          label="Handle"
-          placeholder="Enter your handle (it must be unique)"
-          id="handle"
-          value={data.handle}
-          onChange={(e) => onChange({ ...data, handle: e.target.value })}
-          required
-          errorMessage="You must enter a unique handle"
-        />
         <FormInput
           label="Email"
           placeholder="Enter your email address"
@@ -94,6 +89,30 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
           onChange={(e) => onChange({ ...data, email: e.target.value })}
           required
           errorMessage="You must enter a valid email address"
+          validated={emailValid}
+          type="email"
+        />
+        <FormInput
+          label="Password"
+          placeholder="Enter your password"
+          id="password"
+          value={data.password}
+          onChange={(e) => onChange({ ...data, password: e.target.value })}
+          required
+          errorMessage="You must enter your password"
+          validated={passwordValid}
+          type="password"
+        />
+        <FormInput
+          label="Confirm Password"
+          placeholder="Confirm your password"
+          id="confirmPassword"
+          value={data.confirmPassword}
+          onChange={(e) => onChange({ ...data, confirmPassword: e.target.value })}
+          required
+          errorMessage="You must confirm your password"
+          validated={confirmPasswordValid}
+          type="password"
         />
         <div className="flex flex-col gap-y-1">
           <label>Date of Birth</label>
@@ -107,6 +126,8 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
               required
               errorMessage="Invalid Month"
               className="col-span-1"
+              validated={dobValid}
+              type="number"
             />
             <FormInput
               inputMode="numeric"
@@ -117,6 +138,8 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
               required
               errorMessage="Invalid Day"
               className="col-span-1"
+              validated={dobValid}
+              type="number"
             />
             <FormInput
               inputMode="numeric"
@@ -127,6 +150,8 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
               required
               errorMessage="Invalid Year"
               className="col-span-1"
+              validated={dobValid}
+              type="number"
             />
           </div>
         </div>
@@ -139,6 +164,8 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
           onChange={(e) => onChange({ ...data, country: e.target.value.replace(/[^a-zA-Z]/g, "") })}
           required
           errorMessage="You must enter your country"
+          validated={countyValid}
+          type="text"
         />
         <SingleSelect
           id="gender"

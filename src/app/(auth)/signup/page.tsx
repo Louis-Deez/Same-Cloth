@@ -82,7 +82,7 @@ const SignupView = () => {
                 onClick={isLast ? handleSubmit : onForward}
                 label={isLast ? "Finish" : "Continue"}
                 primary
-                disabled={step === forms.length - 1 || !valid}
+                disabled={!valid}
               />
               {isLast && (
                 <span className="basis-full">

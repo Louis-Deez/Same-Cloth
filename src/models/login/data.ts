@@ -1,7 +1,6 @@
 export interface UserIdentificationData {
   firstName: string;
   lastName: string;
-  handle: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -15,7 +14,6 @@ export interface UserIdentificationData {
 export const emptyUserIdentification: UserIdentificationData = {
   firstName: "",
   lastName: "",
-  handle: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -29,11 +27,13 @@ export const emptyUserIdentification: UserIdentificationData = {
 export interface UserPersonalizationData {
   // TODO: add another field that takes the user's profile picture
   displayName: string;
+  handle: string;
   bio: string;
 }
 
 export const emptyUserPersonalization: UserPersonalizationData = {
   displayName: "",
+  handle: "",
   bio: "",
 };
 
