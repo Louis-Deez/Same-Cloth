@@ -1,5 +1,5 @@
-import {ClassNamesConfig, GroupBase} from "react-select";
-import {SelectionData} from "@/models/form/selectionData";
+import { ClassNamesConfig, GroupBase } from "react-select";
+import { SelectionData } from "@/models/form/selectionData";
 
 /**
  *  @IMPORTANT - THIS IS VIBECODED BECAUSE I'M TOO LAZY TO LEARN THE STYLING OF THIS LIBRARY
@@ -10,8 +10,11 @@ import {SelectionData} from "@/models/form/selectionData";
  *  @NOTE - You do not have to touch this unless you want to change the styling of the form selection elements.
  */
 
-export const formSelectionStyle = <IsMulti extends boolean>():
-  ClassNamesConfig<SelectionData, IsMulti, GroupBase<SelectionData>> => ({
+export const formSelectionStyle = <IsMulti extends boolean>(): ClassNamesConfig<
+  SelectionData,
+  IsMulti,
+  GroupBase<SelectionData>
+> => ({
   control: ({ isFocused, selectProps }) => {
     const invalid = selectProps["aria-invalid"];
     return `h-10 rounded-lg border px-3 font-sans text-sm text-black/65 ${

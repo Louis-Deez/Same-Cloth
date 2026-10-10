@@ -1,5 +1,5 @@
-import {SelectionData} from "@/models/form/selectionData";
-import {getCountryDataList} from "countries-list";
+import { SelectionData } from "@/models/form/selectionData";
+import { getCountryDataList } from "countries-list";
 
 /**
  * @IMPORTANT - This file contains all the possible values for the user to choose from in the signup form. If you want
@@ -12,14 +12,14 @@ export const GENDER: SelectionData[] = [
   { label: "Non-Binary", value: "non_binary" },
   { label: "Prefer not to say", value: "prefer_not_to_say" },
   { label: "Other", value: "other" },
-]
+];
 
 /**
  * @NOTE - This is a list of countries sorted alphabetically. I used a 3rd party library to get the list of countries.
  * The reason is that I don't want a massive array of objects.
  */
 export const COUNTRIES: SelectionData[] = getCountryDataList()
-  .map((c) => ({ label: c.name, value: c.iso2}))
+  .map((c) => ({ label: c.name, value: c.iso2 }))
   .sort((a, b) => a.label.localeCompare(b.label));
 
 export const INTERESTS: SelectionData[] = [

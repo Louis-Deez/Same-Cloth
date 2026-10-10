@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { IconBlock } from "@/app/(auth)/_components/IconBlock";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { FormInput } from "@/components/form/FormInput";
-import {SingleSelect} from "@/components/form/FormSelection";
-import {COUNTRIES, GENDER} from "@/app/(auth)/signup/_config/fields";
+import { SingleSelect } from "@/components/form/FormSelection";
+import { COUNTRIES, GENDER } from "@/app/(auth)/signup/_config/fields";
 
 interface UserIdentificationProps {
   data: UserIdentificationData;

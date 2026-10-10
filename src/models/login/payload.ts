@@ -1,8 +1,10 @@
 import {
   emptyUserIdentification,
-  emptyUserPersonalization, emptyUserQuestionnaire,
+  emptyUserPersonalization,
+  emptyUserQuestionnaire,
   UserIdentificationData,
-  UserPersonalizationData, UserQuestionnaireData,
+  UserPersonalizationData,
+  UserQuestionnaireData,
 } from "@/models/login/data";
 
 export type LoginPayload = UserIdentificationData & UserPersonalizationData & UserQuestionnaireData;

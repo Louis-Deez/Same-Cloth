@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import {SelectionData} from "@/models/form/selectionData";
-import {useState} from "react";
-import Select, {MultiValue} from "react-select";
-import {InvalidMessage} from "@/components/InvalidMessage";
-import {formSelectionStyle} from "@/components/form/formSelectionConfig";
+import { SelectionData } from "@/models/form/selectionData";
+import { useState } from "react";
+import Select, { MultiValue } from "react-select";
+import { InvalidMessage } from "@/components/InvalidMessage";
+import { formSelectionStyle } from "@/components/form/formSelectionConfig";
 
 interface FormSelectionProps {
   id: string;
@@ -34,11 +34,22 @@ interface FormSelectionProps {
 
 // Value takes an array of strings, representing the selected values.
 interface MultiSelectProps extends FormSelectionProps {
-  onChange : (value: string[]) => void;
+  onChange: (value: string[]) => void;
   value: string[];
 }
 
-export const MultiSelect = ({id, label, options, onChange, placeholder, className, required, errorMessage, validated, value }: MultiSelectProps) => {
+export const MultiSelect = ({
+  id,
+  label,
+  options,
+  onChange,
+  placeholder,
+  className,
+  required,
+  errorMessage,
+  validated,
+  value,
+}: MultiSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && value.length === 0 && !validated;
 
@@ -46,9 +57,7 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {!required && (
-          <span className="text-md! text-neutral-400">(optional)</span>
-        )}
+        {!required && <span className="text-md! text-neutral-400">(optional)</span>}
       </div>
       <Select<SelectionData, true>
         isMulti
@@ -56,9 +65,7 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
         instanceId={id}
         options={options}
         value={options.filter((o) => value.includes(o.value))}
-        onChange={(selected: MultiValue<SelectionData>) =>
-          onChange(selected.map((o) => o.value))
-        }
+        onChange={(selected: MultiValue<SelectionData>) => onChange(selected.map((o) => o.value))}
         onBlur={() => setTouched(true)}
         required={required ?? false}
         aria-invalid={invalid}
@@ -66,18 +73,29 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
         aria-errormessage={errorMessage ? `${id}-error` : undefined}
         classNames={formSelectionStyle()}
       />
-      {invalid && InvalidMessage({id, errorMessage})}
+      {invalid && InvalidMessage({ id, errorMessage })}
     </div>
-  )
-}
+  );
+};
 
 // Value takes a string, representing a selected value.
 interface SingleSelectProps extends FormSelectionProps {
-  onChange : (value: string) => void;
+  onChange: (value: string) => void;
   value: string;
 }
 
-export const SingleSelect = ({id, label, options, onChange, placeholder, className, required, errorMessage, validated, value }: SingleSelectProps) => {
+export const SingleSelect = ({
+  id,
+  label,
+  options,
+  onChange,
+  placeholder,
+  className,
+  required,
+  errorMessage,
+  validated,
+  value,
+}: SingleSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && value.length === 0 && !validated;
 
@@ -85,9 +103,7 @@ export const SingleSelect = ({id, label, options, onChange, placeholder, classNa
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {!required && (
-          <span className="text-md! text-neutral-400">(optional)</span>
-        )}
+        {!required && <span className="text-md! text-neutral-400">(optional)</span>}
       </div>
       <Select<SelectionData>
         unstyled
@@ -103,7 +119,7 @@ export const SingleSelect = ({id, label, options, onChange, placeholder, classNa
         aria-errormessage={errorMessage ? `${id}-error` : undefined}
         classNames={formSelectionStyle()}
       />
-      {invalid && InvalidMessage({id, errorMessage})}
+      {invalid && InvalidMessage({ id, errorMessage })}
     </div>
-  )
-}
+  );
+};

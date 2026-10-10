@@ -53,7 +53,7 @@ const SignupView = () => {
 
   const handleSubmit = () => {
     console.log(payload);
-  }
+  };
 
   return (
     <div className="flex h-screen w-screen">
@@ -73,10 +73,7 @@ const SignupView = () => {
               onValidChange={setValid}
             />
             <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-              <Button
-                className={step !== 0 ? "flex-1" : "hidden"}
-                onClick={onBack} primary label="Go Back"
-              />
+              <Button className={step !== 0 ? "flex-1" : "hidden"} onClick={onBack} primary label="Go Back" />
               <Button
                 className="flex-1"
                 onClick={isLast ? handleSubmit : onForward}
