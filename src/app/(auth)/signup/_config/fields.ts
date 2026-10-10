@@ -1,4 +1,5 @@
 import {SelectionData} from "@/models/form/selectionData";
+import {getCountryDataList} from "countries-list";
 
 export const GENDER: SelectionData[] = [
   { label: "Male", value: "male" },
@@ -7,6 +8,10 @@ export const GENDER: SelectionData[] = [
   { label: "Prefer not to say", value: "prefer_not_to_say" },
   { label: "Other", value: "other" },
 ]
+
+export const COUNTRIES: SelectionData[] = getCountryDataList()
+  .map((c) => ({ label: c.name, value: c.iso2}))
+  .sort((a, b) => a.label.localeCompare(b.label));
 
 export const INTERESTS: SelectionData[] = [
   { label: "Music", value: "music" },

@@ -6,7 +6,7 @@ import { IconBlock } from "@/app/(auth)/_components/IconBlock";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { FormInput } from "@/components/form/FormInput";
 import {SingleSelect} from "@/components/form/FormSelection";
-import {GENDER} from "@/app/(auth)/signup/_config/fields";
+import {COUNTRIES, GENDER} from "@/app/(auth)/signup/_config/fields";
 
 interface UserIdentificationProps {
   data: UserIdentificationData;
@@ -155,17 +155,16 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
             />
           </div>
         </div>
-        <FormInput
-          label="Country"
-          inputMode="text"
-          placeholder="e.g., United States"
+        <SingleSelect
           id="country"
+          label="Country"
+          options={COUNTRIES}
+          onChange={(value) => onChange({ ...data, country: value })}
           value={data.country}
-          onChange={(e) => onChange({ ...data, country: e.target.value.replace(/[^a-zA-Z]/g, "") })}
+          placeholder="Select your country"
           required
-          errorMessage="You must enter your country"
+          errorMessage="You must select your country"
           validated={countyValid}
-          type="text"
         />
         <SingleSelect
           id="gender"
