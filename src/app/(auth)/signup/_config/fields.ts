@@ -1,6 +1,11 @@
 import {SelectionData} from "@/models/form/selectionData";
 import {getCountryDataList} from "countries-list";
 
+/**
+ * @IMPORTANT - This file contains all the possible values for the user to choose from in the signup form. If you want
+ * to add a new field, make sure you add it here.
+ */
+
 export const GENDER: SelectionData[] = [
   { label: "Male", value: "male" },
   { label: "Female", value: "female" },
@@ -9,6 +14,10 @@ export const GENDER: SelectionData[] = [
   { label: "Other", value: "other" },
 ]
 
+/**
+ * @NOTE - This is a list of countries sorted alphabetically. I used a 3rd party library to get the list of countries.
+ * The reason is that I don't want a massive array of objects.
+ */
 export const COUNTRIES: SelectionData[] = getCountryDataList()
   .map((c) => ({ label: c.name, value: c.iso2}))
   .sort((a, b) => a.label.localeCompare(b.label));

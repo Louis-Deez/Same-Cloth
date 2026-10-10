@@ -17,6 +17,22 @@ interface FormSelectionProps {
   validated?: boolean;
 }
 
+/**
+ * @param id - The unique identifier for the input
+ * @param label - The label for the input
+ * @param options - The options for the select
+ * @param onChange - The function to call when the input value changes
+ * @param placeholder - The placeholder text for the input, you should write it in colloquial English
+ * @param className - Additional CSS classes to apply to the input, you will most likely not need this
+ * @param required - Whether the input is required
+ * @param errorMessage - The error message to display if the input is invalidated
+ * @param validated - Whether the input has been validated (e.g., by a server)
+ *
+ * Both SingleSelect and MultiSelect are very similar to FormInput. The only difference is that MultiSelect is for
+ * multiple selections, while SingleSelect is for single selections.
+ */
+
+// Value takes an array of strings, representing the selected values.
 interface MultiSelectProps extends FormSelectionProps {
   onChange : (value: string[]) => void;
   value: string[];
@@ -55,6 +71,7 @@ export const MultiSelect = ({id, label, options, onChange, placeholder, classNam
   )
 }
 
+// Value takes a string, representing a selected value.
 interface SingleSelectProps extends FormSelectionProps {
   onChange : (value: string) => void;
   value: string;
