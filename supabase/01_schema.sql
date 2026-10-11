@@ -12,19 +12,15 @@
 --
 --  NOTES
 --  - No CREATE DATABASE. Supabase already made one.
---  - user_profile.user_id is NOT generated here. It comes from
---    auth.users, so the profile and the login account share an ID.
+--  - user_profile.user_id is NOT generated here. It comes from auth.users, so the profile and the login account share an ID.
 --  - Email and password live in auth.users, never in these tables.
---  - answer_option keeps an INT id, with option_value holding the
---    frontend string (e.g. 'dark_academia') for lookups.
+--  - answer_option keeps an INT id, with option_value holding the frontend string (e.g. 'dark_academia') for lookups.
+--  - 03 changes user_profile. Three columns move out of it into a new public_profile table. Read 03 for the current shape.
 -- ============================================================
 
-
 -- 1 ----------------------------------------------------------
---  user_profile
---  user_id is both the primary key and a foreign key to the
---  Auth account. ON DELETE CASCADE means deleting the account
---  deletes the profile with it.
+-- user_profile
+-- user_id is both the primary key and a foreign key to the Auth account. ON DELETE CASCADE means deleting the account deletes the profile with it.
 CREATE TABLE user_profile (
     user_id             UUID,
     handle              TEXT NOT NULL UNIQUE,
@@ -41,10 +37,9 @@ CREATE TABLE user_profile (
     FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE
 );
 
-
 -- 2 ----------------------------------------------------------
---  question
---  Both multiple-choice and written questions live here.
+-- question
+-- Both multiple-choice and written questions live here.
 CREATE TABLE question (
     question_id         INT,
     question_text       TEXT NOT NULL,
@@ -52,17 +47,12 @@ CREATE TABLE question (
     PRIMARY KEY (question_id)
 );
 
-
 -- 3 ----------------------------------------------------------
---  answer_option
---  option_id    our number (2xx = Q2, 7xx = Q7)
---  option_value the frontend's string, must match fields.ts exactly
---  option_text  what the user reads on screen
---
---  UNIQUE (question_id, option_value) means a word only has to be
---  unique within its own question, so two questions can both use
---  something like 'budget'. Look up with BOTH question_id and
---  option_value.
+-- answer_option
+-- option_id — our number (2xx = Q2, 7xx = Q7)
+-- option_value — the frontend's string, must match fields.ts exactly
+-- option_text — what the user reads on screen
+-- UNIQUE (question_id, option_value) means a word only has to be unique within its own question, so two questions can both use something like 'budget'. Look up with BOTH question_id and option_value.
 CREATE TABLE answer_option (
     option_id           INT,
     question_id         INT NOT NULL,
@@ -74,11 +64,9 @@ CREATE TABLE answer_option (
     FOREIGN KEY (question_id) REFERENCES question(question_id)
 );
 
-
 -- 4 ----------------------------------------------------------
---  user_selected_option
---  The pair (user_id, option_id) is the key, so a user can pick
---  many options but never the same one twice.
+-- user_selected_option
+-- The pair (user_id, option_id) is the key, so a user can pick many options but never the same one twice.
 CREATE TABLE user_selected_option (
     user_id             UUID,
     option_id           INT,
@@ -88,10 +76,9 @@ CREATE TABLE user_selected_option (
     FOREIGN KEY (option_id) REFERENCES answer_option(option_id)
 );
 
-
 -- 5 ----------------------------------------------------------
---  user_written_response
---  One stored response per user per question.
+-- user_written_response
+-- One stored response per user per question.
 CREATE TABLE user_written_response (
     user_id             UUID,
     question_id         INT,
