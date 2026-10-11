@@ -1,6 +1,10 @@
 -- ============================================================
 --  THE SAME CLOTH — QUESTIONNAIRE ACCESS RULES
 --  (04_questionnaire_rls.sql)   Run AFTER 01, 02 and 03.
+--
+--  Quoted definitions are verbatim from the Supabase docs:
+--    [R] supabase.com/docs/guides/database/postgres/row-level-security
+--    [G] supabase.com/docs/guides/database/postgres/roles
 -- ============================================================
 
 -- 1 ----------------------------------------------------------
@@ -72,3 +76,13 @@ CREATE POLICY "Users can update their own responses" ON public.user_written_resp
 CREATE POLICY "Users can remove their own responses" ON public.user_written_response
     FOR DELETE TO authenticated
         USING ((SELECT auth.uid()) = user_id);
+
+-- 5 ----------------------------------------------------------
+-- table permissions — GRANT decides if signed-in users can use a table at all, RLS decides which rows
+-- [G] "Roles can be granted various permissions on database objects using the `GRANT` command."
+-- Without these, every request fails with "permission denied" before RLS even runs
+-- Each table only gets the actions its policies above allow
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.user_written_response TO authenticated;
+GRANT SELECT, INSERT, DELETE         ON public.user_selected_option  TO authenticated;
+GRANT SELECT                         ON public.question              TO authenticated;
+GRANT SELECT                         ON public.answer_option         TO authenticated;
