@@ -8,6 +8,7 @@
 --    [T] supabase.com/docs/guides/database/postgres/triggers
 --    [F] supabase.com/docs/guides/database/functions
 --    [R] supabase.com/docs/guides/database/postgres/row-level-security
+--    [G] supabase.com/docs/guides/database/postgres/roles
 -- ============================================================
 --
 --  [T] "a trigger executes a set of actions automatically on table events such as INSERTs, UPDATEs, DELETEs, or TRUNCATE operations."
@@ -198,6 +199,15 @@ ON CONFLICT (user_id) DO UPDATE
     SET display_name = COALESCE(NULLIF(public_profile.display_name, ''), EXCLUDED.display_name);
 
 -- 8 ----------------------------------------------------------
+-- table permissions — GRANT decides if signed-in users can use a table at all, RLS decides which rows
+-- [G] "Roles can be granted various permissions on database objects using the `GRANT` command."
+-- Without these, every request fails with "permission denied" before RLS even runs
+-- Each table only gets the actions its policies above allow
+-- No INSERT, since the signup trigger creates the profile rows
+GRANT SELECT, UPDATE ON public.user_profile   TO authenticated;
+GRANT SELECT, UPDATE ON public.public_profile TO authenticated;
+
+-- 9 ----------------------------------------------------------
 -- CHECK — one row per account, with both profile rows joined on
 -- LEFT JOIN keeps an account with no profile row, showing nulls beside it
 -- A null name only means the provider sent none, not that the trigger failed
