@@ -55,7 +55,7 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
         <p>Create a new account with Same Cloth</p>
       </div>
       <div className="flex flex-col gap-y-5">
-        <div className="grid grid-cols-2 gap-x-5">
+        <div className="grid grid-cols-2 gap-x-5 gap-y-5">
           <FormInput
             label="First Name"
             placeholder="Enter your first name"

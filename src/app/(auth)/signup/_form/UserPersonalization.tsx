@@ -34,7 +34,7 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
             <PlusIcon className="scale-150 text-black/50" />
           </button>
           <div className="flex flex-col gap-y-2">
-            <h5>Profile Picture</h5>
+            <h4>Profile Picture</h4>
             <span>Choose a profile picture that represents you best, you can always change it later.</span>
           </div>
         </div>

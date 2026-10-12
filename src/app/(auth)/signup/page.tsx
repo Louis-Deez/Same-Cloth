@@ -56,30 +56,31 @@ const SignupView = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen">
+    <div className="flex min-h-screen w-full">
       <Image
         src="/images/placeholder_login.jpeg"
         width={1000}
         height={1000}
+        priority
         alt="login"
-        className="w-7/9 object-cover"
+        className="hidden object-cover lg:block lg:h-screen lg:w-1/2 lg:sticky lg:top-0 xl:w-7/12"
       />
-      <div className="bg-light-background flex w-1/2 flex-col items-center justify-center p-8">
-        <div className="flex h-full w-full flex-col gap-y-8 overflow-y-auto border border-black/10 p-8">
+      <div className="bg-light-background flex w-full h-full flex-col items-center p-4 lg:h-screen lg:w-1/2 lg:p-8 xl:w-5/12">
+        <div className="my-auto flex w-full h-full flex-col justify-center gap-y-8 border-black/10 lg:max-h-full lg:overflow-y-auto lg:border lg:p-8">
           <AuthCard primary={true}>
             <Current
               data={payload}
               onChange={(updates) => setPayload((prev) => ({ ...prev, ...updates }))}
               onValidChange={setValid}
             />
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+            <div className="flex flex-wrap items-center gap-x-5 lg:gap-x-8 gap-y-3">
               <Button className={step !== 0 ? "flex-1" : "hidden"} onClick={onBack} primary label="Go Back" />
               <Button
                 className="flex-1"
                 onClick={isLast ? handleSubmit : onForward}
                 label={isLast ? "Finish" : "Continue"}
                 primary
-                disabled={!valid}
+                // disabled={!valid}
               />
               {isLast && (
                 <span className="basis-full">

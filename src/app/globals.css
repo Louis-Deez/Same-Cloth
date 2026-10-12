@@ -22,23 +22,23 @@
 
 @layer base {
   h1 {
-    @apply font-display text-5xl font-medium text-black sm:text-6xl lg:text-6xl xl:text-7xl;
+    @apply font-display text-4xl font-medium text-black sm:text-5xl lg:text-6xl xl:text-7xl;
   }
 
   h2 {
-    @apply font-heading text-5xl font-bold text-black sm:text-4xl lg:text-5xl;
+    @apply font-heading text-2xl font-bold text-black sm:text-3xl lg:text-4xl;
   }
 
   h3 {
-    @apply font-heading text-4xl font-bold text-black sm:text-3xl lg:text-4xl;
+    @apply font-heading text-3xl font-bold text-black sm:text-2xl lg:text-3xl;
   }
 
   h4 {
-    @apply font-heading text-lg font-bold text-black/75 sm:text-xl lg:text-2xl;
+    @apply font-heading text-base font-bold text-black/75 sm:text-lg lg:text-xl;
   }
 
   h5 {
-    @apply font-heading text-base font-bold text-black/75 sm:text-lg;
+    @apply font-heading text-sm font-bold text-black/75 sm:text-base lg:text-lg;
   }
 
   p {
@@ -50,7 +50,7 @@
   }
 
   label {
-    @apply font-sans text-sm font-medium text-black/65;
+    @apply font-sans text-xs lg:text-sm font-medium text-black/65;
   }
 
   input,
