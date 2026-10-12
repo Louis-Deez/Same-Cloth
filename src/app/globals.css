@@ -50,7 +50,7 @@
   }
 
   label {
-    @apply font-sans text-xs lg:text-sm font-medium text-black/65;
+    @apply font-sans text-xs font-medium text-black/65 lg:text-sm;
   }
 
   input,

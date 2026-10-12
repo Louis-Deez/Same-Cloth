@@ -32,10 +32,10 @@ const SignInView = () => {
         width={1000}
         height={1000}
         alt="login"
-        className="hidden object-cover lg:block lg:h-screen lg:w-1/2 lg:sticky lg:top-0 xl:w-7/12"
+        className="hidden object-cover lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 xl:w-7/12"
       />
-      <div className="bg-light-background flex w-full h-full flex-col items-center p-4 lg:h-screen lg:w-1/2 lg:p-8 xl:w-5/12">
-        <div className="my-auto flex w-full h-full flex-col justify-center gap-y-8 border-black/10 lg:max-h-full lg:overflow-y-auto lg:border lg:p-8">
+      <div className="bg-light-background flex h-full w-full flex-col items-center p-4 lg:h-screen lg:w-1/2 lg:p-8 xl:w-5/12">
+        <div className="my-auto flex h-full w-full flex-col justify-center gap-y-8 border-black/10 lg:max-h-full lg:overflow-y-auto lg:border lg:p-8">
           <AuthCard primary={true}>
             <IconBlock icon={<PersonIcon height={40} width={40} />} />
             <div className="flex flex-col gap-y-2">

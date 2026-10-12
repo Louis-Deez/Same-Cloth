@@ -63,17 +63,17 @@ const SignupView = () => {
         height={1000}
         priority
         alt="login"
-        className="hidden object-cover lg:block lg:h-screen lg:w-1/2 lg:sticky lg:top-0 xl:w-7/12"
+        className="hidden object-cover lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 xl:w-7/12"
       />
-      <div className="bg-light-background flex w-full h-full flex-col items-center p-4 lg:h-screen lg:w-1/2 lg:p-8 xl:w-5/12">
-        <div className="my-auto flex w-full h-full flex-col justify-center gap-y-8 border-black/10 lg:max-h-full lg:overflow-y-auto lg:border lg:p-8">
+      <div className="bg-light-background flex h-full w-full flex-col items-center p-4 lg:h-screen lg:w-1/2 lg:p-8 xl:w-5/12">
+        <div className="my-auto flex h-full w-full flex-col justify-center gap-y-8 border-black/10 lg:max-h-full lg:overflow-y-auto lg:border lg:p-8">
           <AuthCard primary={true}>
             <Current
               data={payload}
               onChange={(updates) => setPayload((prev) => ({ ...prev, ...updates }))}
               onValidChange={setValid}
             />
-            <div className="flex flex-wrap items-center gap-x-5 lg:gap-x-8 gap-y-3">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 lg:gap-x-8">
               <Button className={step !== 0 ? "flex-1" : "hidden"} onClick={onBack} primary label="Go Back" />
               <Button
                 className="flex-1"
