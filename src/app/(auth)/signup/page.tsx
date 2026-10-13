@@ -1,13 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { AuthCard } from "@/app/(auth)/_components/AuthCard";
-import { useState } from "react";
-import { emptyLoginPayload, LoginPayload } from "@/models/login/payload";
 import UserIdentification from "@/app/(auth)/signup/_form/UserIdentification";
-import { Button } from "@/components/Button";
 import UserPersonalization from "@/app/(auth)/signup/_form/UserPersonalization";
 import UserQuestionnaire from "@/app/(auth)/signup/_form/UserQuestionnaire";
+import { Button } from "@/components/Button";
+import { submitSignup } from "@/lib/supabase/submitSignup";
+import { emptyLoginPayload, LoginPayload } from "@/models/login/payload";
+import Image from "next/image";
+import { useState } from "react";
 
 /**
  * Signup is a multistep process, hence why it is a separate page. Each step is stored inside an array with a label and
@@ -16,6 +17,7 @@ import UserQuestionnaire from "@/app/(auth)/signup/_form/UserQuestionnaire";
  * @hook step and setStep - This is used to keep track of the current step of the signup process.
  * @hook payload and setPayload - This is used to keep track of the data entered by the user.
  * @hook valid and setValid - This is used to keep track of whether the data entered by the user is valid.
+ * @hook message and setMessage - This is used to show the user whether saving worked or what went wrong.
  *
  * @IMPORTANT - Each step is a separate component but is a part of a larger form. This means that each step has to have
  * the same structure, otherwise everything will break. No more, no less.
@@ -30,6 +32,7 @@ const SignupView = () => {
   const [step, setStep] = useState<number>(0);
   const [payload, setPayload] = useState<LoginPayload>(emptyLoginPayload);
   const [valid, setValid] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
 
   const forms = [
     { label: "Basic Information", component: UserIdentification },
@@ -51,8 +54,10 @@ const SignupView = () => {
     setStep(step - 1);
   };
 
-  const handleSubmit = () => {
-    console.log(payload);
+  // Saves the whole form to the database (see lib/supabase/submitSignup.ts)
+  const handleSubmit = async () => {
+    const { error } = await submitSignup(payload);
+    setMessage(error ?? "Account created!");
   };
 
   return (
@@ -87,6 +92,7 @@ const SignupView = () => {
                   By clicking Finish you agree to our Terms of Service and our Privacy Policy
                 </span>
               )}
+              {message && <span className="basis-full">{message}</span>}
             </div>
           </AuthCard>
         </div>
