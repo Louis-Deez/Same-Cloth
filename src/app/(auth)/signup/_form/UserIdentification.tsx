@@ -81,39 +81,39 @@ const UserIdentification = ({ data, onChange, onValidChange }: UserIdentificatio
             type="text"
           />
         </div>
-        <FormInput
-          label="Email"
-          placeholder="Enter your email address"
-          id="email"
-          value={data.email}
-          onChange={(e) => onChange({ ...data, email: e.target.value })}
-          required
-          errorMessage="You must enter a valid email address"
-          validated={emailValid}
-          type="email"
-        />
-        <FormInput
-          label="Password"
-          placeholder="Enter your password"
-          id="password"
-          value={data.password}
-          onChange={(e) => onChange({ ...data, password: e.target.value })}
-          required
-          errorMessage="You must enter your password"
-          validated={passwordValid}
-          type="password"
-        />
-        <FormInput
-          label="Confirm Password"
-          placeholder="Confirm your password"
-          id="confirmPassword"
-          value={data.confirmPassword}
-          onChange={(e) => onChange({ ...data, confirmPassword: e.target.value })}
-          required
-          errorMessage="You must confirm your password"
-          validated={confirmPasswordValid}
-          type="password"
-        />
+      <FormInput
+        label="Email"
+        placeholder="Enter your email address"
+        id="email"
+        value={data.email}
+        onChange={(e) => onChange({ ...data, email: e.target.value })}
+        required
+        errorMessage="You must enter a valid email address"
+        validated={emailValid}
+        type="email"
+      />
+      <FormInput
+        label="Password"
+        placeholder="Enter your password"
+        id="password"
+        value={data.password}
+        onChange={(e) => onChange({ ...data, password: e.target.value })}
+        required
+        errorMessage="You must enter your password"
+        validated={passwordValid}
+        type="password"
+      />
+      <FormInput
+        label="Confirm Password"
+        placeholder="Confirm your password"
+        id="confirmPassword"
+        value={data.confirmPassword}
+        onChange={(e) => onChange({ ...data, confirmPassword: e.target.value })}
+        required
+        errorMessage="You must confirm your password"
+        validated={confirmPasswordValid}
+        type="password"
+      />
         <div className="flex flex-col gap-y-1">
           <label>Date of Birth</label>
           <div className="grid grid-cols-3 gap-x-5">

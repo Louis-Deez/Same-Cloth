@@ -25,7 +25,7 @@ export const emptyUserIdentification: UserIdentificationData = {
 };
 
 export interface UserPersonalizationData {
-  // TODO: add another field that takes the user's profile picture
+  // add another field that takes the user's profile picture
   displayName: string;
   handle: string;
   bio: string;
@@ -44,6 +44,10 @@ export interface UserQuestionnaireData {
   colorPreference: string[];
   fashionEra: string[];
   subculture: string[];
+  // typed (free text) answers, saved to user_written_response. All optional.
+  otherStyle: string; // Q11
+  outfitExpression: string; // Q10
+  anythingElse: string; // Q9
 }
 
 export const emptyUserQuestionnaire: UserQuestionnaireData = {
@@ -53,4 +57,7 @@ export const emptyUserQuestionnaire: UserQuestionnaireData = {
   colorPreference: [],
   fashionEra: [],
   subculture: [],
+  otherStyle: "",
+  outfitExpression: "",
+  anythingElse: "",
 };

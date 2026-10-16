@@ -4,6 +4,7 @@ import { UserQuestionnaireData } from "@/models/login/data";
 import { IconBlock } from "@/app/(auth)/_components/IconBlock";
 import { QuestionMarkIcon } from "@radix-ui/react-icons";
 import { MultiSelect } from "@/components/form/FormSelection";
+import { FormTextArea } from "@/components/form/FormTextArea";
 import {
   CLOTHING_AESTHETICS,
   CLOTHING_NEEDS,
@@ -120,6 +121,27 @@ const UserQuestionnaire = ({ data, onChange, onValidChange }: UserQuestionnaireP
           required
           errorMessage="You must select at least one subculture"
           validated={subCultureValid}
+        />
+        <FormTextArea
+          label="Any style not listed above?"
+          placeholder="Tell us about a style we missed..."
+          id="otherStyle"
+          value={data.otherStyle}
+          onChange={(e) => onChange({ otherStyle: e.target.value })}
+        />
+        <FormTextArea
+          label="What does your favorite outfit help you express?"
+          placeholder="Describe how it makes you feel..."
+          id="outfitExpression"
+          value={data.outfitExpression}
+          onChange={(e) => onChange({ outfitExpression: e.target.value })}
+        />
+        <FormTextArea
+          label="Anything else you want to include?"
+          placeholder="Anything else we should know..."
+          id="anythingElse"
+          value={data.anythingElse}
+          onChange={(e) => onChange({ anythingElse: e.target.value })}
         />
       </div>
     </section>
