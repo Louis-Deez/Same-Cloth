@@ -1,31 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth/AuthProvider";
 import { Button } from "@/components/Button";
-import GroupRecommendations, { type GroupRecommendationItem } from "./_components/GroupRecommendations";
-
-const sampleGroupRecommendations: GroupRecommendationItem[] = [
-  {
-    id: "art-expression",
-    name: "Art & Expression",
-    description: "A space for creative, expressive personal style.",
-    matchScore: 0.8,
-  },
-  {
-    id: "vintage-history",
-    name: "Vintage & History",
-    description: "Explore vintage clothing and fashion from past eras.",
-    matchScore: 0.65,
-  },
-  {
-    id: "comfort-function",
-    name: "Comfort & Function",
-    description: "Practical outfits built around comfort and mobility.",
-    matchScore: 0.5,
-  },
-];
+import { rankGroups } from "@/lib/groups/matching";
+import { sampleGroups } from "@/lib/groups/sampleGroups";
+import { loadSelectedOptionIds } from "@/lib/supabase/loadSelectedOptionIds";
+import GroupRecommendations from "./_components/GroupRecommendations";
 
 /**
  * placeholder home page: it only exists so there is somewhere to land after logging in, and to show that the current
@@ -40,6 +22,21 @@ export default function HomePage() {
     if (!loading && !user) router.replace("/login");
   }, [loading, user, router]);
 
+  // the picks that belong to the logged in user, kept with their id so a stale result is never shown
+  const userId = user?.id ?? null;
+  const [picks, setPicks] = useState<{ userId: string; optionIds: number[]; error?: string } | null>(null);
+
+  useEffect(() => {
+    if (!userId) return;
+    let cancelled = false;
+    loadSelectedOptionIds(userId).then((result) => {
+      if (!cancelled) setPicks({ userId, ...result });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+
   if (loading || !user) {
     return (
       <div className="flex min-h-screen w-full items-center justify-center">
@@ -53,11 +50,16 @@ export default function HomePage() {
     router.push("/login");
   };
 
+  // rank the groups once the picks for this user are loaded
+  const currentPicks = picks?.userId === user.id ? picks : null;
+  const recommendedGroups = currentPicks ? rankGroups(currentPicks.optionIds, sampleGroups) : [];
+
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center gap-y-6 p-4">
       <h3>Welcome, {profile?.displayName ?? profile?.firstName ?? user.email}</h3>
       {profile?.handle && <p>@{profile.handle}</p>}
-      <GroupRecommendations groups={sampleGroupRecommendations} />
+      {currentPicks?.error && <p>Could not load your group recommendations.</p>}
+      <GroupRecommendations groups={recommendedGroups} />
       <div className="w-full max-w-xs">
         <Button primary label="Sign out" onClick={handleSignOut} />
       </div>
