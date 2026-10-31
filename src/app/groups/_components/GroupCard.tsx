@@ -31,14 +31,16 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
     >
       <div className="flex flex-col gap-y-1">
         <div className="flex items-start justify-between gap-x-4">
-          <h3 className={`min-w-0 text-2xl lg:text-3xl ${bubble}`}>{group?.name ?? "Loading group"}</h3>
+          <h3 title={group?.name} className={`min-w-0 truncate text-2xl lg:text-3xl ${bubble}`}>
+            {group?.name ?? "Loading group"}
+          </h3>
           {(loading || group.memberCount !== undefined) && (
             <p className={`mt-1 shrink-0 text-sm ${bubble}`}>{group?.memberCount ?? "00"} members</p>
           )}
         </div>
-        <div className="flex min-h-6 flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <div className="flex min-h-6 items-center justify-between gap-x-4">
           {tags.length > 0 && (
-            <div className="flex flex-wrap gap-x-4 gap-y-1">
+            <div className="flex h-5 min-w-0 flex-1 flex-wrap gap-x-4 overflow-hidden">
               {tags.map((tag) => (
                 <span key={tag.id} className={`text-sm ${loading ? bubble : "text-black/50"}`}>
                   #{tag.label}
@@ -47,7 +49,7 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
             </div>
           )}
           {sharedCount > 0 && (
-            <span className="bg-accent/10 text-accent-solid shrink-0 rounded-full px-3 py-1 text-xs font-medium sm:ml-auto">
+            <span className="bg-accent/10 text-accent-solid ml-auto shrink-0 rounded-full px-3 py-1 text-xs font-medium">
               You share {sharedCount} {sharedCount === 1 ? "interest" : "interests"} with this community
             </span>
           )}
