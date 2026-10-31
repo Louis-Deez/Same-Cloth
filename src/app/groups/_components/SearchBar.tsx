@@ -1,4 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+
+const PLACEHOLDERS = [
+  "Search for styles, interests, or keywords...",
+  "Find your community...",
+  "Try searching vintage or streetwear...",
+];
 
 interface SearchBarProps {
   id: string;
@@ -13,6 +22,7 @@ interface SearchBarProps {
  */
 
 export const SearchBar = ({ id, value, onChange }: SearchBarProps) => {
+  const [placeholder] = useState(() => PLACEHOLDERS[Math.floor(Math.random() * PLACEHOLDERS.length)]);
   return (
     <label
       htmlFor={id}
@@ -24,9 +34,9 @@ export const SearchBar = ({ id, value, onChange }: SearchBarProps) => {
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search for styles, interests, or keywords..."
+        placeholder={placeholder}
         autoComplete="off"
-        className="h-full min-w-0 flex-1 rounded-none border-0 p-0 text-sm font-normal text-black outline-none placeholder:text-black/50"
+        className="h-full min-w-0 flex-1 rounded-none border-0 p-0 text-sm font-light text-black outline-none placeholder:text-black/50"
       />
     </label>
   );
