@@ -1,4 +1,5 @@
 import { GroupData } from "@/models/groups/data";
+import { COLLAGE_LAYOUTS } from "@/app/groups/_config/groupCollageLayouts";
 
 interface GroupCardProps {
   group?: GroupData;
@@ -8,15 +9,16 @@ interface GroupCardProps {
 /**
  * @param group - The group to display. Leave it out to show the loading version of the card
  * @param optionValues - option_id -> option_value from answer_option, used to turn criteriaOptionIds into hashtags
- *
- * @NOTE - The loading version keeps the same layout, but every text field becomes a gray bubble (bubble) so nothing
- * shifts when the real data arrives. A ranked group from rankGroups() can be passed in as the group.
  */
 
 export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
   const loading = !group;
   const bubble = loading ? "select-none scale-y-75 rounded bg-black/5 text-transparent" : "";
   const sharedCount = group?.matchedOptionIds?.length ?? 0;
+  const layoutIndex = [...(group?.id ?? "")].reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  const layout = loading
+    ? ["col-start-1 col-span-12 row-start-1 row-span-12"]
+    : COLLAGE_LAYOUTS[layoutIndex % COLLAGE_LAYOUTS.length];
   const tags = loading
     ? Array.from({ length: 4 }, (_, i) => ({ id: i, label: "loading" }))
     : (group.criteriaOptionIds ?? []).flatMap((id) => {
@@ -55,9 +57,9 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
           )}
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-1">
-        {Array.from({ length: 6 }, (_, i) => (
-          <div key={i} className="aspect-square rounded bg-black/5" />
+      <div className="grid aspect-[12/5] grid-cols-12 grid-rows-12 gap-1">
+        {layout.map((cell, i) => (
+          <div key={i} className={`rounded bg-black/5 ${cell}`} />
         ))}
       </div>
     </div>
