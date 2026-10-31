@@ -29,7 +29,7 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
   return (
     <div
       aria-busy={loading}
-      className={`flex flex-col gap-y-4 rounded-2xl border border-black/5 bg-white p-4 sm:p-5 ${loading ? "animate-pulse" : ""}`}
+      className={`flex flex-col gap-y-4 rounded-2xl border border-black/5 bg-white p-4 transition-colors sm:p-5 ${loading ? "animate-pulse" : "hover:border-accent"}`}
     >
       <div className="flex flex-col gap-y-1">
         <div className="flex items-start justify-between gap-x-4">
