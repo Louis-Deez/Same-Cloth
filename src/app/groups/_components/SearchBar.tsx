@@ -6,6 +6,12 @@ interface SearchBarProps {
   onChange: (value: string) => void;
 }
 
+/**
+ * @param id - The unique identifier for the input
+ * @param value - The current text in the search bar
+ * @param onChange - The function to call when the text changes, it receives the new text instead of the event
+ */
+
 export const SearchBar = ({ id, value, onChange }: SearchBarProps) => {
   return (
     <label
@@ -20,7 +26,7 @@ export const SearchBar = ({ id, value, onChange }: SearchBarProps) => {
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search for styles, interests, or keywords..."
         autoComplete="off"
-        className="h-full min-w-0 flex-1 rounded-none border-0 p-0 font-light text-black outline-none placeholder:text-black/50 lg:text-lg"
+        className="h-full min-w-0 flex-1 rounded-none border-0 p-0 text-base font-light text-black outline-none placeholder:text-black/50 lg:text-lg"
       />
     </label>
   );
