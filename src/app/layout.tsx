@@ -23,10 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${brand.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <Navbar/>
-        <div className="pt-16 flex-1 bg-light-background">
-          <AuthProvider>{children}</AuthProvider>
-        </div>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
