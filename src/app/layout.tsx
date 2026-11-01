@@ -3,6 +3,7 @@ import { Manrope, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { AuthProvider } from "@/lib/auth/AuthProvider";
+import Navbar from "@/components/navigation/Navbar";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -22,7 +23,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${brand.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <AuthProvider>{children}</AuthProvider>
+        <Navbar/>
+        <div className="pt-16 flex-1 bg-light-background">
+          <AuthProvider>{children}</AuthProvider>
+        </div>
       </body>
     </html>
   );

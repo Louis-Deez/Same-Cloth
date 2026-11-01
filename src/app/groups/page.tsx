@@ -75,7 +75,7 @@ export default function GroupsPage() {
   }
 
   return (
-    <div className="bg-light-background flex min-h-screen w-full flex-col gap-y-6 p-4 sm:p-8 lg:px-14">
+    <div className="flex min-h-screen w-full flex-col gap-y-6 p-4 sm:p-8 lg:px-14">
       <SearchBar id="groups-search" value={search} onChange={setSearch} />
       <GroupFilters value={filter} onChange={setFilter} />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
