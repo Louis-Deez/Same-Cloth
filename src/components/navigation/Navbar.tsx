@@ -4,48 +4,11 @@ import { NavButton } from "@/components/navigation/NavButton";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/lib/auth/AuthProvider";
 import { useRouter } from "next/navigation";
-import { HamburgerMenuIcon, Cross1Icon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { NAV } from "@/components/navigation/links";
+import { CollapsableCategory } from "@/components/navigation/CollapsableCategory";
 import React from "react";
-
-interface CollapsableProps {
-  category: string;
-  links: {
-    label: string
-    destination: string
-  }[];
-  onClose: () => void;
-}
-
-const CollapsableCategory = ({category, links, onClose}: CollapsableProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleOpen = () => {
-    setIsOpen(!isOpen)
-  };
-
-  return (
-    <div key={category} className="flex flex-col gap-y-2" onClick={toggleOpen}>
-
-      <div className="flex items-center justify-between">
-        <h4 className="cursor-pointer">{category}</h4>
-        <ChevronRightIcon className={`cursor-pointer ${isOpen ? "rotate-90" : ""}`} width={24} height={24} />
-      </div>
-
-      <div className={`flex flex-col gap-y-2 pl-1 ${isOpen ? "block" : "hidden"}`}>
-        {links.map(link => (
-          <NavButton
-            label={link.label}
-            destination={link.destination}
-            key={link.label}
-            onClick={onClose}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
 
 interface NavbarScreenProps {
   open: boolean;
@@ -70,8 +33,7 @@ const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
       <div className="flex flex-col gap-y-4">
         {NAV.map(item => (
           <CollapsableCategory
-            category={item.category}
-            links={item.links}
+            navItem={item}
             key={item.category}
             onClose={onClose}
           />
