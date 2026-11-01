@@ -15,10 +15,13 @@ interface NavbarScreenProps {
 }
 
 const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
-  if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col gap-y-8 bg-white p-4 sm:px-8 lg:px-14">
+    <div
+      className={`fixed inset-0 z-50 flex flex-col gap-y-8 bg-white p-4 transition duration-300 ease-out sm:px-8 lg:px-14 ${
+        open ? "translate-y-0 opacity-100 ease-out" : "pointer-events-none -translate-y-full opacity-0 ease-in"
+      }`}
+    >
       <div className="flex w-full items-center justify-between">
         <h2 className="font-display text-accent !text-base md:text-2xl">Same Cloth</h2>
         <button type="button" onClick={onClose} aria-label="Close menu">
@@ -28,11 +31,11 @@ const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
 
       <div className="flex flex-col gap-y-6" onClick={onClose}>
         {LINKS.map((link) => (
-          <NavButton key={link.destination} {...link} />
+          <NavButton key={link.destination} {...link} screen/>
         ))}
       </div>
 
-      <Button label="Sign Out" primary onClick={onSignOut} />
+      <Button label="Sign Out" primary onClick={onSignOut} className="mt-auto" />
     </div>
   );
 };
