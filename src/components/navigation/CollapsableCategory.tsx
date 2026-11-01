@@ -10,6 +10,17 @@ interface CollapsableProps {
   onClose?: () => void;
 }
 
+/**
+ * @param navItem - The navigation item to display
+ * @param onClose - The function to call when the user closes the category
+ *
+ * @Component - A collapsable category that can be expanded or collapsed. It will originally start collapsed, and
+ * when the user clicks on the category, it will expand. When the user clicks on the category again, it will collapse.
+ *
+ * @Important - You do not need to touch this component. It is used internally by the Navbar component and possibly
+ * the Footer component if more links are added.
+ */
+
 export const CollapsableCategory = ({navItem, onClose}: CollapsableProps) => {
   const [isOpen, setIsOpen] = useState(false);
 

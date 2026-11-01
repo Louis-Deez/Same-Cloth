@@ -17,6 +17,18 @@ interface NavbarScreenProps {
   onSignOut: () => void;
 }
 
+/**
+ * @param open - Whether the navbar is open or not
+ * @param onClose - Function to call when the navbar is closed
+ * @param onSignOut - Function to call when the user signs out
+ *
+ * @Component - The NavbarScreen replaces the standard navbar on mobile devices. Instead of taking up a fraction of the
+ * page, it instead fills it up. This modal slides from top to bottom with a fade effect. It is opened by click a
+ * hamburger menu icon and closed by clicking the "X" icon.
+ *
+ * @Important - You do not need to touch this component. It is used internally by the Navbar component.
+ */
+
 const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
   return (
     <div
@@ -45,6 +57,13 @@ const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
     </div>
   );
 };
+
+/**
+ *  @Component - The Navbar component is the main navigation bar at the top of the page. It contains the logo, the menu
+ *  (filtered out "Menu" category), and a sign-out call-to-action button.
+ *
+ *  Most of the links don't work yet, so clicking on some of them will just take you to a 404 page.
+ */
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);

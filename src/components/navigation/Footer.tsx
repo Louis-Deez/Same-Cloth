@@ -3,8 +3,17 @@ import {NavButton} from "@/components/navigation/NavButton";
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
+/**
+ * @Component - The footer component that is displayed at the bottom of the page. It contains a grid of links and
+ * contact information.
+ *
+ * This component is in its very basic state. Most of the links are not functional, but it is a good starting point. We
+ * also do not have a "Terms of Service" or "Privacy Policy" page yet, so they're readonly for now.
+ *
+ * @Important - The copyright thing is not final, and I don't even know if we need it lol. I thought adding it was cool.
+ */
 
+const Footer = () => {
   return (
     <footer className="flex flex-col w-full border-t border-black/10 bg-white pt-8 md:pt-16 pb-8 px-4 sm:px-8 lg:px-14 gap-y-4 md:gap-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
