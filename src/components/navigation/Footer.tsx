@@ -1,6 +1,7 @@
 import {NAV} from "@/components/navigation/links";
 import {CollapsableCategory} from "@/components/navigation/CollapsableCategory";
 import {NavButton} from "@/components/navigation/NavButton";
+import Image from "next/image";
 
 const Footer = () => {
 
@@ -16,7 +17,15 @@ const Footer = () => {
             <p className="text-xl">+1 818 999-9999</p>
             <p className="text-xl">contact@samecloth.com</p>
           </div>
-          <p className="text-xl">United States</p>
+          <div className="flex flex-col gap-y-4">
+            <p className="text-xl">United States</p>
+            <div className="flex gap-x-8 items-center">
+              <Image src="/icons/facebook.svg" alt="Facebook" width={24} height={24} loading="eager"/>
+              <Image src="/icons/instagram.svg" alt="Instagram" width={24} height={24} loading="eager"/>
+              <Image src="/icons/twitter.svg" alt="Twitter" width={24} height={24} loading="eager"/>
+              <Image src="/icons/youtube.svg" alt="YouTube" width={24} height={24} loading="eager"/>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col gap-y-8">
