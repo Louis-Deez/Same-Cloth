@@ -1,4 +1,4 @@
-import { GROUP_FILTERS, type GroupFilter } from "@/app/groups/_config/filters";
+import { GROUP_FILTERS, type GroupFilter } from "@/app/(main)/groups/_config/filters";
 
 interface GroupFiltersProps {
   value: GroupFilter;

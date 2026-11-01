@@ -1,5 +1,5 @@
 import { GroupData } from "@/models/groups/data";
-import { COLLAGE_LAYOUTS } from "@/app/groups/_config/groupCollageLayouts";
+import { COLLAGE_LAYOUTS } from "@/app/(main)/groups/_config/groupCollageLayouts";
 
 interface GroupCardProps {
   group?: GroupData;

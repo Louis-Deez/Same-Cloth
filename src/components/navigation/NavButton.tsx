@@ -10,7 +10,7 @@ export const NavButton = ({label, destination}: NavButtonProps) => {
   return (
     <Link
       href={destination}
-      className="text-md font-heading font-light hover:text-accent transition-all text-black/75"
+      className="text-sm lg:text-base font-heading font-light hover:text-accent transition-all text-black/75"
     >
       { label }
     </Link>

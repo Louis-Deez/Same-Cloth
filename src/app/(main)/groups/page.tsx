@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth/AuthProvider";
-import { SearchBar } from "@/app/groups/_components/SearchBar";
-import { GroupCard } from "@/app/groups/_components/GroupCard";
-import { GroupFilters } from "@/app/groups/_components/GroupFilters";
-import { type GroupFilter } from "@/app/groups/_config/filters";
+import { SearchBar } from "@/app/(main)/groups/_components/SearchBar";
+import { GroupCard } from "@/app/(main)/groups/_components/GroupCard";
+import { GroupFilters } from "@/app/(main)/groups/_components/GroupFilters";
+import { type GroupFilter } from "@/app/(main)/groups/_config/filters";
 import { placeholderGroups } from "@/models/groups/data";
 import { loadOptionValues } from "@/lib/supabase/loadOptionValues";
 import { loadSelectedOptionIds } from "@/lib/supabase/loadSelectedOptionIds";
