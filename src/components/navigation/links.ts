@@ -54,5 +54,5 @@ export const NAV: NavItem[] = [
       { label: "Sell on Same Cloth Guide", destination: "/sell-guide" },
       { label: "Sell on Same Cloth FAQ", destination: "/sell-faq" },
     ],
-  }
+  },
 ];

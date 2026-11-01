@@ -8,7 +8,7 @@ export interface CurrentProfile {
   lastName: string | null;
 }
 
-//Loads the profile 
+//Loads the profile
 export async function loadProfile(userId: string): Promise<CurrentProfile | null> {
   const supabase = createClient();
 

@@ -36,7 +36,7 @@ const SignInView = () => {
     router.push("/signup");
   };
 
-  // signs the user in with Supabase 
+  // signs the user in with Supabase
   const handleSignIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage("");
@@ -104,7 +104,13 @@ const SignInView = () => {
                   Forgot your password?
                 </a>
               </div>
-              <Button className="w-full" primary label={loading ? "Signing in..." : "Sign in"} type="submit" disabled={loading} />
+              <Button
+                className="w-full"
+                primary
+                label={loading ? "Signing in..." : "Sign in"}
+                type="submit"
+                disabled={loading}
+              />
               {message && <span className="text-sm">{message}</span>}
             </form>
             <div className="flex items-center gap-x-2 text-sm">
@@ -113,8 +119,14 @@ const SignInView = () => {
               <div className="flex-1 border-t border-black/10" />
             </div>
             <div className="flex items-center gap-x-8">
-              <Button className="w-full" icon={<Image src="/icons/google.svg" alt="Google" width={24} height={24} loading="eager" />} />
-              <Button className="w-full" icon={<Image src="/icons/apple.svg" alt="Google" width={18} height={22} loading="eager" />} />
+              <Button
+                className="w-full"
+                icon={<Image src="/icons/google.svg" alt="Google" width={24} height={24} loading="eager" />}
+              />
+              <Button
+                className="w-full"
+                icon={<Image src="/icons/apple.svg" alt="Google" width={18} height={22} loading="eager" />}
+              />
             </div>
           </AuthCard>
           <AuthCard primary={false}>
@@ -122,7 +134,13 @@ const SignInView = () => {
               <h3>No account?</h3>
               <p>You can sign up within minutes to get started</p>
             </div>
-            <Button className="w-full" primary label="Create Account with Email" onClick={handleSignUpRedirect} type="button" />
+            <Button
+              className="w-full"
+              primary
+              label="Create Account with Email"
+              onClick={handleSignUpRedirect}
+              type="button"
+            />
           </AuthCard>
         </div>
       </div>

@@ -4,9 +4,9 @@ import Footer from "@/components/navigation/Footer";
 export default function MainLayout({ children }: LayoutProps<"/">) {
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="bg-light-background flex-1 pt-16">{children}</div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
