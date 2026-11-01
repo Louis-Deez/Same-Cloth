@@ -15,8 +15,8 @@ export const NAV: NavItem[] = [
       { label: "Home", destination: "/" },
       { label: "Profile", destination: "/profile" },
       { label: "Groups", destination: "/groups" },
-      { label: "Communities", destination: "/communities" },
       { label: "Shop", destination: "/shop" },
+      { label: "Communities", destination: "/communities" },
     ],
   },
   {
@@ -33,6 +33,14 @@ export const NAV: NavItem[] = [
       { label: "Manage Your Account", destination: "/manage-account" },
       { label: "Settings", destination: "/settings" },
       { label: "Logout", destination: "/logout" },
+    ],
+  },
+  {
+    category: "Sell",
+    links: [
+      { label: "Sell on Same Cloth", destination: "/sell" },
+      { label: "Sell on Same Cloth Guide", destination: "/sell-guide" },
+      { label: "Sell on Same Cloth FAQ", destination: "/sell-faq" },
     ],
   }
 ];

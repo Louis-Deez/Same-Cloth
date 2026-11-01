@@ -7,7 +7,7 @@ import { NavButton } from "@/components/navigation/NavButton";
 
 interface CollapsableProps {
   navItem: NavItem;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export const CollapsableCategory = ({navItem, onClose}: CollapsableProps) => {
