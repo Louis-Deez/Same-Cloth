@@ -1,6 +1,7 @@
 import {NAV} from "@/components/navigation/links";
 import {NavButton} from "@/components/navigation/NavButton";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
 
@@ -57,7 +58,12 @@ const Footer = () => {
       <hr/>
 
       <div className="flex flex-col sm:flex-row  justify-between w-full gap-y-2">
-        <h4 className="font-display font-normal text-accent">Same Cloth</h4>
+        <Link
+          className="font-display font-normal text-accent"
+          href="/"
+        >
+          Same Cloth
+        </Link>
         <div className="flex gap-x-4 items-center text-black/50">
           <span>Terms of Use</span>
           <div className="h-3/5 border-l border-black/20"/>
