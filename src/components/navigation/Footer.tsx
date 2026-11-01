@@ -1,25 +1,25 @@
 import {NAV} from "@/components/navigation/links";
-import {CollapsableCategory} from "@/components/navigation/CollapsableCategory";
 import {NavButton} from "@/components/navigation/NavButton";
 import Image from "next/image";
 
 const Footer = () => {
 
   return (
-    <footer className="flex flex-col w-full border-t border-black/10 bg-white pt-16 pb-8 sm:px-8 lg:px-14 gap-y-8">
+    <footer className="flex flex-col w-full border-t border-black/10 bg-white pt-8 md:pt-16 pb-8 px-4 sm:px-8 lg:px-14 gap-y-4 md:gap-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
 
-        <div className="flex flex-col gap-y-8">
-          <h2 className="text-7xl font-semibold text-accent">Contacts</h2>
+        <div className="flex flex-col gap-y-4 md:gap-y-8">
+          <h2 className="text-4xl sm:text-5xl lg:text-7xl font-semibold text-accent">Contacts</h2>
           <hr/>
-          <h3 className="text-3xl font-medium text-black/65">Got Questions? Get in Touch</h3>
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-medium text-black/65">Got Questions? Get in Touch</h3>
           <div className="flex flex-col gap-y-2 text-black/50">
-            <p className="text-xl">+1 818 999-9999</p>
-            <p className="text-xl">contact@samecloth.com</p>
+            <p className="text-base lg:text-xl">+1 818 999-9999</p>
+            <p className="text-base lg:text-xl">contact@samecloth.com</p>
           </div>
           <div className="flex flex-col gap-y-4">
-            <p className="text-xl">United States</p>
+            <p className="text-base lg:text-xl">United States</p>
             <div className="flex gap-x-8 items-center">
+              {/* TODO: Actually add links */}
               <Image src="/icons/facebook.svg" alt="Facebook" width={24} height={24} loading="eager"/>
               <Image src="/icons/instagram.svg" alt="Instagram" width={24} height={24} loading="eager"/>
               <Image src="/icons/twitter.svg" alt="Twitter" width={24} height={24} loading="eager"/>
@@ -28,7 +28,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-y-8">
+        <div className="flex flex-col gap-y-4 md:gap-y-8">
           <h2 className="text-7xl font-semibold text-accent">Directory</h2>
           <hr/>
           <div className="flex flex-wrap justify-between gap-y-8">
@@ -56,16 +56,16 @@ const Footer = () => {
 
       <hr/>
 
-      <div className="flex justify-between w-full">
+      <div className="flex flex-col sm:flex-row  justify-between w-full gap-y-2">
         <h4 className="font-display font-normal text-accent">Same Cloth</h4>
         <div className="flex gap-x-4 items-center text-black/50">
-          <p>Terms of Use</p>
+          <span>Terms of Use</span>
           <div className="h-3/5 border-l border-black/20"/>
-          <p>Privacy Policy</p>
+          <span>Privacy Policy</span>
           <div className="h-3/5 border-l border-black/20"/>
-          <p>Cookie Policy</p>
+          <span>Cookie Policy</span>
         </div>
-        <p className="text-black/50">© 2026 Same Cloth Team</p>
+        <span className="text-black/50">© 2026 Same Cloth Team</span>
       </div>
     </footer>
   )
