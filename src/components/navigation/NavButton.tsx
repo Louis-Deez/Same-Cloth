@@ -10,14 +10,17 @@ import Link from "next/link";
 interface NavButtonProps {
   label: string;
   destination: string;
+  onClick?: () => void;
   screen?: boolean;
+  className?: string;
 }
 
-export const NavButton = ({label, destination, screen = false}: NavButtonProps) => {
+export const NavButton = ({label, destination, onClick, screen = false, className}: NavButtonProps) => {
   return (
     <Link
       href={destination}
-      className={`${screen ? `text-xl !font-medium` : `text-sm lg:text-base`} font-heading font-light hover:text-accent transition-all text-black/75`}
+      className={`${screen ? `text-xl !font-medium` : `text-sm lg:text-base`} font-heading font-light hover:text-accent transition-all text-black/75` + className}
+      onClick={onClick}
     >
       { label }
     </Link>

@@ -4,9 +4,48 @@ import { NavButton } from "@/components/navigation/NavButton";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/lib/auth/AuthProvider";
 import { useRouter } from "next/navigation";
-import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon, Cross1Icon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
-import { LINKS } from "@/components/navigation/links";
+import { NAV } from "@/components/navigation/links";
+import React from "react";
+
+interface CollapsableProps {
+  category: string;
+  links: {
+    label: string
+    destination: string
+  }[];
+  onClose: () => void;
+}
+
+const CollapsableCategory = ({category, links, onClose}: CollapsableProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen)
+  };
+
+  return (
+    <div key={category} className="flex flex-col gap-y-2" onClick={toggleOpen}>
+
+      <div className="flex items-center justify-between">
+        <h4 className="cursor-pointer">{category}</h4>
+        <ChevronRightIcon className={`cursor-pointer ${isOpen ? "rotate-90" : ""}`} width={24} height={24} />
+      </div>
+
+      <div className={`flex flex-col gap-y-2 pl-1 ${isOpen ? "block" : "hidden"}`}>
+        {links.map(link => (
+          <NavButton
+            label={link.label}
+            destination={link.destination}
+            key={link.label}
+            onClick={onClose}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 interface NavbarScreenProps {
   open: boolean;
@@ -15,7 +54,6 @@ interface NavbarScreenProps {
 }
 
 const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
-
   return (
     <div
       className={`fixed inset-0 z-50 flex flex-col gap-y-8 bg-white p-4 transition duration-300 ease-out sm:px-8 lg:px-14 ${
@@ -29,9 +67,14 @@ const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
         </button>
       </div>
 
-      <div className="flex flex-col gap-y-6" onClick={onClose}>
-        {LINKS.map((link) => (
-          <NavButton key={link.destination} {...link} screen/>
+      <div className="flex flex-col gap-y-4">
+        {NAV.map(item => (
+          <CollapsableCategory
+            category={item.category}
+            links={item.links}
+            key={item.category}
+            onClose={onClose}
+          />
         ))}
       </div>
 
@@ -57,9 +100,9 @@ const Navbar = () => {
       <h2 className="font-display text-accent !text-base md:text-2xl">Same Cloth</h2>
 
       <div className="hidden gap-x-6 md:flex lg:gap-x-12">
-        {LINKS.map((link) => (
-          <NavButton key={link.destination} {...link} />
-        ))}
+        {NAV.find(item => item.category === "Menu")?.links.map(link =>
+          <NavButton key={link.label} {...link} />
+        )}
       </div>
 
       <Button className="hidden md:block" label="Sign Out" primary onClick={handleSignOut} />
