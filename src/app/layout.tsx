@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { AuthProvider } from "@/lib/auth/AuthProvider";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -20,7 +21,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${brand.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }
