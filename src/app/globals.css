@@ -38,7 +38,7 @@
   }
 
   h5 {
-    @apply font-heading text-sm font-bold text-black/75 sm:text-base lg:text-lg;
+    @apply font-heading text-sm font-semibold text-black/65 sm:text-base lg:text-lg;
   }
 
   p {

@@ -23,7 +23,7 @@ interface NavbarScreenProps {
  * @param onSignOut - Function to call when the user signs out
  *
  * @Component - The NavbarScreen replaces the standard navbar on mobile devices. Instead of taking up a fraction of the
- * page, it instead fills it up. This modal slides from top to bottom with a fade effect. It is opened by click a
+ * page, it instead fills it up. This modal slides from top to bottom with a fade effect. It is opened by clicking a
  * hamburger menu icon and closed by clicking the "X" icon.
  *
  * @Important - You do not need to touch this component. It is used internally by the Navbar component.
