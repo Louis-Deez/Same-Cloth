@@ -1,7 +1,13 @@
+"use client"
+
 import Image from "next/image";
 import {Button} from "@/components/Button";
+import {useAuth} from "@/lib/auth/AuthProvider";
 
 const ProfileView = () => {
+  const { profile, user } = useAuth();
+  const accountCreationDate = new Date(user?.created_at ?? "");
+
   return (
     <div className="flex min-h-screen w-full">
       <div className="w-96 shrink-0 border-r border-black/10 bg-white">
@@ -24,13 +30,10 @@ const ProfileView = () => {
           />
           <div className="flex flex-col gap-y-4">
             <div className="flex flex-col">
-              <h3 className="text-accent">George Lorenzo</h3>
-              <h5>lorenz_buns</h5>
+              <h3 className="text-accent">{profile?.displayName}</h3>
+              <h5>{profile?.handle}</h5>
             </div>
-            <span>
-              Lorem ipsum dolor sit amet consectetur adipiscing elit nulla dolor ullamco nihil et eu ullamco facilis et
-              nostrud sunt nobis et vel deleniti
-            </span>
+            <span>{profile?.bio}</span>
             <div className="flex flex-col gap-y-1">
               <div className="flex justify-between w-full">
                 <p>Posts</p>
@@ -47,7 +50,10 @@ const ProfileView = () => {
             </div>
             <Button label="Edit Profile" primary/>
             <Button label="Create Post"/>
-            <span>MEMBER SINCE: AUGUST 12, 2026</span>
+            <span className="uppercase">
+              MEMBER SINCE: {accountCreationDate.toLocaleDateString("en-US",
+              {year: "numeric", month: "long", day: "numeric",})}
+            </span>
           </div>
         </div>
       </div>
