@@ -13,7 +13,7 @@ const ProfileView = () => {
           alt="placeholder_banner"
           className="aspect-video w-full object-cover border-b border-black/10"
         />
-        <div className="flex flex-col gap-y-4 sm:px-8 lg:px-14">
+        <div className="flex flex-col gap-y-4 lg:px-8">
           <Image
             src="/images/placeholder_profile_pic.jpeg"
             width={1000}
@@ -22,7 +22,7 @@ const ProfileView = () => {
             alt="placeholder_profile"
             className="aspect-square rounded-3xl object-cover max-w-24 -mt-12 shadow-xl border border-black/10"
           />
-          <div className="flex flex-col gap-y-3">
+          <div className="flex flex-col gap-y-4">
             <div className="flex flex-col">
               <h3 className="text-accent">George Lorenzo</h3>
               <h5>lorenz_buns</h5>
@@ -45,11 +45,14 @@ const ProfileView = () => {
                 <p>295</p>
               </div>
             </div>
-            <Button label="Follow" primary/>
-            <Button label="Message"/>
+            <Button label="Edit Profile" primary/>
+            <Button label="Create Post"/>
             <span>MEMBER SINCE: AUGUST 12, 2026</span>
           </div>
         </div>
+      </div>
+      <div className="flex w-full justify-center items-center">
+        <h5>You have not posted anything.</h5>
       </div>
     </div>
   )

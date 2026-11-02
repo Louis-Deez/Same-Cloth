@@ -32,7 +32,7 @@ interface NavbarScreenProps {
 const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col gap-y-8 bg-white p-4 transition duration-300 ease-out sm:px-8 lg:px-14 ${
+      className={`fixed inset-0 z-50 flex flex-col gap-y-8 bg-white p-4 transition duration-300 ease-out lg:px-8 ${
         open ? "translate-y-0 opacity-100 ease-out" : "pointer-events-none -translate-y-full opacity-0 ease-in"
       }`}
     >
@@ -74,7 +74,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed z-40 flex w-full items-center justify-between border-b border-black/10 bg-white p-4 sm:px-8 lg:px-14">
+    <div className="fixed z-40 flex w-full items-center justify-between border-b border-black/10 bg-white p-4 lg:px-8">
       <Link className="font-display text-accent cursor-pointer text-base! md:text-2xl! xl:text-3xl!" href="/">
         Same Cloth
       </Link>

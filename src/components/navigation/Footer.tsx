@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="flex w-full flex-col gap-y-4 border-t border-black/10 bg-white px-4 pt-8 pb-8 sm:px-8 md:gap-y-8 md:pt-16 lg:px-14">
+    <footer className="flex w-full flex-col gap-y-4 border-t border-black/10 bg-white px-4 pt-8 pb-8 sm:px-8 md:gap-y-8 lg:px-8">
       <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
         <div className="flex flex-col gap-y-4 md:gap-y-8">
           <h2 className="text-accent text-4xl font-semibold sm:text-5xl lg:text-7xl">Contacts</h2>
