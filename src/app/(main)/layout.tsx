@@ -5,7 +5,7 @@ export default function MainLayout({ children }: LayoutProps<"/">) {
   return (
     <>
       <Navbar />
-      <div className="bg-light-background flex-1 pt-16">{children}</div>
+      <div className="bg-light-background flex-1 pt-12">{children}</div>
       <Footer />
     </>
   );

@@ -10,6 +10,8 @@ import { NAV } from "@/components/navigation/links";
 import { CollapsableCategory } from "@/components/navigation/CollapsableCategory";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import {AccountSettingsModal} from "@/components/navigation/AccountSettingsModal";
 
 interface NavbarScreenProps {
   open: boolean;
@@ -74,7 +76,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed z-40 flex w-full items-center justify-between border-b border-black/10 bg-white p-4 lg:px-8">
+    <div className="fixed z-40 flex w-full items-center justify-between border-b border-black/10 bg-white p-2 lg:px-8">
       <Link className="font-display text-accent cursor-pointer text-base! md:text-2xl! xl:text-3xl!" href="/">
         Same Cloth
       </Link>
@@ -85,7 +87,39 @@ const Navbar = () => {
         ))}
       </div>
 
-      <Button className="hidden md:block" label="Sign Out" primary onClick={handleSignOut} />
+      {/*<Button className="hidden md:block" label="Sign Out" primary onClick={handleSignOut} />*/}
+      <div className="relative">
+        <button
+          type="button"
+          popoverTarget="profile-menu"
+          aria-label="Profile menu"
+          className="block"
+          style={{ anchorName: "--profile-btn" } as React.CSSProperties}
+        >
+          <Image
+            src="/images/placeholder_profile_pic.jpeg"
+            width={1000}
+            height={1000}
+            priority
+            alt="placeholder_profile"
+            className="aspect-square max-w-10 rounded-3xl border-black/10 object-cover"
+          />
+        </button>
+
+        {/* This one is vibecoded; popover is a pain to set up :( */}
+        <div
+          id="profile-menu"
+          popover="auto"
+          className="m-0 w-56 rounded-xl border border-black/10 bg-white p-2 shadow-lg"
+          style={{
+            positionAnchor: "--profile-btn",
+            positionArea: "bottom span-left",
+            marginTop: "0.5rem",
+          } as React.CSSProperties }
+        >
+          <AccountSettingsModal/>
+        </div>
+      </div>
 
       <button
         type="button"
