@@ -9,6 +9,7 @@ import { Button } from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { signIn } from "@/lib/supabase/signIn";
+import { signInWithGoogle } from "@/lib/supabase/signInWithGoogle";
 import { useAuth } from "@/lib/auth/AuthProvider";
 
 /**
@@ -121,6 +122,7 @@ const SignInView = () => {
             <div className="flex items-center gap-x-8">
               <Button
                 className="w-full"
+                onClick={() => signInWithGoogle()}
                 icon={<Image src="/icons/google.svg" alt="Google" width={24} height={24} loading="eager" />}
               />
               <Button
