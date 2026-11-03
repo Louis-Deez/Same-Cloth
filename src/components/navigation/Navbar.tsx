@@ -12,6 +12,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AccountSettingsModal } from "@/components/navigation/AccountSettingsModal";
+import {ThemeToggle} from "@/components/miscellaneous/ThemeToggle";
 
 interface NavbarScreenProps {
   open: boolean;
@@ -87,7 +88,8 @@ const Navbar = () => {
         ))}
       </div>
 
-      {/*<Button className="hidden md:block" label="Sign Out" primary onClick={handleSignOut} />*/}
+      <ThemeToggle/>
+
       <div className="relative">
         <button
           type="button"
