@@ -107,18 +107,7 @@ const Navbar = () => {
         </button>
 
         {/* This one is vibecoded; popover is a pain to set up :( */}
-        <div
-          id="profile-menu"
-          popover="auto"
-          className="m-0 w-56 rounded-xl border border-black/10 bg-white p-2 shadow-lg"
-          style={{
-            positionAnchor: "--profile-btn",
-            positionArea: "bottom span-left",
-            marginTop: "0.5rem",
-          } as React.CSSProperties }
-        >
-          <AccountSettingsModal/>
-        </div>
+        <AccountSettingsModal id="profile-menu" posAnchor="--profile-btn" posArea="bottom span-left"/>
       </div>
 
       <button
