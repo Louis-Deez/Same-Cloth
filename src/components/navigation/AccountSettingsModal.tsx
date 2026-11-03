@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import {useAuth} from "@/lib/auth/AuthProvider";
+import { useAuth } from "@/lib/auth/AuthProvider";
 import React from "react";
-import {Property} from "csstype";
-import {PersonIcon, GearIcon, QuestionMarkIcon} from "@radix-ui/react-icons";
+import { Property } from "csstype";
+import { PersonIcon, GearIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
 interface ModalButtonProps {
@@ -22,12 +22,14 @@ interface ModalButtonProps {
 
 const ModalButton = ({ label, destination, icon }: ModalButtonProps) => {
   return (
-    <button className="w-full flex gap-x-2 items-center px-4 py-2 text-black/50 cursor-pointer hover:bg-black/10 bg-light-background">
+    <button className="bg-light-background flex w-full cursor-pointer items-center gap-x-2 px-4 py-2 text-black/50 hover:bg-black/10">
       {icon}
-      <Link href={destination} className="text-xs w-full text-left">{label}</Link>
+      <Link href={destination} className="w-full text-left text-xs">
+        {label}
+      </Link>
     </button>
-  )
-}
+  );
+};
 
 interface AccountSettingsModalProps {
   id: string;
@@ -47,41 +49,43 @@ interface AccountSettingsModalProps {
 
 // TODO: Implement a tri-state button (System, Light Mode, and Dark Mode)
 
-export const AccountSettingsModal = ({ id, posAnchor, posArea, onSignOut}: AccountSettingsModalProps ) => {
+export const AccountSettingsModal = ({ id, posAnchor, posArea, onSignOut }: AccountSettingsModalProps) => {
   const { user, profile } = useAuth();
 
   return (
     <div
       id={id}
       popover="auto"
-      className="m-0 rounded-xl border border-black/10 bg-white shadow-lg gap-y-2 overflow-hidden min-w-64"
-      style={{
-        positionAnchor: posAnchor,
-        positionArea: posArea,
-        marginTop: "0.5rem",
-      } as React.CSSProperties }
+      className="m-0 min-w-64 gap-y-2 overflow-hidden rounded-xl border border-black/10 bg-white shadow-lg"
+      style={
+        {
+          positionAnchor: posAnchor,
+          positionArea: posArea,
+          marginTop: "0.5rem",
+        } as React.CSSProperties
+      }
     >
       <div className="flex flex-col px-4 py-2">
         <p className="text-sm">{profile?.displayName}</p>
         <span className="text-black/45">{user?.email}</span>
       </div>
 
-      <div className="w-full border-b border-black/10"/>
+      <div className="w-full border-b border-black/10" />
 
-      <ModalButton label="Profile" destination="/profile" icon={<PersonIcon/>}/>
-      <ModalButton label="User Settings" destination="/settings" icon={<GearIcon/>}/>
-      <ModalButton label="User Support" destination="/faq" icon={<QuestionMarkIcon/>}/>
+      <ModalButton label="Profile" destination="/profile" icon={<PersonIcon />} />
+      <ModalButton label="User Settings" destination="/settings" icon={<GearIcon />} />
+      <ModalButton label="User Support" destination="/faq" icon={<QuestionMarkIcon />} />
 
-      <div className="w-full border-b border-black/10"/>
+      <div className="w-full border-b border-black/10" />
 
       <div className="w-full p-2">
         <button
-          className="w-full bg-button-primary text-white py-1 rounded-md hover:brightness-90 text-xs font-semibold"
+          className="bg-button-primary w-full rounded-md py-1 text-xs font-semibold text-white hover:brightness-90"
           onClick={onSignOut}
         >
           Sign Out
         </button>
       </div>
     </div>
-  )
-}
+  );
+};

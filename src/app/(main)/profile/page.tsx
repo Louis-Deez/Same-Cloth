@@ -6,16 +6,15 @@ import { ProfileSidebar } from "@/app/(main)/profile/_components/ProfileSidebar"
  */
 
 const ProfileView = () => {
-
   return (
     <div className="flex min-h-screen w-full">
-      <ProfileSidebar/>
+      <ProfileSidebar />
       {/* TODO: implement posts grid */}
-      <div className="flex w-full justify-center items-center">
+      <div className="flex w-full items-center justify-center">
         <h5>You have not posted anything.</h5>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ProfileView;

@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import Image from "next/image";
-import {Button} from "@/components/Button";
-import {useAuth} from "@/lib/auth/AuthProvider";
+import { Button } from "@/components/Button";
+import { useAuth } from "@/lib/auth/AuthProvider";
 
 /**
  * @component - This is the sidebar that shows the user's profile. It shows the user's profile picture, name, handle, bio
@@ -23,7 +23,7 @@ export const ProfileSidebar = () => {
         height={1000}
         priority
         alt="placeholder_banner"
-        className="aspect-video w-full object-cover border-b border-black/10"
+        className="aspect-video w-full border-b border-black/10 object-cover"
       />
       <div className="flex flex-col gap-y-4 lg:px-8">
         <Image
@@ -32,7 +32,7 @@ export const ProfileSidebar = () => {
           height={1000}
           priority
           alt="placeholder_profile"
-          className="aspect-square rounded-3xl object-cover max-w-24 -mt-12 shadow-xl border border-black/10"
+          className="-mt-12 aspect-square max-w-24 rounded-3xl border border-black/10 object-cover shadow-xl"
         />
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col">
@@ -43,30 +43,30 @@ export const ProfileSidebar = () => {
 
           {/* TODO: Implement user statistics */}
           <div className="flex flex-col gap-y-1">
-            <div className="flex justify-between w-full">
+            <div className="flex w-full justify-between">
               <p>Posts</p>
               <p>124</p>
             </div>
-            <div className="flex justify-between w-full">
+            <div className="flex w-full justify-between">
               <p>Followers</p>
               <p>32,321</p>
             </div>
-            <div className="flex justify-between w-full">
+            <div className="flex w-full justify-between">
               <p>Following</p>
               <p>295</p>
             </div>
           </div>
 
           {/* TODO: Implement edit profile and create post buttons */}
-          <Button label="Edit Profile" primary/>
-          <Button label="Create Post"/>
+          <Button label="Edit Profile" primary />
+          <Button label="Create Post" />
 
           <span className="uppercase">
-              MEMBER SINCE: {accountCreationDate.toLocaleDateString("en-US",
-            {year: "numeric", month: "long", day: "numeric",})}
-            </span>
+            MEMBER SINCE:{" "}
+            {accountCreationDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          </span>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -11,7 +11,7 @@ import { CollapsableCategory } from "@/components/navigation/CollapsableCategory
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {AccountSettingsModal} from "@/components/navigation/AccountSettingsModal";
+import { AccountSettingsModal } from "@/components/navigation/AccountSettingsModal";
 
 interface NavbarScreenProps {
   open: boolean;
@@ -107,7 +107,7 @@ const Navbar = () => {
         </button>
 
         {/* This one is vibecoded; popover is a pain to set up :( */}
-        <AccountSettingsModal id="profile-menu" posAnchor="--profile-btn" posArea="bottom span-left"/>
+        <AccountSettingsModal id="profile-menu" posAnchor="--profile-btn" posArea="bottom span-left" />
       </div>
 
       <button
