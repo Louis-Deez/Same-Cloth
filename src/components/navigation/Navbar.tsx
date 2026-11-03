@@ -107,7 +107,12 @@ const Navbar = () => {
         </button>
 
         {/* This one is vibecoded; popover is a pain to set up :( */}
-        <AccountSettingsModal id="profile-menu" posAnchor="--profile-btn" posArea="bottom span-left" />
+        <AccountSettingsModal
+          id="profile-menu"
+          posAnchor="--profile-btn"
+          posArea="bottom span-left"
+          onSignOut={handleSignOut}
+        />
       </div>
 
       <button
