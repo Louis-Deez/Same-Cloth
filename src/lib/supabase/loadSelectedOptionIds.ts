@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/client";
 
-// loads the option ids the user picked at signup
+// gets the option ids the user picked at signup
 export async function loadSelectedOptionIds(userId: string): Promise<{ optionIds: number[]; error?: string }> {
   const supabase = createClient();
 

@@ -22,10 +22,11 @@ export default function HomePage() {
     if (!loading && !user) router.replace("/login");
   }, [loading, user, router]);
 
-  // the picks that belong to the logged in user, kept with their id so a stale result is never shown
+  // the picks that belong to the logged in user, kept with their id so an old result is never shown
   const userId = user?.id ?? null;
   const [picks, setPicks] = useState<{ userId: string; optionIds: number[]; error?: string } | null>(null);
 
+  // load the picks whenever the logged in user changes
   useEffect(() => {
     if (!userId) return;
     let cancelled = false;
