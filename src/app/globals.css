@@ -11,17 +11,23 @@
   --line: rgb(0 0 0 / 0.1);
   --card-gradient: linear-gradient(180deg, #fff2d9 0%, #ffffff 45%);
   --secondary-gradient: linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%);
+  --accent: #fca12a;
+  --accent-solid: #fc8020;
+  --button-primary: linear-gradient(180deg, #fca12a 0%, #fc8020 100%);
 }
 
 .dark {
-  --background: #0e0e10;
-  --surface: #17171a;
-  --foreground: #f4f4f5;
-  --muted: #a1a1aa;
-  --subtle: #8b8b94;
+  --background: #111111;
+  --surface: #131313;
+  --foreground: #ededed;
+  --muted: #dcdcdc;
+  --subtle: #9a9a9a;
   --line: rgb(255 255 255 / 0.12);
-  --card-gradient: linear-gradient(180deg, #2a2113 0%, #17171a 45%);
-  --secondary-gradient: linear-gradient(180deg, #27272a 0%, #1c1c1f 100%);
+  --card-gradient: linear-gradient(180deg, #2e1d10 0%, #242424 45%);
+  --secondary-gradient: linear-gradient(180deg, #2e2e2e 0%, #242424 100%);
+  --accent: #f2a845;
+  --accent-solid: #ef8f3d;
+  --button-primary: linear-gradient(180deg, #f2a046 0%, #ee7f35 100%);
 }
 
 @theme inline {
@@ -36,13 +42,14 @@
   --color-subtle: var(--subtle);
   --color-line: var(--line);
 
-  --background-image-button-primary: linear-gradient(180deg, #fca12a 0%, #fc8020 100%);
+  --background-image-button-primary: var(--button-primary);
   --background-image-button-secondary: var(--secondary-gradient);
   --background-image-auth-card: var(--card-gradient);
 
+  --color-accent: var(--accent);
+  --color-accent-solid: var(--accent-solid);
+
   --color-danger: #e5484d;
-  --color-accent: #fca12a;
-  --color-accent-solid: #fc8020;
   --color-light-background: var(--background);
 }
 
@@ -57,9 +64,9 @@
   h4 { @apply font-heading text-base font-bold text-muted sm:text-lg lg:text-xl; }
   h5 { @apply font-heading text-sm font-semibold text-muted sm:text-base lg:text-lg; }
 
-  p     { @apply font-sans text-base font-normal text-muted; }
-  span  { @apply font-sans text-xs font-normal text-muted; }
-  label { @apply font-sans text-xs font-medium text-muted lg:text-sm; }
+  p     { @apply font-sans text-base font-normal text-muted opacity-80; }
+  span  { @apply font-sans text-xs font-normal text-muted opacity-75; }
+  label { @apply font-sans text-xs font-medium text-muted lg:text-sm opacity-65; }
 
   input, select {
     @apply h-10 rounded-lg border border-line bg-surface px-3 py-1 text-foreground;
@@ -73,5 +80,13 @@
 
   .rs-input input {
     @apply h-auto min-h-0 rounded-none border-0 bg-transparent p-0 shadow-none;
+  }
+
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--line);
+  }
+
+  html {
+    background-color: var(--background);
   }
 }

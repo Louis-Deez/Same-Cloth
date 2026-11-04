@@ -16,14 +16,14 @@ export const ProfileSidebar = () => {
   const accountCreationDate = new Date(user?.created_at ?? "");
 
   return (
-    <div className="w-96 shrink-0 border-r border-black/10 bg-white">
+    <div className="w-96 shrink-0 border-r bg-surface">
       <Image
         src="/images/placeholder_banner.jpeg"
         width={1000}
         height={1000}
         priority
         alt="placeholder_banner"
-        className="aspect-video w-full border-b border-black/10 object-cover"
+        className="aspect-video w-full border-b object-cover"
       />
       <div className="flex flex-col gap-y-4 lg:px-8">
         <Image
@@ -32,7 +32,7 @@ export const ProfileSidebar = () => {
           height={1000}
           priority
           alt="placeholder_profile"
-          className="-mt-12 aspect-square max-w-24 rounded-3xl border border-black/10 object-cover shadow-xl"
+          className="-mt-12 aspect-square max-w-24 rounded-3xl border object-cover shadow-xl"
         />
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col">

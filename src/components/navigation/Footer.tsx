@@ -15,12 +15,12 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="flex w-full flex-col gap-y-4 border-t border-black/10 bg-white px-4 pt-8 pb-8 sm:px-8 md:gap-y-8 lg:px-8">
+    <footer className="flex w-full flex-col gap-y-4 border-t px-4 pt-8 pb-8 sm:px-8 md:gap-y-8 lg:px-8 bg-surface">
       <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
         <div className="flex flex-col gap-y-4 md:gap-y-8">
           <h2 className="text-accent text-4xl font-semibold sm:text-5xl lg:text-7xl">Contacts</h2>
           <hr />
-          <h3 className="text-xl font-medium text-black/65 sm:text-2xl lg:text-3xl">Got Questions? Get in Touch</h3>
+          <h3 className="text-xl font-medium sm:text-2xl lg:text-3xl opacity-80!">Got Questions? Get in Touch</h3>
           <div className="flex flex-col gap-y-2 text-black/50">
             <p className="text-base lg:text-xl">+1 818 999-9999</p>
             <p className="text-base lg:text-xl">contact@samecloth.com</p>
@@ -43,11 +43,11 @@ const Footer = () => {
           <div className="flex flex-wrap justify-between gap-y-8">
             {NAV.map((navItem) => (
               <div key={navItem.category} className="flex flex-col gap-y-2">
-                {navItem.category && <h3 className="text-lg font-medium text-black/65">{navItem.category}</h3>}
+                {navItem.category && <h3 className="text-lg font-medium opacity-80!">{navItem.category}</h3>}
                 {navItem.links.map((link) => (
                   <NavButton
                     key={link.label}
-                    className="text-xl text-black/75 transition-all"
+                    className="text-xl transition-all"
                     destination={link.destination}
                     label={link.label}
                   />
@@ -71,7 +71,7 @@ const Footer = () => {
           <div className="h-3/5 border-l border-black/20" />
           <span>Cookie Policy</span>
         </div>
-        <span className="text-black/50">© 2026 Same Cloth Team</span>
+        <span>© 2026 Same Cloth Team</span>
       </div>
     </footer>
   );

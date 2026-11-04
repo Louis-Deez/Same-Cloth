@@ -19,13 +19,13 @@ export const NavButton = ({ label, destination, onClick, screen = false, classNa
   return (
     <Link
       href={destination}
-      className={
-        `${screen ? `text-xl !font-medium` : `text-sm lg:text-base`} font-heading hover:text-accent font-light text-black/75 transition-all` +
-        className
-      }
       onClick={onClick}
     >
-      {label}
+      <span
+        className={
+        `${screen ? `text-xl !font-medium` : `text-sm lg:text-base`} font-heading hover:text-accent font-light transition-all` +
+        className
+      }>{label}</span>
     </Link>
   );
 };
