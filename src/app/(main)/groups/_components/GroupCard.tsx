@@ -29,7 +29,7 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
   return (
     <div
       aria-busy={loading}
-      className={`flex flex-col gap-y-4 rounded-2xl border border-black/5 bg-white p-4 transition-colors sm:p-5 ${loading ? "animate-pulse" : "hover:border-accent"}`}
+      className={`flex flex-col gap-y-4 rounded-2xl border p-4 transition-colors sm:p-5 ${loading ? "animate-pulse" : "hover:border-accent"}`}
     >
       <div className="flex flex-col gap-y-1">
         <div className="flex items-start justify-between gap-x-4">
@@ -44,14 +44,14 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
           {tags.length > 0 && (
             <div className="flex h-5 min-w-0 flex-1 flex-wrap gap-x-4 overflow-hidden">
               {tags.map((tag) => (
-                <span key={tag.id} className={`text-sm ${loading ? bubble : "text-black/50"}`}>
+                <span key={tag.id} className={`text-sm ${loading ? bubble : ""}`}>
                   #{tag.label}
                 </span>
               ))}
             </div>
           )}
           {sharedCount > 0 && (
-            <span className="bg-accent/10 text-accent-solid ml-auto shrink-0 rounded-full px-3 py-1 text-xs font-medium">
+            <span className="text-accent-solid ml-auto shrink-0 rounded-full px-3 py-1 text-xs font-medium">
               You share {sharedCount} {sharedCount === 1 ? "interest" : "interests"} with this community
             </span>
           )}
@@ -59,7 +59,7 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
       </div>
       <div className="grid aspect-[12/5] grid-cols-12 grid-rows-12 gap-1">
         {layout.map((cell, i) => (
-          <div key={i} className={`rounded bg-black/5 ${cell}`} />
+          <div key={i} className={`rounded bg-subtle/10 ${cell}`} />
         ))}
       </div>
     </div>

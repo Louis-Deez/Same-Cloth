@@ -21,7 +21,7 @@ export const GroupFilters = ({ value, onChange }: GroupFiltersProps) => {
             type="button"
             aria-pressed={selected}
             onClick={() => onChange(filter.value)}
-            className={`rounded-full border px-5 py-2 text-xs transition-all lg:text-sm ${selected ? "bg-button-primary border-transparent bg-origin-border text-white hover:brightness-90" : "border-black/5 bg-black/5 text-black/80 hover:bg-black/10"}`}
+            className={`rounded-full border px-5 py-2 text-xs transition-all lg:text-sm ${selected ? "bg-button-primary border-transparent bg-origin-border text-white hover:brightness-90" : "border-line bg-foreground/5 text-foreground hover:bg-foreground/10"}`}
           >
             {filter.label}
           </button>

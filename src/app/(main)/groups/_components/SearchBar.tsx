@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import {MagnifyingGlassIcon} from "@radix-ui/react-icons";
 
 const PLACEHOLDERS = [
   "Search for styles, interests, or keywords...",
@@ -26,9 +27,9 @@ export const SearchBar = ({ id, value, onChange }: SearchBarProps) => {
   return (
     <label
       htmlFor={id}
-      className="hover:border-accent focus-within:border-accent flex h-11 w-full cursor-text items-center gap-x-3 rounded-xl border border-black/10 bg-white px-4 transition-colors"
+      className="hover:border-accent focus-within:border-accent flex h-11 w-full cursor-text items-center gap-x-3 rounded-xl border px-4 transition-colors"
     >
-      <Image src="/icons/search.svg" alt="" width={18} height={18} className="size-4.5 shrink-0" loading="eager" />
+      <MagnifyingGlassIcon className="size-4.5 shrink-0" />
       <input
         id={id}
         type="text"
@@ -36,7 +37,7 @@ export const SearchBar = ({ id, value, onChange }: SearchBarProps) => {
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoComplete="off"
-        className="h-full min-w-0 flex-1 rounded-none border-0 p-0 text-sm font-light text-black outline-none placeholder:text-black/50"
+        className="h-full min-w-0 flex-1 rounded-none border-0 p-0 text-sm font-light outline-none"
       />
     </label>
   );
