@@ -67,6 +67,7 @@
   p     { @apply font-sans text-base font-normal text-muted opacity-80; }
   span  { @apply font-sans text-xs font-normal text-muted opacity-75; }
   label { @apply font-sans text-xs font-medium text-muted lg:text-sm opacity-65; }
+  a     { @apply font-sans text-foreground; }
 
   input, select {
     @apply h-10 rounded-lg border border-line bg-surface px-3 py-1 text-foreground;

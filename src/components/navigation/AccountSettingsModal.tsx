@@ -5,6 +5,8 @@ import React from "react";
 import { Property } from "csstype";
 import { PersonIcon, GearIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import {ThemeSelector} from "@/components/misc/ThemeSelector";
+import {ThemeModeType} from "@/components/misc/themeModeType";
 
 interface ModalButtonProps {
   label: string;
@@ -22,12 +24,10 @@ interface ModalButtonProps {
 
 const ModalButton = ({ label, destination, icon }: ModalButtonProps) => {
   return (
-    <button className="flex w-full cursor-pointer items-center gap-x-2 px-4 py-2 hover:bg-black/10">
+    <Link href={destination} className="flex w-full items-center gap-x-2 px-4 py-2 text-xs text-foreground hover:bg-foreground/10 opacity-65">
       {icon}
-      <Link href={destination} className="w-full text-left text-xs">
-        {label}
-      </Link>
-    </button>
+      {label}
+    </Link>
   );
 };
 
@@ -36,6 +36,7 @@ interface AccountSettingsModalProps {
   posAnchor: Property.PositionAnchor | undefined;
   posArea: Property.PositionArea | undefined;
   onSignOut?: () => void;
+  className?: string;
 }
 
 /**
@@ -43,20 +44,21 @@ interface AccountSettingsModalProps {
  * @param posAnchor - The anchor point of the modal
  * @param posArea - The area in which the modal is positioned
  * @param onSignOut - The function to call when the user signs out
+ * @param className - Additional CSS classes to apply to the modal
  *
  * @component - AccountSettingsModal is a modal that displays the user's profile and provides options to sign out.
  */
 
 // TODO: Implement a tri-state button (System, Light Mode, and Dark Mode)
 
-export const AccountSettingsModal = ({ id, posAnchor, posArea, onSignOut }: AccountSettingsModalProps) => {
+export const AccountSettingsModal = ({ id, posAnchor, posArea, onSignOut, className }: AccountSettingsModalProps) => {
   const { user, profile } = useAuth();
 
   return (
     <div
       id={id}
       popover="auto"
-      className="m-0 min-w-64 gap-y-2 overflow-hidden rounded-xl border shadow-lg"
+      className={`m-0 min-w-64 gap-y-2 overflow-hidden rounded-xl border shadow-lg ${className ?? ""}`}
       style={
         {
           positionAnchor: posAnchor,
@@ -75,6 +77,15 @@ export const AccountSettingsModal = ({ id, posAnchor, posArea, onSignOut }: Acco
       <ModalButton label="Profile" destination="/profile" icon={<PersonIcon />} />
       <ModalButton label="User Settings" destination="/settings" icon={<GearIcon />} />
       <ModalButton label="User Support" destination="/faq" icon={<QuestionMarkIcon />} />
+
+      <div className="w-full border-b " />
+
+      <div className="flex flex-col">
+        <span className="px-4 pt-2 pb-1">Theme</span>
+        <ThemeSelector selectedTheme={ThemeModeType.SYSTEM}/>
+        <ThemeSelector selectedTheme={ThemeModeType.LIGHT}/>
+        <ThemeSelector selectedTheme={ThemeModeType.DARK}/>
+      </div>
 
       <div className="w-full border-b " />
 

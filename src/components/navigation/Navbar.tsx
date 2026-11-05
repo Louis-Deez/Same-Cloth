@@ -12,7 +12,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AccountSettingsModal } from "@/components/navigation/AccountSettingsModal";
-import {ThemeToggle} from "@/components/miscellaneous/ThemeToggle";
+// import {ThemeToggle} from "@/components/misc/ThemeToggle";
 
 interface NavbarScreenProps {
   open: boolean;
@@ -88,9 +88,9 @@ const Navbar = () => {
         ))}
       </div>
 
-      <ThemeToggle/>
+      {/*<ThemeToggle/>*/}
 
-      <div className="relative">
+      <div className="relative hidden md:block">
         <button
           type="button"
           popoverTarget="profile-menu"
