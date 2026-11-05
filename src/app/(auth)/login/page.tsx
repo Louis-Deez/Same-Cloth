@@ -69,7 +69,7 @@ const SignInView = () => {
         className="hidden object-cover lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 xl:w-7/12"
       />
       <div className="bg-background flex h-full w-full flex-col items-center p-4 lg:h-screen lg:w-1/2 lg:p-8 xl:w-5/12">
-        <div className="my-auto flex h-full w-full flex-col justify-center gap-y-8 border-line lg:max-h-full lg:overflow-y-auto lg:border lg:p-8">
+        <div className="border-line my-auto flex h-full w-full flex-col justify-center gap-y-8 lg:max-h-full lg:overflow-y-auto lg:border lg:p-8">
           <AuthCard primary={true}>
             <IconBlock icon={<PersonIcon height={40} width={40} />} />
             <div className="flex flex-col gap-y-2">
@@ -115,9 +115,9 @@ const SignInView = () => {
               {message && <span className="text-sm">{message}</span>}
             </form>
             <div className="flex items-center gap-x-2 text-sm">
-              <div className="flex-1 border-t border-line" />
+              <div className="border-line flex-1 border-t" />
               <span className="text-subtle">Or sign in with</span>
-              <div className="flex-1 border-t border-line" />
+              <div className="border-line flex-1 border-t" />
             </div>
             <div className="flex items-center gap-x-8">
               <Button

@@ -3,7 +3,7 @@ import { Manrope, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { AuthProvider } from "@/lib/auth/AuthProvider";
-import {Providers} from "@/app/providers";
+import { Providers } from "@/app/providers";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });

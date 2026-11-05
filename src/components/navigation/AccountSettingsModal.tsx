@@ -5,8 +5,8 @@ import React from "react";
 import { Property } from "csstype";
 import { PersonIcon, GearIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import {ThemeSelector} from "@/components/misc/ThemeSelector";
-import {ThemeModeType} from "@/components/misc/themeModeType";
+import { ThemeSelector } from "@/components/misc/ThemeSelector";
+import { ThemeModeType } from "@/components/misc/themeModeType";
 
 interface ModalButtonProps {
   label: string;
@@ -24,7 +24,10 @@ interface ModalButtonProps {
 
 const ModalButton = ({ label, destination, icon }: ModalButtonProps) => {
   return (
-    <Link href={destination} className="flex w-full items-center gap-x-2 px-4 py-2 text-xs text-foreground hover:bg-foreground/10 opacity-65">
+    <Link
+      href={destination}
+      className="text-foreground hover:bg-foreground/10 flex w-full items-center gap-x-2 px-4 py-2 text-xs opacity-65"
+    >
       {icon}
       {label}
     </Link>
@@ -72,22 +75,22 @@ export const AccountSettingsModal = ({ id, posAnchor, posArea, onSignOut, classN
         <span>{user?.email}</span>
       </div>
 
-      <div className="w-full border-b " />
+      <div className="w-full border-b" />
 
       <ModalButton label="Profile" destination="/profile" icon={<PersonIcon />} />
       <ModalButton label="User Settings" destination="/settings" icon={<GearIcon />} />
       <ModalButton label="User Support" destination="/faq" icon={<QuestionMarkIcon />} />
 
-      <div className="w-full border-b " />
+      <div className="w-full border-b" />
 
       <div className="flex flex-col">
         <span className="px-4 pt-2 pb-1">Theme</span>
-        <ThemeSelector selectedTheme={ThemeModeType.SYSTEM}/>
-        <ThemeSelector selectedTheme={ThemeModeType.LIGHT}/>
-        <ThemeSelector selectedTheme={ThemeModeType.DARK}/>
+        <ThemeSelector selectedTheme={ThemeModeType.SYSTEM} />
+        <ThemeSelector selectedTheme={ThemeModeType.LIGHT} />
+        <ThemeSelector selectedTheme={ThemeModeType.DARK} />
       </div>
 
-      <div className="w-full border-b " />
+      <div className="w-full border-b" />
 
       <div className="w-full p-2">
         <button

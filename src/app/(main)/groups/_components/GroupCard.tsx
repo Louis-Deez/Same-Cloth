@@ -59,7 +59,7 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
       </div>
       <div className="grid aspect-[12/5] grid-cols-12 grid-rows-12 gap-1">
         {layout.map((cell, i) => (
-          <div key={i} className={`rounded bg-subtle/10 ${cell}`} />
+          <div key={i} className={`bg-subtle/10 rounded ${cell}`} />
         ))}
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import {MagnifyingGlassIcon} from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 const PLACEHOLDERS = [
   "Search for styles, interests, or keywords...",

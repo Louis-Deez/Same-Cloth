@@ -8,7 +8,7 @@ interface IconBlockProps {
 export const IconBlock = ({ icon }: IconBlockProps) => {
   return (
     <div
-      className="text-accent aspect-square w-fit rounded-3xl border border-line bg-surface p-5"
+      className="text-accent border-line bg-surface aspect-square w-fit rounded-3xl border p-5"
       style={{ filter: "drop-shadow(0 4px 6px var(--icon-shadow))" }}
     >
       {icon}

@@ -16,7 +16,7 @@ export const ProfileSidebar = () => {
   const accountCreationDate = new Date(user?.created_at ?? "");
 
   return (
-    <div className="w-96 shrink-0 border-r bg-surface">
+    <div className="bg-surface w-96 shrink-0 border-r">
       <Image
         src="/images/placeholder_banner.jpeg"
         width={1000}

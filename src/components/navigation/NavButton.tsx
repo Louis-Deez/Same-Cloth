@@ -17,15 +17,15 @@ interface NavButtonProps {
 
 export const NavButton = ({ label, destination, onClick, screen = false, className }: NavButtonProps) => {
   return (
-    <Link
-      href={destination}
-      onClick={onClick}
-    >
+    <Link href={destination} onClick={onClick}>
       <span
         className={
-        `${screen ? `text-xl !font-medium` : `text-sm lg:text-base`} font-heading hover:text-accent font-light transition-all` +
-        className
-      }>{label}</span>
+          `${screen ? `text-xl !font-medium` : `text-sm lg:text-base`} font-heading hover:text-accent font-light transition-all` +
+          className
+        }
+      >
+        {label}
+      </span>
     </Link>
   );
 };

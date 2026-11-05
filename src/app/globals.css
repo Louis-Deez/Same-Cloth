@@ -14,7 +14,7 @@
   --accent: #fca12a;
   --accent-solid: #fc8020;
   --button-primary: linear-gradient(180deg, #fca12a 0%, #fc8020 100%);
-  --icon-shadow: rgb(252 161 42 / 0.20);
+  --icon-shadow: rgb(252 161 42 / 0.2);
 }
 
 .dark {
@@ -60,32 +60,57 @@
     @apply bg-background text-foreground;
   }
 
-  h1 { @apply font-display text-4xl font-medium text-foreground sm:text-5xl lg:text-6xl xl:text-7xl; }
-  h2 { @apply font-heading text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl; }
-  h3 { @apply font-heading text-xl font-bold text-foreground sm:text-2xl lg:text-3xl; }
-  h4 { @apply font-heading text-base font-bold text-muted sm:text-lg lg:text-xl; }
-  h5 { @apply font-heading text-sm font-semibold text-muted sm:text-base lg:text-lg; }
+  h1 {
+    @apply font-display text-foreground text-4xl font-medium sm:text-5xl lg:text-6xl xl:text-7xl;
+  }
+  h2 {
+    @apply font-heading text-foreground text-2xl font-bold sm:text-3xl lg:text-4xl;
+  }
+  h3 {
+    @apply font-heading text-foreground text-xl font-bold sm:text-2xl lg:text-3xl;
+  }
+  h4 {
+    @apply font-heading text-muted text-base font-bold sm:text-lg lg:text-xl;
+  }
+  h5 {
+    @apply font-heading text-muted text-sm font-semibold sm:text-base lg:text-lg;
+  }
 
-  p     { @apply font-sans text-base font-normal text-muted opacity-80; }
-  span  { @apply font-sans text-xs font-normal text-muted opacity-75; }
-  label { @apply font-sans text-xs font-medium text-muted lg:text-sm opacity-65; }
-  a     { @apply font-sans text-foreground; }
+  p {
+    @apply text-muted font-sans text-base font-normal opacity-80;
+  }
+  span {
+    @apply text-muted font-sans text-xs font-normal opacity-75;
+  }
+  label {
+    @apply text-muted font-sans text-xs font-medium opacity-65 lg:text-sm;
+  }
+  a {
+    @apply text-foreground font-sans;
+  }
 
-  input, select {
-    @apply h-10 rounded-lg border border-line bg-surface px-3 py-1 text-foreground;
+  input,
+  select {
+    @apply border-line bg-surface text-foreground h-10 rounded-lg border px-3 py-1;
   }
 
   textarea {
-    @apply min-h-24 w-full resize-none rounded-xl border border-line bg-surface p-3 text-foreground;
+    @apply border-line bg-surface text-foreground min-h-24 w-full resize-none rounded-xl border p-3;
   }
 
-  hr { @apply border-line; }
+  hr {
+    @apply border-line;
+  }
 
   .rs-input input {
     @apply h-auto min-h-0 rounded-none border-0 bg-transparent p-0 shadow-none;
   }
 
-  *, ::after, ::before, ::backdrop, ::file-selector-button {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
     border-color: var(--line);
   }
 
