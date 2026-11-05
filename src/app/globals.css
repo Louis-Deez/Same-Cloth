@@ -14,6 +14,7 @@
   --accent: #fca12a;
   --accent-solid: #fc8020;
   --button-primary: linear-gradient(180deg, #fca12a 0%, #fc8020 100%);
+  --icon-shadow: rgb(252 161 42 / 0.20);
 }
 
 .dark {
@@ -28,6 +29,7 @@
   --accent: #f2a845;
   --accent-solid: #ef8f3d;
   --button-primary: linear-gradient(180deg, #f2a046 0%, #ee7f35 100%);
+  --icon-shadow: rgb(0 0 0 / 0.45);
 }
 
 @theme inline {

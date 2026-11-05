@@ -30,8 +30,8 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
       </div>
       <div className="flex flex-col gap-y-5">
         <div className="flex items-center gap-x-5">
-          <button className="cursor-pointer rounded-3xl border border-dashed border-black/20 p-9">
-            <PlusIcon className="scale-150 text-black/50" />
+          <button className="cursor-pointer rounded-3xl border border-dashed border-foreground/20 p-9">
+            <PlusIcon className="text-subtle scale-150" />
           </button>
           <div className="flex flex-col gap-y-2">
             <h4>Profile Picture</h4>

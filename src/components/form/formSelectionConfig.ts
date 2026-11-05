@@ -17,33 +17,33 @@ export const formSelectionStyle = <IsMulti extends boolean>(): ClassNamesConfig<
 > => ({
   control: ({ isFocused, selectProps }) => {
     const invalid = selectProps["aria-invalid"];
-    return `h-10 rounded-lg border px-3 font-sans text-sm text-black/65 ${
+    return `h-10 rounded-lg border px-3 font-sans text-sm text-foreground ${
       invalid
-        ? "border-red-500 bg-red-50"
-        : `bg-white ${isFocused ? "border-accent ring-1 ring-accent" : "border-black/10"}`
+        ? "border-danger bg-danger/10"
+        : `bg-surface ${isFocused ? "border-accent ring-1 ring-accent" : "border-line"}`
     }`;
   },
   valueContainer: () => "gap-1 p-0",
-  placeholder: () => "font-sans text-sm text-black/40",
-  singleValue: () => "font-sans text-sm font-medium text-black/65",
-  input: () => "rs-input font-sans text-sm text-black/65",
-  multiValue: () => "bg-black/5 rounded-md pl-2 pr-1 py-0.5 items-center gap-1",
-  multiValueLabel: () => "font-sans text-sm font-medium text-black/65",
-  multiValueRemove: () => "text-black/40 hover:text-black/70 hover:bg-black/5 rounded",
-  indicatorSeparator: () => "bg-black/10 my-2",
-  dropdownIndicator: ({ isFocused }) => `px-2 ${isFocused ? "text-accent-solid" : "text-black/40"}`,
-  clearIndicator: () => "px-1 text-black/40 hover:text-danger",
-  menu: () => "mt-1 rounded-xl border border-black/10 bg-white shadow-lg overflow-hidden",
+  placeholder: () => "font-sans text-sm text-subtle",
+  singleValue: () => "font-sans text-sm font-medium text-foreground",
+  input: () => "rs-input font-sans text-sm text-foreground",
+  multiValue: () => "bg-foreground/5 rounded-md pl-2 pr-1 py-0.5 items-center gap-1",
+  multiValueLabel: () => "font-sans text-sm font-medium text-foreground",
+  multiValueRemove: () => "text-subtle hover:text-foreground hover:bg-foreground/10 rounded",
+  indicatorSeparator: () => "bg-line my-2",
+  dropdownIndicator: ({ isFocused }) => `px-2 ${isFocused ? "text-accent-solid" : "text-subtle"}`,
+  clearIndicator: () => "px-1 text-subtle hover:text-danger",
+  menu: () => "mt-1 rounded-xl border border-line bg-surface shadow-lg overflow-hidden",
   menuList: () => "py-1 max-h-60",
   option: ({ isFocused, isSelected, isDisabled }) =>
     `px-3 py-2 font-sans text-sm cursor-pointer ${
       isDisabled
-        ? "text-black/25 cursor-not-allowed"
+        ? "text-subtle/50 cursor-not-allowed"
         : isSelected
-          ? "bg-black/5 text-black/70 font-medium"
+          ? "bg-foreground/5 text-foreground font-medium"
           : isFocused
-            ? "bg-accent/10 text-black/80"
-            : "text-black/65"
+            ? "bg-accent/10 text-foreground"
+            : "text-muted"
     }`,
-  noOptionsMessage: () => "px-3 py-2 font-sans text-sm text-black/40",
+  noOptionsMessage: () => "px-3 py-2 font-sans text-sm text-subtle",
 });
