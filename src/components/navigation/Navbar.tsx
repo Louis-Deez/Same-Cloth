@@ -66,8 +66,9 @@ const NavbarScreen = ({ open, onClose, onSignOut }: NavbarScreenProps) => {
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { signOut } = useAuth();
+  const { signOut, profile } = useAuth();
   const router = useRouter();
+  const avatarSrc = profile?.profilePictureURL ?? "/images/default_pfp.svg";
 
   const handleSignOut = async () => {
     setOpen(false);
@@ -99,12 +100,12 @@ const Navbar = () => {
           style={{ anchorName: "--profile-btn" } as React.CSSProperties}
         >
           <Image
-            src="/images/placeholder_profile_pic.jpeg"
+            src={avatarSrc}
             width={1000}
             height={1000}
             priority
             alt="placeholder_profile"
-            className="aspect-square max-w-10 rounded-3xl object-cover"
+            className="aspect-square max-w-10 rounded-3xl object-cover bg-surface border-1"
           />
         </button>
 

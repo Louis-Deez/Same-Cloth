@@ -4,6 +4,15 @@ const nextConfig: NextConfig = {
   experimental: {
     agentUpgrade: "security",
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ukgnngmeloswmnxswrvc.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

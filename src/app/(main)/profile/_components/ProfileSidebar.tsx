@@ -25,7 +25,7 @@ export const ProfileSidebar = () => {
   const [message, setMessage] = useState<string>("");
 
   //1. SHOWS THE NEW UPLOAD, ELSE THE SAVED PICTURE, ELSE THE PLACEHOLDER - C
-  const avatarSrc = newAvatar ?? profile?.profilePictureURL ?? "/images/placeholder_profile_pic.jpeg";
+  const avatarSrc = newAvatar ?? profile?.profilePictureURL ?? "/images/default_pfp.svg";
   const bannerSrc = newBanner ?? profile?.bannerURL ?? "/images/placeholder_banner.jpeg";
 
   //2. RUNS WHEN SOMEONE PICKS A FILE: UPLOADS IT AND SHOWS IT - C
