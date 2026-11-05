@@ -6,7 +6,7 @@ import { useAuth } from "@/lib/auth/AuthProvider";
 
 import React, { useState } from "react";
 import { ImageKind, uploadProfileImage } from "@/lib/supabase/uploadProfileImage";
-import {PlusIcon} from "@radix-ui/react-icons";
+import { PlusIcon } from "@radix-ui/react-icons";
 
 /**
  * @component - This is the sidebar that shows the user's profile. It shows the user's profile picture, name, handle, bio
@@ -47,8 +47,7 @@ export const ProfileSidebar = () => {
   };
 
   return (
-    <div className="w-96 shrink-0 border-r bg-surface">
-
+    <div className="bg-surface w-96 shrink-0 border-r">
       <div className="relative">
         <label className="group relative block cursor-pointer opacity-100">
           <Image
@@ -63,12 +62,16 @@ export const ProfileSidebar = () => {
           <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
             <span className="text-sm font-medium text-white">Change banner</span>
           </div>
-          <input type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={(e) => handleFile(e, "banner")} />
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+            onChange={(e) => handleFile(e, "banner")}
+          />
         </label>
       </div>
 
       <div className="flex flex-col gap-y-4 lg:px-8">
-
         <label className="group relative -mt-12 block aspect-square w-24 cursor-pointer opacity-100">
           <Image
             src={avatarSrc}
@@ -82,7 +85,12 @@ export const ProfileSidebar = () => {
           <div className="absolute inset-0 flex items-center justify-center rounded-3xl bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
             <PlusIcon className="scale-150 text-white" />
           </div>
-          <input type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={(e) => handleFile(e, "avatar")} />
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+            onChange={(e) => handleFile(e, "avatar")}
+          />
         </label>
 
         {message && <p className="text-sm">{message}</p>}

@@ -105,7 +105,7 @@ const Navbar = () => {
             height={1000}
             priority
             alt="placeholder_profile"
-            className="aspect-square max-w-10 rounded-3xl object-cover bg-surface border-1"
+            className="bg-surface aspect-square max-w-10 rounded-3xl border-1 object-cover"
           />
         </button>
 
