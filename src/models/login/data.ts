@@ -26,12 +26,16 @@ export const emptyUserIdentification: UserIdentificationData = {
 
 export interface UserPersonalizationData {
   // add another field that takes the user's profile picture
+  profilePicture: File | null,
+  bannerPicture: File | null,
   displayName: string;
   handle: string;
   bio: string;
 }
 
 export const emptyUserPersonalization: UserPersonalizationData = {
+  profilePicture: null,
+  bannerPicture: null,
   displayName: "",
   handle: "",
   bio: "",

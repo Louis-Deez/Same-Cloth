@@ -57,7 +57,8 @@ const SignupView = () => {
   // Saves the whole form to the database (see lib/supabase/submitSignup.ts)
   const handleSubmit = async () => {
     const { error } = await submitSignup(payload);
-    setMessage(error ?? "Account created!");
+    if (error) return setMessage(error);
+    window.location.assign("/home");
   };
 
   return (

@@ -1,6 +1,7 @@
 import type { SupabaseClient, User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
 import { LoginPayload } from "@/models/login/payload";
+import { uploadProfileImage } from "@/lib/supabase/uploadProfileImage";
 
 /**
  * Creates the account, then saves the Q2-Q7 checkbox picks (user_selected_option) and the typed answers
@@ -96,6 +97,16 @@ async function saveProfile(supabase: SupabaseClient, user: User, payload: LoginP
     .update({ handle: payload.handle, display_name: payload.displayName, bio: payload.bio })
     .eq("user_id", user.id);
   if (publicError) return { error: publicError.message };
+
+  if (payload.profilePicture) {
+    const { error: pictureError } = await uploadProfileImage(user.id, "avatar", payload.profilePicture);
+    if (pictureError) return { error: pictureError };
+  }
+
+    if (payload.bannerPicture) {
+    const { error: bannerError } = await uploadProfileImage(user.id, "banner", payload.bannerPicture);
+    if (bannerError) return { error: bannerError };
+  }
 
   const { error: privateError } = await supabase
     .from("user_profile")

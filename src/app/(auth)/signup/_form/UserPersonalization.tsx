@@ -5,7 +5,8 @@ import { IconBlock } from "@/app/(auth)/_components/IconBlock";
 import { HamburgerMenuIcon, PlusIcon } from "@radix-ui/react-icons";
 import { FormInput } from "@/components/form/FormInput";
 import { FormTextArea } from "@/components/form/FormTextArea";
-import { useEffect } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import Image from "next/image";
 
 interface UserPersonalizationProps {
   data: UserPersonalizationData;
@@ -21,6 +22,18 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
     onValidChange(displayNameValid && handleValid);
   }, [displayNameValid, handleValid, onValidChange]);
 
+  const fileInput = useRef<HTMLInputElement>(null);
+  const previewUrl = useMemo(
+    () => (data.profilePicture ? URL.createObjectURL(data.profilePicture) : null),
+    [data.profilePicture],
+  );
+  
+  const bannerInput = useRef<HTMLInputElement>(null);
+  const bannerPreviewUrl = useMemo(
+    () => (data.bannerPicture ? URL.createObjectURL(data.bannerPicture) : null),
+    [data.bannerPicture],
+  );
+
   return (
     <section className="flex flex-col gap-y-8">
       <IconBlock icon={<HamburgerMenuIcon height={40} width={40} />} />
@@ -29,10 +42,46 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
         <p>Create a new account with Same Cloth</p>
       </div>
       <div className="flex flex-col gap-y-5">
-        <div className="flex items-center gap-x-5">
-          <button className="border-foreground/20 cursor-pointer rounded-3xl border border-dashed p-9">
-            <PlusIcon className="text-subtle scale-150" />
+                <div className="flex flex-col gap-y-2">
+          <h4>Banner</h4>
+          <button
+            type="button"
+            onClick={() => bannerInput.current?.click()}
+            className="border-foreground/20 relative flex aspect-video w-full cursor-pointer items-center justify-center overflow-hidden rounded-3xl border border-dashed"
+          >
+            {bannerPreviewUrl ? (
+              <Image src={bannerPreviewUrl} alt="banner preview" fill unoptimized className="object-cover" />
+            ) : (
+              <PlusIcon className="text-subtle scale-150" />
+            )}
           </button>
+          <input
+            ref={bannerInput}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+            onChange={(e) => onChange({ bannerPicture: e.target.files?.[0] ?? null })}
+          />
+        </div>
+        <div className="flex items-center gap-x-5">
+          <button
+            type="button"
+            onClick={() => fileInput.current?.click()}
+            className="border-foreground/20 cursor-pointer overflow-hidden rounded-3xl border border-dashed p-9"
+          >
+            {previewUrl ? (
+              <Image src={previewUrl} alt="profile preview" width={72} height={72} unoptimized className="-m-9 h-[108px] w-[108px] max-w-none object-cover" />
+            ) : (
+              <PlusIcon className="text-subtle scale-150" />
+            )}
+          </button>
+          <input
+            ref={fileInput}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+            onChange={(e) => onChange({ profilePicture: e.target.files?.[0] ?? null })}
+          />
           <div className="flex flex-col gap-y-2">
             <h4>Profile Picture</h4>
             <span>Choose a profile picture that represents you best, you can always change it later.</span>
