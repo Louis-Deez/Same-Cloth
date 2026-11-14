@@ -1,6 +1,7 @@
 export interface GroupData {
   id: string;
   name: string;
+  description?: string;
   criteriaOptionIds?: readonly number[];
   memberCount?: number;
   matchedOptionIds?: readonly number[];

@@ -56,6 +56,8 @@ export const GroupCard = ({ group, optionValues }: GroupCardProps) => {
             </span>
           )}
         </div>
+        {/* the description only shows for groups that have one */}
+        {group?.description && <p className="line-clamp-2 text-sm">{group.description}</p>}
       </div>
       <div className="grid aspect-[12/5] grid-cols-12 grid-rows-12 gap-1">
         {layout.map((cell, i) => (
