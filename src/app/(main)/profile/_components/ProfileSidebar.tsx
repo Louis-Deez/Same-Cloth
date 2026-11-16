@@ -4,9 +4,10 @@ import Image from "next/image";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/lib/auth/AuthProvider";
 
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import { ImageKind, uploadProfileImage } from "@/lib/supabase/uploadProfileImage";
 import { PlusIcon } from "@radix-ui/react-icons";
+import {useCreatePost} from "@/app/(main)/profile/_components/CreatePostProvider";
 
 /**
  * @component - This is the sidebar that shows the user's profile. It shows the user's profile picture, name, handle, bio
@@ -17,6 +18,7 @@ import { PlusIcon } from "@radix-ui/react-icons";
 
 export const ProfileSidebar = () => {
   const { profile, user } = useAuth();
+  const { open } = useCreatePost();
   const accountCreationDate = new Date(user?.created_at ?? "");
 
   //NEWLY UPLOADED LINKS, SO THE PAGE UPDATES RIGHT AWAY - C
@@ -45,6 +47,8 @@ export const ProfileSidebar = () => {
     else setNewBanner(url);
     setMessage("");
   };
+
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
     <div className="bg-surface w-96 shrink-0 border-r">
@@ -120,7 +124,7 @@ export const ProfileSidebar = () => {
 
           {/* TODO: Implement edit profile and create post buttons */}
           <Button label="Edit Profile" primary />
-          <Button label="Create Post" />
+          <Button label="Create Post" onClick={open}/>
 
           <span className="uppercase">
             MEMBER SINCE:{" "}
