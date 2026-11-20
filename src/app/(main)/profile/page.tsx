@@ -1,4 +1,5 @@
 import { ProfileSidebar } from "@/app/(main)/profile/_components/ProfileSidebar";
+import { PostsGrid } from "@/app/(main)/profile/_components/PostsGrid";
 
 /**
  * @component - This is the profile page. It shows the user's profile via the ProfileSidebar component, and the user's
@@ -11,7 +12,7 @@ const ProfileView = () => {
       <ProfileSidebar />
       {/* TODO: implement posts grid */}
       <div className="flex w-full items-center justify-center">
-        <h5>You have not posted anything.</h5>
+        <PostsGrid />
       </div>
     </div>
   );
