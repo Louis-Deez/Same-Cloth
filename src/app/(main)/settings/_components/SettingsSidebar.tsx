@@ -2,26 +2,30 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
 
 interface SidebarGroup {
   category: string;
-  links: { label: string; href: string }[];
+  links: { label: string; href: string; icon: ReactNode }[];
 }
 
 export const SettingsSidebar = ({ nav }: { nav: SidebarGroup[] }) => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex w-56 shrink-0 flex-col gap-y-6">
+    <nav className="flex w-96 shrink-0 flex-col gap-y-6 bg-surface pt-10 h-screen lg:px-8 border-r">
+      <h2 className="text-accent">Settings</h2>
+
       {nav.map(({ category, links }) => (
         <div key={category} className="flex flex-col gap-y-1">
           <span className="text-subtle text-sm">{category}</span>
-          {links.map(({ label, href }) => (
+          {links.map(({ label, href, icon }) => (
             <Link
               key={href}
               href={href}
-              className={pathname === href ? "text-foreground" : "text-muted hover:text-foreground"}
+              className={`flex items-center gap-x-2 ${pathname === href ? "text-foreground" : "text-muted hover:text-foreground"}`}
             >
+              {icon}
               {label}
             </Link>
           ))}
