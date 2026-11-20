@@ -23,7 +23,9 @@ export const SettingsSidebar = ({ nav }: { nav: SidebarGroup[] }) => {
             <Link
               key={href}
               href={href}
-              className={`flex items-center gap-x-2 ${pathname === href ? "text-foreground" : "text-muted hover:text-foreground"}`}
+              className={`flex items-center gap-x-2 rounded-md px-4 py-2 transition ease-in-out
+              ${pathname === href ? "text-accent bg-light-background" : "text-muted hover:text-foreground"}
+              `}
             >
               {icon}
               {label}

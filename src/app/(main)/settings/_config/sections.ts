@@ -1,10 +1,10 @@
 import React, { ComponentType } from "react";
 import { EditProfile } from "../_components/EditProfile";
 
-// import { Personalization } from "../_components/Personalization";
+import { Personalization } from "../_components/Personalization";
 // import { AccountSettings } from "../_components/AccountSettings";
 
-import {PersonIcon} from "@radix-ui/react-icons";
+import {PersonIcon, Component2Icon} from "@radix-ui/react-icons";
 
 export interface SettingsSection {
   label: string;
@@ -18,12 +18,14 @@ export interface SettingsGroup {
   sections: SettingsSection[];
 }
 
+// TODO: Expand upon this
+
 export const SETTINGS: SettingsGroup[] = [
   {
     category: "Profile",
     sections: [
       { label: "Edit Profile", slug: "profile", component: EditProfile, icon: PersonIcon },
-      // { label: "Personalization", slug: "personalization", component: Personalization },
+      { label: "Personalization", slug: "personalization", component: Personalization, icon: Component2Icon },
     ],
   },
   // {
