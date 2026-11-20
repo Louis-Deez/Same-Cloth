@@ -10,6 +10,8 @@ interface FormTextAreaProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   required?: boolean;
+  disabled?: boolean;
+  maxLength?: number;
   errorMessage?: string;
 }
 
@@ -34,7 +36,8 @@ export const FormTextArea = ({
   value,
   onChange,
   required,
-  errorMessage,
+  disabled,
+  maxLength,
   placeholder,
 }: FormTextAreaProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
@@ -52,6 +55,8 @@ export const FormTextArea = ({
         value={value}
         onChange={onChange}
         onBlur={() => setTouched(true)}
+        disabled={disabled}
+        maxLength={maxLength}
         aria-invalid={invalid}
         className={`text-sm ${invalid ? "border-danger! bg-danger/10!" : ""}`}
         required={required ?? false}
