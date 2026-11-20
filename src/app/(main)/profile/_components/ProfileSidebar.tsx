@@ -8,6 +8,7 @@ import React, {useRef, useState} from "react";
 import { ImageKind, uploadProfileImage } from "@/lib/supabase/uploadProfileImage";
 import { PlusIcon } from "@radix-ui/react-icons";
 import {useCreatePost} from "@/app/(main)/profile/_components/CreatePostProvider";
+import {useRouter} from "next/navigation";
 
 /**
  * @component - This is the sidebar that shows the user's profile. It shows the user's profile picture, name, handle, bio
@@ -19,6 +20,8 @@ import {useCreatePost} from "@/app/(main)/profile/_components/CreatePostProvider
 export const ProfileSidebar = () => {
   const { profile, user } = useAuth();
   const { open } = useCreatePost();
+  const router = useRouter();
+
   const accountCreationDate = new Date(user?.created_at ?? "");
 
   //NEWLY UPLOADED LINKS, SO THE PAGE UPDATES RIGHT AWAY - C
@@ -123,7 +126,7 @@ export const ProfileSidebar = () => {
           </div>
 
           {/* TODO: Implement edit profile and create post buttons */}
-          <Button label="Edit Profile" primary />
+          <Button label="Edit Profile" primary onClick={() => router.push("/settings")}/>
           <Button label="Create Post" onClick={open}/>
 
           <span className="uppercase">
