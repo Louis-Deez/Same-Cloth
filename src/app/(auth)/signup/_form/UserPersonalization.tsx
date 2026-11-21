@@ -27,7 +27,7 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
     () => (data.profilePicture ? URL.createObjectURL(data.profilePicture) : null),
     [data.profilePicture],
   );
-  
+
   const bannerInput = useRef<HTMLInputElement>(null);
   const bannerPreviewUrl = useMemo(
     () => (data.bannerPicture ? URL.createObjectURL(data.bannerPicture) : null),
@@ -42,7 +42,7 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
         <p>Create a new account with Same Cloth</p>
       </div>
       <div className="flex flex-col gap-y-5">
-                <div className="flex flex-col gap-y-2">
+        <div className="flex flex-col gap-y-2">
           <h4>Banner</h4>
           <button
             type="button"
@@ -70,7 +70,14 @@ const UserPersonalization = ({ data, onChange, onValidChange }: UserPersonalizat
             className="border-foreground/20 cursor-pointer overflow-hidden rounded-3xl border border-dashed p-9"
           >
             {previewUrl ? (
-              <Image src={previewUrl} alt="profile preview" width={72} height={72} unoptimized className="-m-9 h-[108px] w-[108px] max-w-none object-cover" />
+              <Image
+                src={previewUrl}
+                alt="profile preview"
+                width={72}
+                height={72}
+                unoptimized
+                className="-m-9 h-[108px] w-[108px] max-w-none object-cover"
+              />
             ) : (
               <PlusIcon className="text-subtle scale-150" />
             )}

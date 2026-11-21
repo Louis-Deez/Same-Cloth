@@ -4,7 +4,7 @@ import { EditProfile } from "../_components/EditProfile";
 import { Personalization } from "../_components/Personalization";
 // import { AccountSettings } from "../_components/AccountSettings";
 
-import {PersonIcon, Component2Icon} from "@radix-ui/react-icons";
+import { PersonIcon, Component2Icon } from "@radix-ui/react-icons";
 
 export interface SettingsSection {
   label: string;
@@ -34,5 +34,4 @@ export const SETTINGS: SettingsGroup[] = [
   // },
 ];
 
-export const findSection = (slug: string) =>
-  SETTINGS.flatMap((g) => g.sections).find((s) => s.slug === slug);
+export const findSection = (slug: string) => SETTINGS.flatMap((g) => g.sections).find((s) => s.slug === slug);

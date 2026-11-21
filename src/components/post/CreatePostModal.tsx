@@ -1,14 +1,13 @@
 "use client";
 
-import React, {useEffect, useRef, useState} from "react";
-import {PlusIcon} from "@radix-ui/react-icons";
-import {Button} from "@/components/Button";
-import {useAuth} from "@/lib/auth/AuthProvider";
+import React, { useEffect, useRef, useState } from "react";
+import { PlusIcon } from "@radix-ui/react-icons";
+import { Button } from "@/components/Button";
+import { useAuth } from "@/lib/auth/AuthProvider";
 import Image from "next/image";
-import {FormTextArea} from "@/components/form/FormTextArea";
-import {emptyPostData, PostData} from "@/models/post/data";
-import {createPost} from "@/lib/supabase/createPost";
-
+import { FormTextArea } from "@/components/form/FormTextArea";
+import { emptyPostData, PostData } from "@/models/post/data";
+import { createPost } from "@/lib/supabase/createPost";
 
 export interface CreatePostModalProps {
   open: boolean;
@@ -16,7 +15,7 @@ export interface CreatePostModalProps {
   onPostCreated: () => void;
 }
 
-export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostModalProps) => {
+export const CreatePostModal = ({ open, onClose, onPostCreated }: CreatePostModalProps) => {
   const [post, setPost] = useState<PostData>(emptyPostData);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,12 +41,12 @@ export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostMod
     setPreviewUrl(null);
     setSubmitError(null);
     if (fileInput.current) fileInput.current.value = "";
-  }
+  };
 
   const handlePostCancellation = () => {
     if (isSubmitting) return;
     resetPostForm();
-  }
+  };
 
   const handlePostSubmission = async () => {
     if (isSubmitting) return;
@@ -68,7 +67,6 @@ export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostMod
 
       onPostCreated();
       resetPostForm();
-
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : "Could not create your post.");
     } finally {
@@ -86,7 +84,6 @@ export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostMod
       }}
     >
       <div className="flex w-full">
-
         <div className="aspect-square flex-1">
           <button
             type="button"
@@ -94,7 +91,14 @@ export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostMod
             onClick={() => fileInput.current?.click()}
           >
             {previewUrl ? (
-              <Image src={previewUrl} alt="post preview" width={1000} height={1000} unoptimized className="size-full object-cover" />
+              <Image
+                src={previewUrl}
+                alt="post preview"
+                width={1000}
+                height={1000}
+                unoptimized
+                className="size-full object-cover"
+              />
             ) : (
               <div className="flex flex-col items-center gap-y-1">
                 <PlusIcon className="size-5" />
@@ -111,7 +115,7 @@ export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostMod
             onChange={(e) => {
               const image = e.target.files?.[0] ?? null;
               setPreviewUrl(image ? URL.createObjectURL(image) : null);
-              setPost({...post, postImage: image});
+              setPost({ ...post, postImage: image });
             }}
           />
         </div>
@@ -120,7 +124,7 @@ export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostMod
           <h2>Create a Post</h2>
 
           <div className="flex flex-col gap-y-4">
-            <div className="flex gap-x-2 items-center">
+            <div className="flex items-center gap-x-2">
               <Image
                 src={profile?.profilePictureURL ?? "/images/default_pfp.svg"}
                 width={1000}
@@ -139,13 +143,17 @@ export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostMod
               value={post.postCaption}
               maxLength={2000}
               disabled={isSubmitting}
-              onChange={(e) => setPost({...post, postCaption: e.target.value})}
+              onChange={(e) => setPost({ ...post, postCaption: e.target.value })}
             />
           </div>
 
-          {submitError && <p className="text-danger" role="alert">{submitError}</p>}
+          {submitError && (
+            <p className="text-danger" role="alert">
+              {submitError}
+            </p>
+          )}
 
-          <div className="flex flex-row gap-x-4 mt-auto">
+          <div className="mt-auto flex flex-row gap-x-4">
             <Button
               label={isSubmitting ? "Posting..." : "Post"}
               primary
@@ -155,8 +163,7 @@ export const CreatePostModal = ({ open, onClose, onPostCreated, }: CreatePostMod
             <Button label="Cancel" disabled={isSubmitting} onClick={handlePostCancellation} />
           </div>
         </div>
-
       </div>
     </dialog>
-  )
-}
+  );
+};

@@ -8,7 +8,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
     links: sections.map(({ label, slug, icon: Icon }) => ({
       label,
       href: `/settings/${slug}`,
-      icon: <Icon/>
+      icon: <Icon />,
     })),
   }));
 

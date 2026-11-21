@@ -28,10 +28,7 @@ async function removePost(
   return cleanupErrors;
 }
 
-export async function createPost(
-  post: PostData,
-  userId: string,
-): Promise<{ postId?: string; error?: string }> {
+export async function createPost(post: PostData, userId: string): Promise<{ postId?: string; error?: string }> {
   const caption = post.postCaption.trim();
   const image = post.postImage;
 

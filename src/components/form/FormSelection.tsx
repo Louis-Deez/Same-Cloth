@@ -51,7 +51,7 @@ export const MultiSelect = ({
   errorMessage,
   validated,
   value,
-  patch
+  patch,
 }: MultiSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && value.length === 0 && !validated;
@@ -60,7 +60,7 @@ export const MultiSelect = ({
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {(!required && !patch) && <span className="text-md! text-neutral-400">(optional)</span>}
+        {!required && !patch && <span className="text-md! text-neutral-400">(optional)</span>}
       </div>
       <Select<SelectionData, true>
         isMulti
@@ -98,7 +98,7 @@ export const SingleSelect = ({
   errorMessage,
   validated,
   value,
-  patch
+  patch,
 }: SingleSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && value.length === 0 && !validated;
@@ -107,7 +107,7 @@ export const SingleSelect = ({
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {(!required && !patch) && <span className="text-md! text-neutral-400">(optional)</span>}
+        {!required && !patch && <span className="text-md! text-neutral-400">(optional)</span>}
       </div>
       <Select<SelectionData>
         unstyled

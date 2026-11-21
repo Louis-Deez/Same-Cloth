@@ -92,7 +92,12 @@ export const CreateGroupForm = ({ options, onCreated }: CreateGroupFormProps) =>
           {error}
         </p>
       )}
-      <Button primary type="submit" label={submitting ? "Creating..." : "Create group"} disabled={!valid || submitting} />
+      <Button
+        primary
+        type="submit"
+        label={submitting ? "Creating..." : "Create group"}
+        disabled={!valid || submitting}
+      />
     </form>
   );
 };

@@ -24,15 +24,9 @@ export const CreatePostProvider = ({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <CreatePostContext.Provider
-      value={{ open: () => setOpen(true), postsVersion, notifyPostCreated }}
-    >
+    <CreatePostContext.Provider value={{ open: () => setOpen(true), postsVersion, notifyPostCreated }}>
       {children}
-      <CreatePostModal
-        open={isOpen}
-        onClose={() => setOpen(false)}
-        onPostCreated={notifyPostCreated}
-      />
+      <CreatePostModal open={isOpen} onClose={() => setOpen(false)} onPostCreated={notifyPostCreated} />
     </CreatePostContext.Provider>
   );
 };

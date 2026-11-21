@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (!user) return;
         const profile = await loadProfile(user.id);
         setLoaded({ userId: user.id, profile });
-      }
+      },
     }),
     [user, loaded, loading],
   );

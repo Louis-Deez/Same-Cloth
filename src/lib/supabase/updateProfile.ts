@@ -2,10 +2,7 @@ import { createClient } from "@/lib/supabase/client";
 import { uploadProfileImage } from "@/lib/supabase/uploadProfileImage";
 import { ProfileDataPatch } from "@/models/settings/profileData";
 
-export async function updateProfile(
-  userId: string,
-  patch: ProfileDataPatch,
-): Promise<{ error?: string }> {
+export async function updateProfile(userId: string, patch: ProfileDataPatch): Promise<{ error?: string }> {
   if (patch.profileImage) {
     const { error } = await uploadProfileImage(userId, "avatar", patch.profileImage);
     if (error) return { error };
@@ -22,10 +19,7 @@ export async function updateProfile(
 
   if (Object.keys(changes).length > 0) {
     const supabase = createClient();
-    const { error } = await supabase
-      .from("public_profile")
-      .update(changes)
-      .eq("user_id", userId);
+    const { error } = await supabase.from("public_profile").update(changes).eq("user_id", userId);
     if (error) return { error: error.message };
   }
 

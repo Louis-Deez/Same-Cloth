@@ -103,7 +103,7 @@ async function saveProfile(supabase: SupabaseClient, user: User, payload: LoginP
     if (pictureError) return { error: pictureError };
   }
 
-    if (payload.bannerPicture) {
+  if (payload.bannerPicture) {
     const { error: bannerError } = await uploadProfileImage(user.id, "banner", payload.bannerPicture);
     if (bannerError) return { error: bannerError };
   }

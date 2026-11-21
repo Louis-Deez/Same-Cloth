@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import {useAuth} from "@/lib/auth/AuthProvider";
+import { useAuth } from "@/lib/auth/AuthProvider";
 import Image from "next/image";
-import React, {useEffect, useState} from "react";
-import {ImageKind} from "@/lib/supabase/uploadProfileImage";
-import {updateProfile} from "@/lib/supabase/updateProfile";
-import {PlusIcon} from "@radix-ui/react-icons";
-import {FormInput} from "@/components/form/FormInput";
-import {FormTextArea} from "@/components/form/FormTextArea";
-import {SingleSelect} from "@/components/form/FormSelection";
-import {GENDER} from "@/app/(auth)/signup/_config/fields";
-import {Button} from "@/components/Button";
-import {ProfileDataPatch} from "@/models/settings/profileData";
+import React, { useEffect, useState } from "react";
+import { ImageKind } from "@/lib/supabase/uploadProfileImage";
+import { updateProfile } from "@/lib/supabase/updateProfile";
+import { PlusIcon } from "@radix-ui/react-icons";
+import { FormInput } from "@/components/form/FormInput";
+import { FormTextArea } from "@/components/form/FormTextArea";
+import { SingleSelect } from "@/components/form/FormSelection";
+import { GENDER } from "@/app/(auth)/signup/_config/fields";
+import { Button } from "@/components/Button";
+import { ProfileDataPatch } from "@/models/settings/profileData";
 
 export const EditProfile = () => {
-  const {profile, user, refreshProfile} = useAuth();
+  const { profile, user, refreshProfile } = useAuth();
 
   const [profilePatch, setProfilePatch] = useState<ProfileDataPatch>({});
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
@@ -25,12 +25,12 @@ export const EditProfile = () => {
   const isDirty = Object.keys(profilePatch).length > 0;
 
   useEffect(() => {
-    if(!avatarPreview) return;
+    if (!avatarPreview) return;
     return () => URL.revokeObjectURL(avatarPreview);
   }, [avatarPreview]);
 
   useEffect(() => {
-    if(!bannerPreview) return;
+    if (!bannerPreview) return;
     return () => URL.revokeObjectURL(bannerPreview);
   }, [bannerPreview]);
 
@@ -45,10 +45,10 @@ export const EditProfile = () => {
     const url = URL.createObjectURL(file);
 
     if (kind === "avatar") {
-      setProfilePatch(prev => ({...prev, profileImage: file}));
+      setProfilePatch((prev) => ({ ...prev, profileImage: file }));
       setAvatarPreview(url);
     } else {
-      setProfilePatch(prev => ({...prev, bannerImage: file}));
+      setProfilePatch((prev) => ({ ...prev, bannerImage: file }));
       setBannerPreview(url);
     }
   };
@@ -61,7 +61,7 @@ export const EditProfile = () => {
 
     setSaving(true);
     setMessage("Saving...");
-    const {error} = await updateProfile(user.id, profilePatch);
+    const { error } = await updateProfile(user.id, profilePatch);
     setSaving(false);
     if (error) return setMessage(error);
     setMessage("Profile updated successfully!");
@@ -71,14 +71,14 @@ export const EditProfile = () => {
     setProfilePatch({});
     setAvatarPreview(null);
     setBannerPreview(null);
-  }
+  };
 
   return (
-    <div className="flex flex-col h-screen pt-10 gap-y-8 px-8 rounded">
+    <div className="flex h-screen flex-col gap-y-8 rounded px-8 pt-10">
       <h3 className="text-accent">Edit Profile</h3>
 
       <h5 className="-mb-6">Profile</h5>
-      <div className="flex gap-x-4 bg-surface p-3 rounded-3xl shadow-lg border border-line">
+      <div className="bg-surface border-line flex gap-x-4 rounded-3xl border p-3 shadow-lg">
         <div className="relative w-1/2 max-w-[calc(16rem*16/9)] shrink-0">
           <label className="group block cursor-pointer opacity-100">
             {bannerSrc ? (
@@ -88,11 +88,11 @@ export const EditProfile = () => {
                 height={1000}
                 priority
                 alt="banner"
-                className="aspect-video w-full rounded-xl object-cover border border-line"
+                className="border-line aspect-video w-full rounded-xl border object-cover"
                 unoptimized={!bannerSrc.startsWith("/")}
               />
             ) : (
-              <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-dashed border-line">
+              <div className="border-line flex aspect-video w-full items-center justify-center rounded-xl border border-dashed">
                 <p>No banner set</p>
               </div>
             )}
@@ -129,13 +129,13 @@ export const EditProfile = () => {
           </label>
         </div>
 
-        <div className="flex flex-col gap-y-2 w-full">
+        <div className="flex w-full flex-col gap-y-2">
           <FormInput
             id="displayName"
             label="Display Name"
             placeholder="Enter your display name"
             value={profilePatch.displayName ?? profile?.displayName ?? ""}
-            onChange={(e) => setProfilePatch(prev => ({...prev, displayName: e.target.value}))}
+            onChange={(e) => setProfilePatch((prev) => ({ ...prev, displayName: e.target.value }))}
             patch
           />
           <FormTextArea
@@ -143,7 +143,7 @@ export const EditProfile = () => {
             placeholder="Tell us about yourself..."
             id="bio"
             value={profilePatch.bio ?? profile?.bio ?? ""}
-            onChange={(e) => setProfilePatch(prev => ({...prev, bio: e.target.value}))}
+            onChange={(e) => setProfilePatch((prev) => ({ ...prev, bio: e.target.value }))}
             patch
           />
         </div>
@@ -171,5 +171,5 @@ export const EditProfile = () => {
         <span>Certain profile info, like your name, bio and links, is visible to everyone.</span>
       </div>
     </div>
-  )
-}
+  );
+};

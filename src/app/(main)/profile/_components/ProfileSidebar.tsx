@@ -4,11 +4,11 @@ import Image from "next/image";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/lib/auth/AuthProvider";
 
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import { ImageKind, uploadProfileImage } from "@/lib/supabase/uploadProfileImage";
 import { PlusIcon } from "@radix-ui/react-icons";
-import {useCreatePost} from "@/app/(main)/profile/_components/CreatePostProvider";
-import {useRouter} from "next/navigation";
+import { useCreatePost } from "@/app/(main)/profile/_components/CreatePostProvider";
+import { useRouter } from "next/navigation";
 
 /**
  * @component - This is the sidebar that shows the user's profile. It shows the user's profile picture, name, handle, bio
@@ -126,8 +126,8 @@ export const ProfileSidebar = () => {
           </div>
 
           {/* TODO: Implement edit profile and create post buttons */}
-          <Button label="Edit Profile" primary onClick={() => router.push("/settings")}/>
-          <Button label="Create Post" onClick={open}/>
+          <Button label="Edit Profile" primary onClick={() => router.push("/settings")} />
+          <Button label="Create Post" onClick={open} />
 
           <span className="uppercase">
             MEMBER SINCE:{" "}
