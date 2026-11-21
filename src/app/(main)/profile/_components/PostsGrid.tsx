@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth/AuthProvider";
 import { loadUserPosts, type ProfilePost } from "@/lib/supabase/loadUserPosts";
 import { useCreatePost } from "@/app/(main)/profile/_components/CreatePostProvider";
-import {HeartFilledIcon, ChatBubbleIcon} from "@radix-ui/react-icons";
+import { HeartFilledIcon, ChatBubbleIcon } from "@radix-ui/react-icons";
 
 export function PostsGrid() {
   const { postsVersion } = useCreatePost();
@@ -55,28 +55,26 @@ export function PostsGrid() {
         <article key={post.post_id}>
           {post.imageUrl && (
             <div className="relative aspect-square">
-              <Image
-                src={post.imageUrl}
-                alt={post.caption ?? "Post image"}
-                fill
-                unoptimized
-                className="object-cover"
-              />
+              <Image src={post.imageUrl} alt={post.caption ?? "Post image"} fill unoptimized className="object-cover" />
               <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent p-2 opacity-0 transition-opacity hover:opacity-100">
                 {post.caption && <h5 className="truncate text-white">{post.caption}</h5>}
                 <div className="flex justify-between">
                   <span className="shrink-0 text-white">
-                    {new Date(post.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                    {new Date(post.created_at).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
                   </span>
 
                   {/* TODO: add real likes and comments count */}
                   <div className="flex items-center gap-x-2">
                     <div className="flex items-center gap-x-1 text-white">
-                      <HeartFilledIcon className="scale-80"/>
+                      <HeartFilledIcon className="scale-80" />
                       <span className="text-white">12.2k</span>
                     </div>
                     <div className="flex items-center gap-x-1 text-white">
-                      <ChatBubbleIcon className="scale-80"/>
+                      <ChatBubbleIcon className="scale-80" />
                       <span className="text-white">1.2k</span>
                     </div>
                   </div>

@@ -11,7 +11,7 @@ const ProfileView = () => {
     <div className="flex min-h-screen w-full">
       <ProfileSidebar />
       {/* TODO: implement posts grid */}
-      <div className="flex w-full h-full justify-center">
+      <div className="flex h-full w-full justify-center">
         <PostsGrid />
       </div>
     </div>
