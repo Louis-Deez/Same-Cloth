@@ -3,7 +3,8 @@
 import {useAuth} from "@/lib/auth/AuthProvider";
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
-import {ImageKind, uploadProfileImage} from "@/lib/supabase/uploadProfileImage";
+import {ImageKind} from "@/lib/supabase/uploadProfileImage";
+import {updateProfile} from "@/lib/supabase/updateProfile";
 import {PlusIcon} from "@radix-ui/react-icons";
 import {FormInput} from "@/components/form/FormInput";
 import {FormTextArea} from "@/components/form/FormTextArea";
@@ -13,11 +14,15 @@ import {Button} from "@/components/Button";
 import {ProfileDataPatch} from "@/models/settings/profileData";
 
 export const EditProfile = () => {
-  const {profile, user} = useAuth();
+  const {profile, user, refreshProfile} = useAuth();
 
   const [profilePatch, setProfilePatch] = useState<ProfileDataPatch>({});
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [bannerPreview, setBannerPreview] = useState<string | null>(null);
+  const [message, setMessage] = useState<string>("");
+  const [saving, setSaving] = useState<boolean>(false);
+
+  const isDirty = Object.keys(profilePatch).length > 0;
 
   useEffect(() => {
     if(!avatarPreview) return;
@@ -31,7 +36,6 @@ export const EditProfile = () => {
 
   const avatarSrc = avatarPreview ?? profile?.profilePictureURL ?? "/images/default_pfp.svg";
   const bannerSrc = bannerPreview ?? profile?.bannerURL ?? "/images/placeholder_banner.jpeg";
-  // const bannerSrc = false;
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>, kind: ImageKind) => {
     const file = e.target.files?.[0];
@@ -48,6 +52,26 @@ export const EditProfile = () => {
       setBannerPreview(url);
     }
   };
+
+  const handleSave = async () => {
+    if (!user) return;
+    if (profilePatch.displayName !== undefined && !profilePatch.displayName.trim()) {
+      return setMessage("Display name can't be empty.");
+    }
+
+    setSaving(true);
+    setMessage("Saving...");
+    const {error} = await updateProfile(user.id, profilePatch);
+    setSaving(false);
+    if (error) return setMessage(error);
+    setMessage("Profile updated successfully!");
+
+    await refreshProfile();
+
+    setProfilePatch({});
+    setAvatarPreview(null);
+    setBannerPreview(null);
+  }
 
   return (
     <div className="flex flex-col h-screen pt-10 gap-y-8 px-8 rounded">
@@ -125,6 +149,8 @@ export const EditProfile = () => {
         </div>
       </div>
 
+      {/* TODO: Implement Gender selection, currently unavailable */}
+
       <h5 className="-mb-6">Gender</h5>
       <SingleSelect
         id="gender"
@@ -137,9 +163,10 @@ export const EditProfile = () => {
 
       <div className="flex flex-col gap-y-2">
         <Button
-          label="Save Changes"
+          label={saving ? "Saving..." : "Save Changes"}
           primary
-          onClick={() => {}}
+          disabled={!isDirty || saving}
+          onClick={handleSave}
         />
         <span>Certain profile info, like your name, bio and links, is visible to everyone.</span>
       </div>
