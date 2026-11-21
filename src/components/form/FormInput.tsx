@@ -21,7 +21,7 @@ interface FormInputProps {
   type?: string;
   autoComplete?: string;
   className?: string;
-  errorMessage: string;
+  errorMessage?: string;
   validated?: boolean; // TODO: implement this
   inputMode?: "search" | "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
 }

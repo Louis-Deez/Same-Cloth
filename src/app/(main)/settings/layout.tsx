@@ -13,9 +13,9 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
   }));
 
   return (
-    <div className="flex gap-x-8">
+    <div className="flex">
       <SettingsSidebar nav={nav} />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 px-64">{children}</main>
     </div>
   );
 }

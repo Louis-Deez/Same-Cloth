@@ -8,13 +8,14 @@ import { formSelectionStyle } from "@/components/form/formSelectionConfig";
 
 interface FormSelectionProps {
   id: string;
-  label: string;
+  label?: string;
   options: SelectionData[];
   placeholder: string;
   className?: string;
   required?: boolean;
   errorMessage?: string;
   validated?: boolean;
+  isPatch?: boolean;
 }
 
 /**
@@ -95,6 +96,7 @@ export const SingleSelect = ({
   errorMessage,
   validated,
   value,
+  isPatch
 }: SingleSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && value.length === 0 && !validated;
@@ -103,7 +105,7 @@ export const SingleSelect = ({
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {!required && <span className="text-md! text-neutral-400">(optional)</span>}
+        {(!required && !isPatch) && <span className="text-md! text-neutral-400">(optional)</span>}
       </div>
       <Select<SelectionData>
         unstyled
