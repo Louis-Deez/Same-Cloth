@@ -24,6 +24,7 @@ interface FormInputProps {
   errorMessage?: string;
   validated?: boolean; // TODO: implement this
   inputMode?: "search" | "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
+  patch?: boolean;
 }
 
 /**
@@ -39,6 +40,7 @@ interface FormInputProps {
  * @param validated - Whether the input has been validated (e.g., by a server)
  * @param inputMode - The input mode (e.g., "search", "none", "text", "tel", "url", "email", "numeric", "decimal")
  * @param placeholder - The placeholder text for the input, you should write it in colloquial English
+ * @param patch - Whether the input is a patch input. A patch meaning that it is just editing an existing value.
  *
  * For required inputs, isTouched and setTouched are used to determine if the user has interacted with the input
  * invalidly. For example, if the user has not entered a value and clicks out, the input is considered invalid.
@@ -60,6 +62,7 @@ export const FormInput = ({
   validated,
   inputMode,
   placeholder,
+  patch
 }: FormInputProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && !value && !validated;
@@ -68,7 +71,7 @@ export const FormInput = ({
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {!required && <span className="text-md! text-subtle">(optional)</span>}
+        {(!required && !patch) && <span className="text-md! text-subtle">(optional)</span>}
       </div>
       <input
         type={type ?? "text"}

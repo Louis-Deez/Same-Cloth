@@ -15,7 +15,7 @@ interface FormSelectionProps {
   required?: boolean;
   errorMessage?: string;
   validated?: boolean;
-  isPatch?: boolean;
+  patch?: boolean;
 }
 
 /**
@@ -28,6 +28,7 @@ interface FormSelectionProps {
  * @param required - Whether the input is required
  * @param errorMessage - The error message to display if the input is invalidated
  * @param validated - Whether the input has been validated (e.g., by a server)
+ * @param patch - Whether the input is a patch input. A patch meaning that it is just editing an existing value.
  *
  * Both SingleSelect and MultiSelect are very similar to FormInput. The only difference is that MultiSelect is for
  * multiple selections, while SingleSelect is for single selections.
@@ -50,6 +51,7 @@ export const MultiSelect = ({
   errorMessage,
   validated,
   value,
+  patch
 }: MultiSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && value.length === 0 && !validated;
@@ -58,7 +60,7 @@ export const MultiSelect = ({
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {!required && <span className="text-md! text-neutral-400">(optional)</span>}
+        {(!required && !patch) && <span className="text-md! text-neutral-400">(optional)</span>}
       </div>
       <Select<SelectionData, true>
         isMulti
@@ -96,7 +98,7 @@ export const SingleSelect = ({
   errorMessage,
   validated,
   value,
-  isPatch
+  patch
 }: SingleSelectProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && value.length === 0 && !validated;
@@ -105,7 +107,7 @@ export const SingleSelect = ({
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-2">
         <label htmlFor={id}>{label}</label>
-        {(!required && !isPatch) && <span className="text-md! text-neutral-400">(optional)</span>}
+        {(!required && !patch) && <span className="text-md! text-neutral-400">(optional)</span>}
       </div>
       <Select<SelectionData>
         unstyled

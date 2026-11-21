@@ -13,6 +13,7 @@ interface FormTextAreaProps {
   disabled?: boolean;
   maxLength?: number;
   errorMessage?: string;
+  patch?: boolean;
 }
 
 /**
@@ -24,6 +25,7 @@ interface FormTextAreaProps {
  * @param required - Whether the input is required
  * @param errorMessage - The error message to display if the input is invalidated
  * @param placeholder - The placeholder text for the input, you should write it in colloquial English
+ * @param patch - Whether the input is a patch input. A patch meaning that it is just editing an existing value.
  *
  * FormTextArea is very similar to FormInput. The only difference is that FormTextArea is for multiline inputs. This is
  * perfect for descriptions, comments, bios, etc.
@@ -39,6 +41,7 @@ export const FormTextArea = ({
   disabled,
   maxLength,
   placeholder,
+  patch
 }: FormTextAreaProps) => {
   const [isTouched, setTouched] = useState<boolean>(false);
   const invalid = required && isTouched && !value;
@@ -47,7 +50,7 @@ export const FormTextArea = ({
     <div className={`flex flex-col gap-y-1 ${className ?? ""}`}>
       <div className="flex items-center gap-x-1">
         <label htmlFor={id}>{label}</label>
-        {!required && <span className="text-md! text-subtle">(optional)</span>}
+        {(!required && !patch) && <span className="text-md! text-subtle">(optional)</span>}
       </div>
       <textarea
         placeholder={placeholder}

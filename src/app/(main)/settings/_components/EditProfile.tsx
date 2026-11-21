@@ -103,6 +103,7 @@ export const EditProfile = () => {
             placeholder="Enter your display name"
             value={profile?.displayName ?? ""}
             onChange={(e) => {}}
+            patch
           />
           <FormTextArea
             label="Bio"
@@ -110,6 +111,7 @@ export const EditProfile = () => {
             id="bio"
             value={profile?.bio ?? ""}
             onChange={(e) => {}}
+            patch
           />
         </div>
       </div>
@@ -121,7 +123,7 @@ export const EditProfile = () => {
         onChange={(e) => {}}
         value={"Male"}
         placeholder="Select your gender"
-        isPatch
+        patch
       />
 
       <div className="flex flex-col gap-y-2">
