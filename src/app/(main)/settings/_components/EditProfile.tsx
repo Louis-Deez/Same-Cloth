@@ -78,7 +78,7 @@ export const EditProfile = () => {
       <h3 className="text-accent">Edit Profile</h3>
 
       <h5 className="-mb-6">Profile</h5>
-      <div className="flex gap-x-4 bg-surface p-3 rounded-3xl shadow-xl border border-line">
+      <div className="flex gap-x-4 bg-surface p-3 rounded-3xl shadow-lg border border-line">
         <div className="relative w-1/2 max-w-[calc(16rem*16/9)] shrink-0">
           <label className="group block cursor-pointer opacity-100">
             {bannerSrc ? (
@@ -88,7 +88,7 @@ export const EditProfile = () => {
                 height={1000}
                 priority
                 alt="banner"
-                className="aspect-video w-full rounded-xl object-cover"
+                className="aspect-video w-full rounded-xl object-cover border border-line"
                 unoptimized={!bannerSrc.startsWith("/")}
               />
             ) : (
