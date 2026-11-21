@@ -2,7 +2,7 @@
 
 import {useAuth} from "@/lib/auth/AuthProvider";
 import Image from "next/image";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ImageKind, uploadProfileImage} from "@/lib/supabase/uploadProfileImage";
 import {PlusIcon} from "@radix-ui/react-icons";
 import {FormInput} from "@/components/form/FormInput";
@@ -10,34 +10,43 @@ import {FormTextArea} from "@/components/form/FormTextArea";
 import {SingleSelect} from "@/components/form/FormSelection";
 import {GENDER} from "@/app/(auth)/signup/_config/fields";
 import {Button} from "@/components/Button";
+import {ProfileDataPatch} from "@/models/settings/profileData";
 
 export const EditProfile = () => {
   const {profile, user} = useAuth();
 
-  const [message, setMessage] = useState<string>("");
-  const [newAvatar, setNewAvatar] = useState<string | null>(null);
-  const [newBanner, setNewBanner] = useState<string | null>(null);
+  const [profilePatch, setProfilePatch] = useState<ProfileDataPatch>({});
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [bannerPreview, setBannerPreview] = useState<string | null>(null);
 
+  useEffect(() => {
+    if(!avatarPreview) return;
+    return () => URL.revokeObjectURL(avatarPreview);
+  }, [avatarPreview]);
 
-  const avatarSrc = profile?.profilePictureURL ?? "/images/default_pfp.svg";
-  const bannerSrc = profile?.bannerURL ?? "/images/placeholder_banner.jpeg";
+  useEffect(() => {
+    if(!bannerPreview) return;
+    return () => URL.revokeObjectURL(bannerPreview);
+  }, [bannerPreview]);
+
+  const avatarSrc = avatarPreview ?? profile?.profilePictureURL ?? "/images/default_pfp.svg";
+  const bannerSrc = bannerPreview ?? profile?.bannerURL ?? "/images/placeholder_banner.jpeg";
   // const bannerSrc = false;
 
-  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>, kind: ImageKind) => {
-    //GRABS THE PICKED FILE, THEN CLEARS THE PICKER SO THE SAME FILE CAN BE PICKED AGAIN - C
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>, kind: ImageKind) => {
     const file = e.target.files?.[0];
     e.target.value = "";
-    if (!file || !user) return;
+    if (!file) return;
 
-    //SENDS IT TO uploadProfileImage AND WAITS FOR THE LINK - C
-    setMessage("Uploading...");
-    const { url, error } = await uploadProfileImage(user.id, kind, file);
-    if (error || !url) return setMessage(error ?? "Upload failed.");
+    const url = URL.createObjectURL(file);
 
-    //PUTS THE NEW LINK IN THE RIGHT BOX SO THE PAGE UPDATES - C
-    if (kind === "avatar") setNewAvatar(url);
-    else setNewBanner(url);
-    setMessage("");
+    if (kind === "avatar") {
+      setProfilePatch(prev => ({...prev, profileImage: file}));
+      setAvatarPreview(url);
+    } else {
+      setProfilePatch(prev => ({...prev, bannerImage: file}));
+      setBannerPreview(url);
+    }
   };
 
   return (
@@ -54,9 +63,9 @@ export const EditProfile = () => {
                 width={1000}
                 height={1000}
                 priority
-                unoptimized={bannerSrc.startsWith("http")}
                 alt="banner"
                 className="aspect-video w-full rounded-xl object-cover"
+                unoptimized={!bannerSrc.startsWith("/")}
               />
             ) : (
               <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-dashed border-line">
@@ -80,9 +89,9 @@ export const EditProfile = () => {
               width={1000}
               height={1000}
               priority
-              unoptimized={avatarSrc.startsWith("http")}
               alt="avatar"
               className="bg-surface aspect-square w-full rounded-full border border-white/70 object-cover shadow-xl"
+              unoptimized={!avatarSrc.startsWith("/")}
             />
             <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
               <PlusIcon className="scale-150 text-white" />
@@ -101,16 +110,16 @@ export const EditProfile = () => {
             id="displayName"
             label="Display Name"
             placeholder="Enter your display name"
-            value={profile?.displayName ?? ""}
-            onChange={(e) => {}}
+            value={profilePatch.displayName ?? profile?.displayName ?? ""}
+            onChange={(e) => setProfilePatch(prev => ({...prev, displayName: e.target.value}))}
             patch
           />
           <FormTextArea
             label="Bio"
             placeholder="Tell us about yourself..."
             id="bio"
-            value={profile?.bio ?? ""}
-            onChange={(e) => {}}
+            value={profilePatch.bio ?? profile?.bio ?? ""}
+            onChange={(e) => setProfilePatch(prev => ({...prev, bio: e.target.value}))}
             patch
           />
         </div>
