@@ -5,8 +5,8 @@ import React from "react";
 import { Property } from "csstype";
 import { PersonIcon, GearIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { ThemeSelector } from "@/components/misc/ThemeSelector";
-import { ThemeModeType } from "@/components/misc/themeModeType";
+import { ThemeSelector } from "@/components/misc/theme/ThemeSelector";
+import { ThemeModeType } from "@/components/misc/theme/themeModeType";
 
 interface ModalButtonProps {
   label: string;

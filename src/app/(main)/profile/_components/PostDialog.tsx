@@ -4,7 +4,7 @@ import {useAuth} from "@/lib/auth/AuthProvider";
 import Image from "next/image";
 import {ChatBubbleIcon, Cross2Icon, HeartFilledIcon, HeartIcon, PaperPlaneIcon} from "@radix-ui/react-icons";
 import {Button} from "@/components/Button";
-import {formatDate} from "@/app/(main)/profile/_components/PostsGrid";
+import {formatDate} from "@/components/misc/date/formatDate";
 
 interface PostDialogProps {
   post: ProfilePost | null;

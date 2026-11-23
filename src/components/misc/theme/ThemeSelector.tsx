@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { SunIcon, MoonIcon, ComponentBooleanIcon } from "@radix-ui/react-icons";
-import { ThemeModeType } from "@/components/misc/themeModeType";
+import { ThemeModeType } from "@/components/misc/theme/themeModeType";
 import { useEffect, useState } from "react";
 
 interface ThemeSelectorProps {

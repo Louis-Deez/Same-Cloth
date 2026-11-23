@@ -7,20 +7,7 @@ import { loadUserPosts, type ProfilePost } from "@/lib/supabase/loadUserPosts";
 import { useCreatePost } from "@/app/(main)/profile/_components/CreatePostProvider";
 import { HeartFilledIcon, ChatBubbleIcon } from "@radix-ui/react-icons";
 import {PostDialog} from "@/app/(main)/profile/_components/PostDialog";
-
-/**
- * @function formatDate - Formats a date string into a human-readable format.
- *
- * @param date - The date string to format.
- * @returns A formatted date string in the format "Month Day, Year". For example, "January 1, 2026".
- */
-
-export const formatDate = (date: string) =>
-  new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+import {formatDate} from "@/components/misc/date/formatDate";
 
 /**
  * @Component - The PostsGrid component is a grid of posts that the user has created. It fetches the user's posts and displays
