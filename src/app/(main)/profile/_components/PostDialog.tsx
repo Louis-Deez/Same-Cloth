@@ -11,6 +11,14 @@ interface PostDialogProps {
   onClose: () => void;
 }
 
+/**
+ * @param post - The post to display
+ * @param onClose - Function to call when the dialog is closed
+ *
+ * @Component - The PostDialog component is a modal dialog that displays a single post. It includes the post's image,
+ * caption, author information, and comments.
+ */
+
 export const PostDialog = ({ post, onClose }: PostDialogProps) => {
   const ref = useRef<HTMLDialogElement>(null);
   const { profile } = useAuth();

@@ -8,12 +8,25 @@ import { useCreatePost } from "@/app/(main)/profile/_components/CreatePostProvid
 import { HeartFilledIcon, ChatBubbleIcon } from "@radix-ui/react-icons";
 import {PostDialog} from "@/app/(main)/profile/_components/PostDialog";
 
+/**
+ * @function formatDate - Formats a date string into a human-readable format.
+ *
+ * @param date - The date string to format.
+ * @returns A formatted date string in the format "Month Day, Year". For example, "January 1, 2026".
+ */
+
 export const formatDate = (date: string) =>
   new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+
+/**
+ * @Component - The PostsGrid component is a grid of posts that the user has created. It fetches the user's posts and displays
+ * them in a grid layout. Each post is displayed as a button that opens a dialog with more information about the post.
+ */
+
 
 export function PostsGrid() {
   const { postsVersion } = useCreatePost();
