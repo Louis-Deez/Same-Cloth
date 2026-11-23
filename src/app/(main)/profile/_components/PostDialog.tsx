@@ -1,10 +1,10 @@
-import type {ProfilePost} from "@/lib/supabase/loadUserPosts";
-import {useEffect, useRef, useState} from "react";
-import {useAuth} from "@/lib/auth/AuthProvider";
+import type { ProfilePost } from "@/lib/supabase/loadUserPosts";
+import { useEffect, useRef, useState } from "react";
+import { useAuth } from "@/lib/auth/AuthProvider";
 import Image from "next/image";
-import {ChatBubbleIcon, Cross2Icon, HeartFilledIcon, HeartIcon, PaperPlaneIcon} from "@radix-ui/react-icons";
-import {Button} from "@/components/Button";
-import {formatDate} from "@/components/misc/date/formatDate";
+import { ChatBubbleIcon, Cross2Icon, HeartFilledIcon, HeartIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
+import { Button } from "@/components/Button";
+import { formatDate } from "@/components/misc/date/formatDate";
 
 interface PostDialogProps {
   post: ProfilePost | null;
@@ -47,7 +47,7 @@ export const PostDialog = ({ post, onClose }: PostDialogProps) => {
     >
       {post && (
         <div className="flex w-full">
-          <div className="relative aspect-square flex-1 bg-surface border-r border-line">
+          <div className="bg-surface border-line relative aspect-square flex-1 border-r">
             {post.imageUrl && (
               <Image
                 src={post.imageUrl}
@@ -120,16 +120,11 @@ export const PostDialog = ({ post, onClose }: PostDialogProps) => {
                 onChange={(e) => setComment(e.target.value)}
                 className="border-line flex-1 rounded-xl border px-3 py-2"
               />
-              <Button
-                icon={<PaperPlaneIcon/>}
-                primary
-                disabled={!comment.trim()}
-                className="px-4!"
-              />
+              <Button icon={<PaperPlaneIcon />} primary disabled={!comment.trim()} className="px-4!" />
             </div>
           </div>
         </div>
       )}
     </dialog>
   );
-}
+};
