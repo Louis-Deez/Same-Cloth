@@ -4,11 +4,12 @@ import Image from "next/image";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/lib/auth/AuthProvider";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ImageKind, uploadProfileImage } from "@/lib/supabase/uploadProfileImage";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { useCreatePost } from "@/app/(main)/profile/_components/CreatePostProvider";
 import { useRouter } from "next/navigation";
+import { loadFollowStats, type FollowStats } from "@/lib/supabase/follows";
 
 /**
  * @component - This is the sidebar that shows the user's profile. It shows the user's profile picture, name, handle, bio
@@ -51,7 +52,27 @@ export const ProfileSidebar = () => {
     setMessage("");
   };
 
-  const dialogRef = useRef<HTMLDialogElement>(null);
+
+
+  const [followStats, setFollowStats] = useState<FollowStats | null>(null);
+
+useEffect(() => {
+  if (!user) return;
+
+  let cancelled = false;
+
+  loadFollowStats(user.id, user.id)
+    .then((stats) => {
+      if (!cancelled) setFollowStats(stats);
+    })
+    .catch((cause: unknown) => {
+      console.error("Could not load follow counts.", cause);
+    });
+
+  return () => {
+    cancelled = true;
+  };
+}, [user]);
 
   return (
     <div className="bg-surface w-96 shrink-0 border-r">
@@ -117,11 +138,11 @@ export const ProfileSidebar = () => {
             </div>
             <div className="flex w-full justify-between">
               <p>Followers</p>
-              <p>32,321</p>
+              <p>{followStats?.followerCount ?? "-"}</p>
             </div>
             <div className="flex w-full justify-between">
               <p>Following</p>
-              <p>295</p>
+              <p>{followStats?.followingCount ?? "-"}</p>
             </div>
           </div>
 

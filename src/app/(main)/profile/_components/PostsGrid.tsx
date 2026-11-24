@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth/AuthProvider";
 import { loadUserPosts, type ProfilePost } from "@/lib/supabase/loadUserPosts";
 import { useCreatePost } from "@/app/(main)/profile/_components/CreatePostProvider";
@@ -14,43 +14,46 @@ import { formatDate } from "@/components/misc/date/formatDate";
  * them in a grid layout. Each post is displayed as a button that opens a dialog with more information about the post.
  */
 
-export function PostsGrid() {
-  const { postsVersion } = useCreatePost();
+export function PostsGrid({
+  profileUserId,
+  publicView = false,
+}: {
+  profileUserId?: string;
+  publicView?: boolean;
+}) {
+  const { postsVersion, notifyPostCreated } = useCreatePost();
   const { user, loading: authLoading } = useAuth();
   const [posts, setPosts] = useState<ProfilePost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedPost, setSelectedPost] = useState<ProfilePost | null>(null);
+  const targetUserId = profileUserId ?? user?.id;
 
   useEffect(() => {
-    if (authLoading) return;
+  if (authLoading || !user || !targetUserId) return;
 
-    if (!user) {
-      return;
-    }
+  let cancelled = false;
 
-    let cancelled = false;
+  loadUserPosts(targetUserId)
+    .then((result) => {
+      if (!cancelled) {
+        setPosts(result);
+        setError(null);
+      }
+    })
+    .catch((cause: unknown) => {
+      if (!cancelled) {
+        setError(cause instanceof Error ? cause.message : "Could not load posts.");
+      }
+    })
+    .finally(() => {
+      if (!cancelled) setLoading(false);
+    });
 
-    loadUserPosts(user.id)
-      .then((result) => {
-        if (!cancelled) {
-          setPosts(result);
-          setError(null);
-        }
-      })
-      .catch((cause: unknown) => {
-        if (!cancelled) {
-          setError(cause instanceof Error ? cause.message : "Could not load posts.");
-        }
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [authLoading, user, postsVersion]);
+  return () => {
+    cancelled = true;
+  };
+}, [authLoading, user, targetUserId, postsVersion]);
 
   if (authLoading) return <p>Loading posts...</p>;
   if (!user) return <p>Sign in to see your posts.</p>;
@@ -85,11 +88,11 @@ export function PostsGrid() {
                     <div className="flex items-center gap-x-2">
                       <div className="flex items-center gap-x-1 text-white">
                         <HeartFilledIcon className="scale-80" />
-                        <span className="text-white">12.2k</span>
+                        <span>{post.likeCount}</span>
                       </div>
                       <div className="flex items-center gap-x-1 text-white">
                         <ChatBubbleIcon className="scale-80" />
-                        <span className="text-white">1.2k</span>
+                        <span>{post.commentCount}</span>
                       </div>
                     </div>
                   </div>
@@ -100,7 +103,25 @@ export function PostsGrid() {
         ))}
       </div>
 
-      <PostDialog post={selectedPost} onClose={() => setSelectedPost(null)} />
+      <PostDialog
+  key={`${selectedPost?.post_id ?? "closed"}-${publicView}`}
+  post={selectedPost}
+  enableInteractions={publicView}
+  onClose={() => setSelectedPost(null)}
+  onInteractionsChanged={(postId, counts) => {
+    setPosts((current) =>
+      current.map((post) =>
+        post.post_id === postId
+          ? { ...post, likeCount: counts.likeCount, commentCount: counts.commentCount }
+          : post,
+      ),
+    );
+  }}
+  onChanged={() => {
+    setSelectedPost(null);
+    notifyPostCreated();
+  }}
+/>
     </>
   );
 }
