@@ -40,7 +40,25 @@ export function PublicProfileView({ handle }: { handle: string }) {
   useEffect(() => {
   if (!profile || !user || authLoading) return;
 
-  void refreshFollowStats(profile.user_id, user.id);
+  let cancelled = false;
+
+  loadFollowStats(profile.user_id, user.id)
+    .then((stats) => {
+      if (cancelled) return;
+      setFollowStats(stats);
+      setFollowError(null);
+    })
+    .catch((cause: unknown) => {
+      if (!cancelled) {
+        setFollowError(
+          cause instanceof Error ? cause.message : "Could not load follow information.",
+        );
+      }
+    });
+
+  return () => {
+    cancelled = true;
+  };
 }, [profile, user, authLoading]);
 
   const refreshFollowStats = async (profileUserId: string, currentUserId: string) => {

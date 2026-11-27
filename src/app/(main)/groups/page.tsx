@@ -98,6 +98,24 @@ export default function GroupsPage() {
     groups.sort((first, second) => second.matchedOptionIds.length - first.matchedOptionIds.length);
   }
 
+  const normalizedSearch = search.trim().toLowerCase();
+
+  const matchingGroups = normalizedSearch? 
+  groups.filter((group) => {
+    const interests = (group.criteriaOptionIds ?? []).map(
+      (id) => data?.optionValues.get(id) ?? "",
+    );
+    const searchableText = [
+      group.name,
+      group.description ?? "",
+      ...interests,
+    ]
+    .join(" ")
+    .toLowerCase();
+
+    return searchableText.includes(normalizedSearch);
+  })
+  :groups;
   // after a group is saved, show the loading cards again, load fresh groups and go back to browsing
   // all is picked so the newest group shows first
   const handleCreated = () => {
@@ -115,9 +133,17 @@ export default function GroupsPage() {
           <SearchBar id="groups-search" value={search} onChange={setSearch} />
           <GroupFilters value={filter} onChange={setFilter} />
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {data
-              ? groups.map((group) => <GroupCard key={group.id} group={group} optionValues={data.optionValues} />)
-              : Array.from({ length: 4 }, (_, i) => <GroupCard key={i} />)}
+            {data ? (
+              matchingGroups.length > 0 ? (
+                matchingGroups.map((group) => (
+                  <GroupCard key={group.id} group={group} optionValues={data.optionValues} />
+              ))
+            ) : (
+              <p>No groups match that search.</p>
+            )
+            ) : (
+              Array.from({ length: 4 }, (_, i) => <GroupCard key={i} />)
+            )} 
           </div>
         </>
       ) : (

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { AuthCard } from "@/app/(auth)/_components/AuthCard";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { IconBlock } from "@/app/(auth)/_components/IconBlock";
@@ -101,9 +102,9 @@ const SignInView = () => {
                   errorMessage="You must enter your password"
                 />
                 {/* TODO: Implement forgot password, right now it does nothing */}
-                <a href="/" className="-mt-2 ml-auto text-sm">
-                  Forgot your password?
-                </a>
+                <Link href="/" className="-mt-2 ml-auto text-sm">
+                Forgot your password?
+                </Link>
               </div>
               <Button
                 className="w-full"
