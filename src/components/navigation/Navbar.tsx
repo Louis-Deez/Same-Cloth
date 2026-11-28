@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { NAV } from "@/components/navigation/links";
+import { UserSearch } from "@/components/navigation/UserSearch";
 import { CollapsableCategory } from "@/components/navigation/CollapsableCategory";
 import React from "react";
 import Link from "next/link";
@@ -87,6 +88,9 @@ const Navbar = () => {
         {NAV.find((item) => item.category === "Menu")?.links.map((link) => (
           <NavButton key={link.label} {...link} />
         ))}
+      </div>
+       <div className="hidden md:block">
+        <UserSearch />
       </div>
 
       {/*<ThemeToggle/>*/}

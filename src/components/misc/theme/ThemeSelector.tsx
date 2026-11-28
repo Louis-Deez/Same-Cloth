@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { SunIcon, MoonIcon, ComponentBooleanIcon } from "@radix-ui/react-icons";
 import { ThemeModeType } from "@/components/misc/theme/themeModeType";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 interface ThemeSelectorProps {
   selectedTheme: string;
@@ -14,11 +14,13 @@ interface ThemeSelectorProps {
  * @replaces ThemeToggle
  */
 
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export const ThemeSelector = ({ selectedTheme }: ThemeSelectorProps) => {
   const { theme, setTheme } = useTheme();
-
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
   if (!mounted) return <div className="size-6" />;
 
   return (
